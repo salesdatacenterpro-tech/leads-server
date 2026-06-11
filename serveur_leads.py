@@ -104,6 +104,8 @@ def get_week_orders():
         import sys
         sys.path.insert(0, "/Users/simonguetta/Desktop")
         from sheets_sync import get_client, SHEET_ID
+        import socket
+        socket.setdefaulttimeout(10)
         import gspread
         gc = get_client()
         sh = gc.open_by_key(SHEET_ID)
