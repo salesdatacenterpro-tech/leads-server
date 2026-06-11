@@ -14,7 +14,7 @@ socket.getaddrinfo = _ipv4_only
 def get_client():
     b64 = os.environ.get("SERVICE_ACCOUNT_B64")
     if b64:
-        info = json.loads(base64.b64decode(b64).decode())
+        info = json.loads(base64.b64decode(b64 + "==").decode())
     else:
         info = json.load(open(str(Path.home() / "Desktop" / "service_account.json")))
     creds = Credentials.from_service_account_info(info, scopes=["https://www.googleapis.com/auth/spreadsheets"])
