@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Commande Leads Solaires — DataCenter Pro</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Plus Jakarta Sans",sans-serif;background:#f9f9f7;color:#111}
+.header{background:#fff;border-bottom:1px solid #ececec;padding:18px 40px;display:flex;align-items:center;justify-content:space-between}
+.logo-text{font-size:20px;font-weight:700;color:#111;letter-spacing:-.02em}
+.logo-text span{color:#F5A623}
+.badge{display:flex;align-items:center;gap:7px;background:#fffbee;border:1px solid #fdd;border-radius:100px;padding:7px 16px}
+.dot{width:7px;height:7px;background:#F5A623;border-radius:50%;animation:p 2s infinite}
+@keyframes p{0%,100%{opacity:1}50%{opacity:.3}}
+.badge span{font-size:12px;font-weight:600;color:#b37a00}
+.hero{background:#0d1424;padding:32px 40px}
+.hero h1{font-size:28px;font-weight:700;color:#fff;margin-bottom:8px}
+.hero h1 em{font-style:normal;color:#F5A623}
+.hero p{font-size:13px;color:#6b7a99}
+.main{max-width:1100px;margin:0 auto;padding:36px 40px 60px;display:grid;grid-template-columns:340px 1fr;gap:32px;align-items:start}
+@media(max-width:768px){.main{grid-template-columns:1fr;padding:20px}.hero{padding:20px}.header{padding:14px 20px}}
+.form-card{background:#fff;border-radius:16px;border:1px solid #ececec;padding:28px}
+.field{margin-bottom:20px}
+.lbl{display:block;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#bbb;margin-bottom:7px}
+.req{color:#F5A623}
+input[type=text],input[type=number]{width:100%;padding:13px 15px;border:1.5px solid #e8e8e8;border-radius:10px;font-size:14px;outline:none;font-family:inherit;transition:border .15s}
+input:focus{border-color:#111}
+textarea{width:100%;padding:13px 15px;border:1.5px solid #e8e8e8;border-radius:10px;font-size:13px;outline:none;font-family:inherit;resize:none}
+.btn{width:100%;padding:16px;background:#111;color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;transition:background .15s}
+.btn:hover{background:#222}
+.btn:disabled{background:#999;cursor:not-allowed}
+.map-card{background:#fff;border-radius:16px;border:1px solid #ececec;overflow:hidden}
+.map-title{padding:16px 20px;font-size:13px;font-weight:600;border-bottom:1px solid #f0f0f0}
+.dept-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;padding:16px}
+.d{background:#f5f5f5;border:1.5px solid #e8e8e8;border-radius:7px;padding:12px 2px;font-size:13px;font-weight:700;cursor:pointer;text-align:center;transition:all .15s;min-height:44px}
+.d:hover{border-color:#111;background:#f0f0f0}
+.d.sel{background:#111;border-color:#111;color:#fff}
+.sel-info{padding:10px 20px 16px;font-size:12px;color:#888;border-top:1px solid #f0f0f0}
+#confirmation{display:none;min-height:100vh;background:#f9f9f7;align-items:center;justify-content:center;position:fixed;top:0;left:0;width:100%;z-index:9999}
+.confirm-card{background:#fff;border-radius:20px;padding:48px;max-width:480px;width:90%;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,0.08)}
+.check-circle{width:80px;height:80px;background:#f0fdf4;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:40px}
+</style>
+</head>
+<body>
+<div id="confirmation">
+  <div class="confirm-card">
+    <div class="check-circle">&#10003;</div>
+    <div style="font-size:24px;font-weight:700;color:#111;margin-bottom:10px">Commande confirmee !</div>
+    <div style="font-size:14px;color:#888;line-height:1.6;margin-bottom:28px">Merci pour votre commande.<br>Notre equipe va vous contacter tres rapidement.</div>
+    <div style="background:#f9f9f7;border-radius:12px;padding:16px">
+      <div style="font-weight:700;color:#111;font-size:16px;margin-bottom:4px">DataCenter Pro</div>
+      <div style="font-size:12px;color:#999">Leads Panneaux Solaires</div>
+    </div>
+  </div>
+</div>
+<div id="main-content">
+<div class="header">
+  <div class="logo-text">Data<span>Center</span> Pro</div>
+  <div class="badge"><div class="dot"></div><span>Commandes ouvertes</span></div>
+</div>
+<div class="hero">
+  <h1>Commande de <em>Leads Solaires</em></h1>
+  <p>Selectionnez vos departements et passez votre commande en quelques secondes</p>
+</div>
+<div class="main">
+  <div>
+    <div class="form-card">
+      <div class="field">
+        <label class="lbl">Nom / Entreprise <span class="req">*</span></label>
+        <input type="text" id="client" placeholder="Votre nom ou entreprise">
+      </div>
+      <div class="field">
+        <label class="lbl">Quantite de leads <span class="req">*</span></label>
+        <input type="number" id="quantity" placeholder="Ex: 100" min="1">
+      </div>
+      <div class="field">
+        <label class="lbl">Commentaire</label>
+        <textarea id="comments" rows="3" placeholder="Informations supplementaires..."></textarea>
+      </div>
+      <button class="btn" id="submit-btn" onclick="submitOrder()">Envoyer ma commande</button>
+    </div>
+  </div>
+  <div class="map-card">
+    <div class="map-title">Selectionnez vos departements &mdash; <span id="cnt">0</span> selectionne(s)</div>
+    <div class="dept-grid" id="grid"></div>
+    <div class="sel-info" id="sel-info">Aucun departement selectionne</div>
+  </div>
+</div>
+</div>
+<script>
+var DEPTS=["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","21","22","23","24","25","26","27","28","29","2A","2B","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95"];
+var sel=new Set();
+var grid=document.getElementById("grid");
+DEPTS.forEach(function(d){
+  var b=document.createElement("button");
+  b.className="d";b.textContent=d;b.type="button";
+  b.onclick=function(){
+    if(sel.has(d)){sel.delete(d);b.classList.remove("sel")}
+    else{sel.add(d);b.classList.add("sel")}
+    document.getElementById("cnt").textContent=sel.size;
+    document.getElementById("sel-info").textContent=sel.size?Array.from(sel).sort().join(", "):"Aucun departement selectionne";
+  };
+  grid.appendChild(b);
+});
+var submitted=false;
+function submitOrder(){
+  if(submitted)return;
+  var client=document.getElementById("client").value.trim();
+  var quantity=parseInt(document.getElementById("quantity").value);
+  var comments=document.getElementById("comments").value.trim();
+  if(!client){alert("Veuillez entrer votre nom");return}
+  if(!quantity||quantity<1){alert("Veuillez entrer une quantite valide");return}
+  if(sel.size===0){alert("Veuillez selectionner au moins un departement");return}
+  submitted=true;
+  var btn=document.getElementById("submit-btn");
+  btn.disabled=true;
+  btn.textContent="Envoi en cours...";
+  fetch("/api/order",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({client:client,quantity:quantity,departments:Array.from(sel),comments:comments})})
+  .then(function(r){return r.json();})
+  .then(function(d){
+    if(d.ok){
+      document.getElementById("confirmation").style.display="flex";
+      window.scrollTo(0,0);
+    }else{
+      submitted=false;btn.disabled=false;btn.textContent="Envoyer ma commande";
+      alert("Erreur lors de l envoi");
+    }
+  })
+  .catch(function(){
+    submitted=false;btn.disabled=false;btn.textContent="Envoyer ma commande";
+    alert("Erreur de connexion");
+  });
+}
+</script>
+</body>
+</html>

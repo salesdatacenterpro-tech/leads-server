@@ -1,0 +1,106 @@
+Exception ignored while running getpath:
+Traceback (most recent call last):
+  File "<frozen getpath>", line 358, in <module>
+InterruptedError: [Errno 4] Interrupted system call
+Fatal Python error: error evaluating path
+Python runtime state: core initialized
+
+Current thread 0x00000001fbde6240 (most recent call first):
+  <no Python frame>
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+Lecture Google Sheets...
+50 commandes trouvees
+Recap envoye ! 8005 leads / 50 clients
+Lecture Google Sheets...
+50 commandes trouvees
+Recap envoye ! 8005 leads / 50 clients
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+Lecture Google Sheets...
+Traceback (most recent call last):
+  File "/Users/simonguetta/Desktop/recap_sheets.py", line 76, in <module>
+    send_recap()
+    ~~~~~~~~~~^^
+  File "/Users/simonguetta/Desktop/recap_sheets.py", line 55, in send_recap
+    orders = get_week_orders()
+  File "/Users/simonguetta/Desktop/recap_sheets.py", line 35, in get_week_orders
+    ).execute()
+      ~~~~~~~^^
+  File "/Users/simonguetta/Desktop/factures_env/lib/python3.14/site-packages/googleapiclient/_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/Users/simonguetta/Desktop/factures_env/lib/python3.14/site-packages/googleapiclient/http.py", line 938, in execute
+    raise HttpError(resp, content, uri=self.uri)
+googleapiclient.errors.HttpError: <HttpError 503 when requesting https://sheets.googleapis.com/v4/spreadsheets/12erShSlXNH62KcMwSuKgU38xkqiseprqCR9jMMGtsls/values/Commandes%21A%3AG?alt=json returned "The service is currently unavailable.". Details: "The service is currently unavailable.">
+Lecture Google Sheets...
+0 commandes trouvees
+Recap envoye ! 0 leads / 0 clients
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+Lecture Google Sheets...
+0 commandes trouvees
+Recap envoye ! 0 leads / 0 clients
+Lecture Google Sheets...
+0 commandes trouvees
+Recap envoye ! 0 leads / 0 clients
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+Lecture Google Sheets...
+0 commandes trouvees
+Recap envoye ! 0 leads / 0 clients
+Lecture Google Sheets...
+0 commandes trouvees
+Recap envoye ! 0 leads / 0 clients
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+Lecture Google Sheets...
+0 commandes trouvees
+Recap envoye ! 0 leads / 0 clients
+Lecture Google Sheets...
+0 commandes trouvees
+Recap envoye ! 0 leads / 0 clients
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory
+/opt/homebrew/Cellar/python@3.14/3.14.4/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/simonguetta/Desktop/recap_wise.py': [Errno 2] No such file or directory

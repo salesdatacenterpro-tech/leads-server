@@ -1,0 +1,11 @@
+2026-04-13 17:54:29,152 - Démarrage récapitulatif leads
+2026-04-13 17:54:29,544 - Please visit this URL to authorize this application: https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=258686679185-8tc8fs61s1b12qambqedkisq3t77jn0m.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A54902%2F&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fgmail.readonly+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fgmail.send&state=f2OtcllEGG51KkHYyRQUYkU1J3zX3G&code_challenge=svdvHsMK1_OFuMjKSc7w-XXXfNvaYRSTZ1C7Q1mYlS0&code_challenge_method=S256&access_type=offline
+2026-04-13 17:54:37,466 - "GET /?state=f2OtcllEGG51KkHYyRQUYkU1J3zX3G&iss=https://accounts.google.com&code=4/0Aci98E8t_bk_H8aQYGOnteDUxf5nNC62CvxdkBr42FBfXgd8o9Yo-GofBdDvpPebFVTmMw&scope=https://www.googleapis.com/auth/gmail.send%20https://www.googleapis.com/auth/gmail.readonly HTTP/1.1" 200 65
+2026-04-13 17:54:37,978 - file_cache is only supported with oauth2client<4.0.0
+2026-04-13 17:54:45,403 - Récapitulatif envoyé : 267 leads, 31 clients
+2026-04-20 11:49:42,512 - Démarrage récapitulatif leads
+2026-04-20 11:49:43,099 - file_cache is only supported with oauth2client<4.0.0
+2026-04-20 11:49:50,346 - Récapitulatif envoyé : 2009 leads, 33 clients
+2026-04-20 11:54:17,144 - Démarrage récapitulatif leads
+2026-04-20 11:54:17,419 - file_cache is only supported with oauth2client<4.0.0
+2026-04-20 11:54:24,764 - Récapitulatif envoyé : 4018 leads, 34 clients

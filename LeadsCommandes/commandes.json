@@ -1,0 +1,6066 @@
+[
+  {
+    "client": "ARTHUR",
+    "quantity": 100,
+    "departments": [
+      "73",
+      "74"
+    ],
+    "comments": "",
+    "timestamp": "2026-04-15T14:20:18.875Z",
+    "received_at": "15/04/2026 a 17:20",
+    "id": "1776262833783"
+  },
+  {
+    "client": "ARTHUR",
+    "quantity": 100,
+    "departments": [
+      "59",
+      "62"
+    ],
+    "comments": "",
+    "timestamp": "2026-04-15T14:21:23.630Z",
+    "received_at": "15/04/2026 a 17:21",
+    "id": "1776262893855"
+  },
+  {
+    "client": "ARTHUR",
+    "quantity": 150,
+    "departments": [
+      "44",
+      "85"
+    ],
+    "comments": "",
+    "timestamp": "2026-04-15T14:22:20.275Z",
+    "received_at": "15/04/2026 a 17:22",
+    "id": "1776262953927"
+  },
+  {
+    "client": "Lenny",
+    "quantity": 300,
+    "departments": [
+      "09",
+      "11",
+      "31",
+      "66"
+    ],
+    "comments": "",
+    "timestamp": "2026-04-16T07:24:46.005Z",
+    "received_at": "16/04/2026 a 10:24",
+    "id": "1776324286056"
+  },
+  {
+    "client": "GAD SEBAG GROUPE ÉNERGIE DE FRANCE",
+    "quantity": 300,
+    "departments": [
+      "02",
+      "10",
+      "16",
+      "17",
+      "22",
+      "29",
+      "30",
+      "34",
+      "35",
+      "38",
+      "44",
+      "49",
+      "56",
+      "60",
+      "73",
+      "74",
+      "80",
+      "85"
+    ],
+    "comments": "",
+    "timestamp": "2026-04-16T08:49:06.969Z",
+    "received_at": "16/04/2026 a 11:49",
+    "id": "1776329346890"
+  },
+  {
+    "client": "SUNNY 1",
+    "quantity": 200,
+    "departments": [
+      "24",
+      "33",
+      "40",
+      "47"
+    ],
+    "comments": "",
+    "timestamp": "2026-04-16T08:57:21.892Z",
+    "received_at": "16/04/2026 a 11:57",
+    "id": "1776329869394"
+  },
+  {
+    "client": "SUNNY 2",
+    "quantity": 200,
+    "departments": [
+      "16",
+      "17",
+      "79",
+      "86"
+    ],
+    "comments": "",
+    "timestamp": "2026-04-16T08:57:56.686Z",
+    "received_at": "16/04/2026 a 11:58",
+    "id": "1776329935668"
+  },
+  {
+    "client": "A2E consulting",
+    "quantity": 200,
+    "departments": [
+      "04",
+      "06",
+      "13",
+      "83",
+      "84"
+    ],
+    "comments": "13/83/84/04/06 15€ !!!",
+    "timestamp": "2026-04-16T10:16:45.833Z",
+    "received_at": "16/04/2026 a 13:16",
+    "id": "1776334607355"
+  },
+  {
+    "client": "AS CONSEIL",
+    "quantity": 130,
+    "departments": [
+      "18",
+      "36",
+      "43",
+      "48"
+    ],
+    "comments": "36,18,43,48",
+    "timestamp": "2026-04-16T10:24:25.834Z",
+    "received_at": "16/04/2026 a 13:24",
+    "id": "1776335067625"
+  },
+  {
+    "client": "CHARLES",
+    "quantity": 350,
+    "departments": [
+      "03",
+      "12",
+      "15",
+      "37",
+      "41",
+      "43",
+      "44",
+      "63",
+      "64",
+      "65",
+      "81",
+      "85"
+    ],
+    "comments": "",
+    "timestamp": "2026-04-16T10:35:00.672Z",
+    "received_at": "16/04/2026 a 13:35",
+    "id": "1776335704484"
+  },
+  {
+    "client": "YOHAN GAD CONSULTING",
+    "quantity": 100,
+    "departments": [
+      "59",
+      "62"
+    ],
+    "comments": "",
+    "timestamp": "2026-04-16T10:39:45.737Z",
+    "received_at": "16/04/2026 a 13:39",
+    "id": "1776335994994"
+  },
+  {
+    "client": "YOHAN GAD CONSULTING",
+    "quantity": 100,
+    "departments": [
+      "44",
+      "49"
+    ],
+    "comments": "",
+    "timestamp": "2026-04-16T10:40:16.562Z",
+    "received_at": "16/04/2026 a 13:40",
+    "id": "1776336025024"
+  },
+  {
+    "client": "YOHAN GAD CONSULTING",
+    "quantity": 150,
+    "departments": [
+      "77"
+    ],
+    "comments": "",
+    "timestamp": "2026-04-16T10:40:39.749Z",
+    "received_at": "16/04/2026 a 13:40",
+    "id": "1776336045503"
+  },
+  {
+    "client": "DB INVEST",
+    "quantity": 200,
+    "departments": [
+      "18",
+      "36",
+      "37",
+      "41"
+    ],
+    "comments": "",
+    "timestamp": "2026-04-16T10:43:34.338Z",
+    "received_at": "16/04/2026 a 13:43",
+    "id": "1776336214809"
+  },
+  {
+    "client": "AJ PARTNERS",
+    "quantity": 50,
+    "departments": [
+      "67",
+      "68"
+    ],
+    "comments": "",
+    "timestamp": "2026-04-16T10:51:30.883Z",
+    "received_at": "16/04/2026 a 13:51",
+    "id": "1776336705740"
+  },
+  {
+    "client": "Anr consulting",
+    "quantity": 75,
+    "departments": [
+      "22",
+      "29",
+      "35",
+      "56"
+    ],
+    "comments": "",
+    "timestamp": "2026-04-16T10:53:08.168Z",
+    "received_at": "16/04/2026 a 13:53",
+    "id": "1776336788163"
+  },
+  {
+    "client": "Anr consulting",
+    "quantity": 100,
+    "departments": [
+      "03",
+      "63"
+    ],
+    "comments": "",
+    "timestamp": "2026-04-16T10:53:29.715Z",
+    "received_at": "16/04/2026 a 13:53",
+    "id": "1776336825855"
+  },
+  {
+    "client": "Anr consulting",
+    "quantity": 90,
+    "departments": [
+      "45",
+      "89"
+    ],
+    "comments": "",
+    "timestamp": "2026-04-16T10:54:03.239Z",
+    "received_at": "16/04/2026 a 13:54",
+    "id": "1776336861836"
+  },
+  {
+    "client": "Anr consulting",
+    "quantity": 90,
+    "departments": [
+      "18",
+      "36"
+    ],
+    "comments": "",
+    "timestamp": "2026-04-16T10:55:11.970Z",
+    "received_at": "16/04/2026 a 13:55",
+    "id": "1776336923613"
+  },
+  {
+    "client": "Anr consulting",
+    "quantity": 40,
+    "departments": [
+      "37",
+      "41"
+    ],
+    "comments": "",
+    "timestamp": "2026-04-16T10:55:39.428Z",
+    "received_at": "16/04/2026 a 13:55",
+    "id": "1776336953645"
+  },
+  {
+    "client": "LUNA CONSEIL",
+    "quantity": 350,
+    "departments": [
+      "14",
+      "18",
+      "27",
+      "28",
+      "36",
+      "37",
+      "41",
+      "45",
+      "50",
+      "61",
+      "72",
+      "76",
+      "89"
+    ],
+    "comments": "",
+    "timestamp": "2026-04-16T10:59:35.941Z",
+    "received_at": "16/04/2026 a 13:59",
+    "id": "1776337193883"
+  },
+  {
+    "client": "Mt consei",
+    "quantity": 100,
+    "departments": [
+      "34"
+    ],
+    "comments": "",
+    "timestamp": "2026-04-16T11:07:32.386Z",
+    "received_at": "16/04/2026 a 14:08",
+    "id": "1776337704414"
+  },
+  {
+    "client": "ZHM business",
+    "quantity": 500,
+    "departments": [
+      "04",
+      "05",
+      "07",
+      "22",
+      "26",
+      "29",
+      "35",
+      "56",
+      "84"
+    ],
+    "comments": "Maison individuelle // +100€ ELEC si possible",
+    "timestamp": "2026-04-16T11:09:44.286Z",
+    "received_at": "16/04/2026 a 14:09",
+    "id": "1776337795506"
+  },
+  {
+    "client": "Saconseil",
+    "quantity": 200,
+    "departments": [
+      "30",
+      "84"
+    ],
+    "comments": "",
+    "timestamp": "2026-04-16T12:07:14.599Z",
+    "received_at": "16/04/2026 a 15:08",
+    "id": "1776341283206"
+  },
+  {
+    "client": "A&C solutions",
+    "quantity": 150,
+    "departments": [
+      "03",
+      "42",
+      "63"
+    ],
+    "comments": "03-42-63",
+    "timestamp": "2026-04-16T12:23:04.080Z",
+    "received_at": "16/04/2026 a 15:23",
+    "id": "1776342201358"
+  },
+  {
+    "client": "SAVIVA ENERGIE",
+    "quantity": 150,
+    "departments": [
+      "02",
+      "59",
+      "60",
+      "62",
+      "80"
+    ],
+    "comments": "",
+    "timestamp": "2026-04-16T12:26:44.086Z",
+    "received_at": "16/04/2026 a 15:26",
+    "id": "1776342412987"
+  },
+  {
+    "client": "SAVIVA ENERGIE",
+    "quantity": 50,
+    "departments": [
+      "33",
+      "40",
+      "47"
+    ],
+    "comments": "",
+    "timestamp": "2026-04-16T12:27:12.957Z",
+    "received_at": "16/04/2026 a 15:27",
+    "id": "1776342445489"
+  },
+  {
+    "client": "INNOLI ILAN",
+    "quantity": 500,
+    "departments": [
+      "11",
+      "22",
+      "28",
+      "29",
+      "45",
+      "56",
+      "64",
+      "66",
+      "76",
+      "80"
+    ],
+    "comments": "",
+    "timestamp": "2026-04-16T12:44:07.191Z",
+    "received_at": "16/04/2026 a 15:44",
+    "id": "1776343456953"
+  },
+  {
+    "client": "ACL GESTION",
+    "quantity": 100,
+    "departments": [
+      "29",
+      "22",
+      "56"
+    ],
+    "comments": "",
+    "received_at": "16/04/2026 a 17:25",
+    "id": "1776349529886"
+  },
+  {
+    "client": "KB conseil",
+    "quantity": 150,
+    "departments": [
+      "27",
+      "76",
+      "28",
+      "45",
+      "31",
+      "32",
+      "80",
+      "02",
+      "60",
+      "89"
+    ],
+    "comments": "Je t’aime mon Simon 🤣",
+    "received_at": "16/04/2026 a 17:33",
+    "id": "1776349981756"
+  },
+  {
+    "client": "HC ENERGIE",
+    "quantity": 50,
+    "departments": [
+      "76",
+      "27",
+      "28",
+      "61"
+    ],
+    "comments": "",
+    "received_at": "16/04/2026 a 17:45",
+    "id": "1776350713350"
+  },
+  {
+    "client": "HC ENERGIE",
+    "quantity": 50,
+    "departments": [
+      "21",
+      "25",
+      "39",
+      "58",
+      "71",
+      "70",
+      "90"
+    ],
+    "comments": "",
+    "received_at": "16/04/2026 a 17:46",
+    "id": "1776350773418"
+  },
+  {
+    "client": "HC ENERGIE",
+    "quantity": 50,
+    "departments": [
+      "21",
+      "25",
+      "39",
+      "58",
+      "71",
+      "70",
+      "90"
+    ],
+    "comments": "",
+    "received_at": "16/04/2026 a 17:46",
+    "id": "1776350773432"
+  },
+  {
+    "client": "HC ENERGIE",
+    "quantity": 50,
+    "departments": [
+      "21",
+      "25",
+      "39",
+      "58",
+      "90",
+      "89",
+      "71",
+      "70"
+    ],
+    "comments": "",
+    "received_at": "16/04/2026 a 17:47",
+    "id": "1776350833485"
+  },
+  {
+    "client": "HC ENERGIE",
+    "quantity": 50,
+    "departments": [
+      "58",
+      "89",
+      "10"
+    ],
+    "comments": "",
+    "received_at": "16/04/2026 a 17:47",
+    "id": "1776350865553"
+  },
+  {
+    "client": "ZHM business",
+    "quantity": 250,
+    "departments": [
+      "22",
+      "29",
+      "56"
+    ],
+    "comments": "",
+    "received_at": "16/04/2026 a 17:50",
+    "id": "1776351045749"
+  },
+  {
+    "client": "Ky",
+    "quantity": 100,
+    "departments": [
+      "21",
+      "39",
+      "01",
+      "71"
+    ],
+    "comments": "",
+    "received_at": "16/04/2026 a 17:51",
+    "id": "1776351091437"
+  },
+  {
+    "client": "SHANONE",
+    "quantity": 200,
+    "departments": [
+      "25"
+    ],
+    "comments": "",
+    "received_at": "16/04/2026 a 18:03",
+    "id": "1776351834365"
+  },
+  {
+    "client": "Groupe ya",
+    "quantity": 150,
+    "departments": [
+      "16",
+      "17",
+      "19",
+      "24",
+      "79",
+      "86",
+      "87"
+    ],
+    "comments": "",
+    "received_at": "16/04/2026 a 18:03",
+    "id": "1776351839941"
+  },
+  {
+    "client": "TAMAR",
+    "quantity": 400,
+    "departments": [
+      "54",
+      "55",
+      "57",
+      "52",
+      "67",
+      "68",
+      "70",
+      "88",
+      "90"
+    ],
+    "comments": "",
+    "received_at": "16/04/2026 a 18:16",
+    "id": "1776352573657"
+  },
+  {
+    "client": "MIJ",
+    "quantity": 50,
+    "departments": [
+      "02",
+      "80"
+    ],
+    "comments": "Morgan",
+    "received_at": "16/04/2026 a 21:53",
+    "id": "1776365603597"
+  },
+  {
+    "client": "JDLN",
+    "quantity": 120,
+    "departments": [
+      "57",
+      "54",
+      "52",
+      "55",
+      "70",
+      "88",
+      "89",
+      "58"
+    ],
+    "comments": "70 dans l’Est \n50 - 89/58",
+    "received_at": "16/04/2026 a 21:53",
+    "id": "1776365637956"
+  },
+  {
+    "client": "INNOLI environnement",
+    "quantity": 300,
+    "departments": [
+      "02",
+      "08",
+      "28",
+      "45",
+      "64",
+      "65",
+      "66",
+      "11",
+      "22",
+      "29",
+      "56",
+      "51",
+      "53",
+      "72"
+    ],
+    "comments": "",
+    "received_at": "16/04/2026 a 21:59",
+    "id": "1776365973258"
+  },
+  {
+    "client": "VALEOS",
+    "quantity": 150,
+    "departments": [
+      "01",
+      "04",
+      "07",
+      "26",
+      "38",
+      "69",
+      "83",
+      "84"
+    ],
+    "comments": "",
+    "received_at": "16/04/2026 a 22:27",
+    "id": "1776367648047"
+  },
+  {
+    "client": "YSAC partnairs",
+    "quantity": 150,
+    "departments": [
+      "07",
+      "26",
+      "30",
+      "34"
+    ],
+    "comments": "",
+    "received_at": "16/04/2026 a 22:30",
+    "id": "1776367838279"
+  },
+  {
+    "client": "Ahm",
+    "quantity": 150,
+    "departments": [
+      "33",
+      "40"
+    ],
+    "comments": "",
+    "received_at": "16/04/2026 a 22:33",
+    "id": "1776368028480"
+  },
+  {
+    "client": "Ahm 2",
+    "quantity": 80,
+    "departments": [
+      "59",
+      "62"
+    ],
+    "comments": "",
+    "received_at": "16/04/2026 a 22:35",
+    "id": "1776368128580"
+  },
+  {
+    "client": "LEV CONSEIL",
+    "quantity": 100,
+    "departments": [
+      "16",
+      "17",
+      "19",
+      "23",
+      "24",
+      "79",
+      "86",
+      "87"
+    ],
+    "comments": "",
+    "received_at": "16/04/2026 a 23:03",
+    "id": "1776369790270"
+  },
+  {
+    "client": "ecoenviro",
+    "quantity": 200,
+    "departments": [
+      "15",
+      "16",
+      "29",
+      "39",
+      "38"
+    ],
+    "comments": "",
+    "received_at": "16/04/2026 a 23:31",
+    "id": "1776371481513"
+  },
+  {
+    "client": "Bl conseils",
+    "quantity": 100,
+    "departments": [
+      "78"
+    ],
+    "comments": "",
+    "received_at": "23/04/2026 a 12:28",
+    "id": "1776936536145"
+  },
+  {
+    "client": "bl conseil",
+    "quantity": 350,
+    "departments": [
+      "31",
+      "09",
+      "11",
+      "66"
+    ],
+    "comments": "",
+    "received_at": "23/04/2026 a 12:29",
+    "id": "1776936576183"
+  },
+  {
+    "client": "DB INVEST",
+    "quantity": 400,
+    "departments": [
+      "36",
+      "37",
+      "18",
+      "41"
+    ],
+    "comments": "",
+    "received_at": "23/04/2026 a 12:40",
+    "id": "1776937244729"
+  },
+  {
+    "client": "ACL GESTION",
+    "quantity": 150,
+    "departments": [
+      "29",
+      "22",
+      "56"
+    ],
+    "comments": "",
+    "received_at": "23/04/2026 a 13:26",
+    "id": "1776939988925"
+  },
+  {
+    "client": "Yona",
+    "quantity": 130,
+    "departments": [
+      "77",
+      "91"
+    ],
+    "comments": "Facture 100",
+    "received_at": "23/04/2026 a 13:49",
+    "id": "1776941340270"
+  },
+  {
+    "client": "BIRKAT HM PARTNERS",
+    "quantity": 60,
+    "departments": [
+      "58",
+      "89"
+    ],
+    "comments": "LEAD PV 89/58",
+    "received_at": "23/04/2026 a 14:08",
+    "id": "1776942481472"
+  },
+  {
+    "client": "Saconseil",
+    "quantity": 200,
+    "departments": [
+      "30",
+      "84"
+    ],
+    "comments": "",
+    "received_at": "23/04/2026 a 14:14",
+    "id": "1776942871861"
+  },
+  {
+    "client": "Saviva energie",
+    "quantity": 150,
+    "departments": [
+      "59",
+      "62",
+      "60",
+      "80",
+      "02"
+    ],
+    "comments": "",
+    "received_at": "23/04/2026 a 14:19",
+    "id": "1776943172149"
+  },
+  {
+    "client": "Saviva energie",
+    "quantity": 50,
+    "departments": [
+      "33",
+      "40",
+      "47"
+    ],
+    "comments": "",
+    "received_at": "23/04/2026 a 14:27",
+    "id": "1776943622637"
+  },
+  {
+    "client": "ZHM BUSINESS",
+    "quantity": 700,
+    "departments": [
+      "04",
+      "05",
+      "07",
+      "22",
+      "26",
+      "29",
+      "56",
+      "84"
+    ],
+    "comments": "",
+    "received_at": "23/04/2026 a 14:49",
+    "id": "1776944943952"
+  },
+  {
+    "client": "ARTHUR",
+    "quantity": 150,
+    "departments": [
+      "44",
+      "85"
+    ],
+    "comments": "",
+    "received_at": "23/04/2026 a 16:43",
+    "id": "1776951807964"
+  },
+  {
+    "client": "ARTHUR",
+    "quantity": 80,
+    "departments": [
+      "73",
+      "74"
+    ],
+    "comments": "",
+    "received_at": "23/04/2026 a 16:44",
+    "id": "1776951868023"
+  },
+  {
+    "client": "ARTHUR",
+    "quantity": 80,
+    "departments": [
+      "59",
+      "62"
+    ],
+    "comments": "",
+    "received_at": "23/04/2026 a 16:44",
+    "id": "1776951898050"
+  },
+  {
+    "client": "KB conseil",
+    "quantity": 200,
+    "departments": [
+      "02",
+      "27",
+      "76",
+      "80",
+      "28",
+      "45",
+      "31",
+      "32",
+      "89",
+      "58",
+      "60"
+    ],
+    "comments": "",
+    "received_at": "23/04/2026 a 16:47",
+    "id": "1776952048191"
+  },
+  {
+    "client": "MT CONSEIL",
+    "quantity": 250,
+    "departments": [
+      "30",
+      "34"
+    ],
+    "comments": "",
+    "received_at": "23/04/2026 a 17:03",
+    "id": "1776953003999"
+  },
+  {
+    "client": "LUNA",
+    "quantity": 400,
+    "departments": [
+      "14",
+      "18",
+      "27",
+      "28",
+      "36",
+      "37",
+      "41",
+      "45",
+      "50",
+      "61",
+      "72",
+      "76",
+      "89"
+    ],
+    "comments": "",
+    "received_at": "23/04/2026 a 17:04",
+    "id": "1776953055596"
+  },
+  {
+    "client": "LEV CONSEIL",
+    "quantity": 150,
+    "departments": [
+      "87",
+      "23",
+      "19",
+      "24",
+      "79",
+      "86",
+      "16",
+      "17"
+    ],
+    "comments": "",
+    "received_at": "23/04/2026 a 17:11",
+    "id": "1776953485993"
+  },
+  {
+    "client": "KY",
+    "quantity": 100,
+    "departments": [
+      "01",
+      "21",
+      "39",
+      "71"
+    ],
+    "comments": "",
+    "received_at": "23/04/2026 a 17:14",
+    "id": "1776953666156"
+  },
+  {
+    "client": "GLC TAMAR",
+    "quantity": 400,
+    "departments": [
+      "52",
+      "54",
+      "55",
+      "57",
+      "67",
+      "68",
+      "70",
+      "88",
+      "90"
+    ],
+    "comments": "",
+    "received_at": "23/04/2026 a 17:18",
+    "id": "1776953906378"
+  },
+  {
+    "client": "MORGANE MIJ",
+    "quantity": 50,
+    "departments": [
+      "02",
+      "08",
+      "80"
+    ],
+    "comments": "",
+    "received_at": "23/04/2026 a 17:25",
+    "id": "1776954352241"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 400,
+    "departments": [
+      "29",
+      "56",
+      "02",
+      "28",
+      "45",
+      "76",
+      "80",
+      "53",
+      "72",
+      "11",
+      "64",
+      "66"
+    ],
+    "comments": "",
+    "received_at": "23/04/2026 a 17:42",
+    "id": "1776955373192"
+  },
+  {
+    "client": "As conseil",
+    "quantity": 100,
+    "departments": [
+      "18",
+      "36",
+      "43",
+      "48"
+    ],
+    "comments": "",
+    "received_at": "23/04/2026 a 17:48",
+    "id": "1776955716378"
+  },
+  {
+    "client": "GEF GAD",
+    "quantity": 400,
+    "departments": [
+      "60",
+      "80",
+      "02",
+      "10",
+      "89",
+      "73",
+      "74",
+      "38",
+      "22",
+      "29",
+      "56",
+      "44",
+      "49",
+      "85",
+      "86",
+      "79",
+      "16",
+      "17",
+      "30",
+      "34",
+      "53",
+      "72",
+      "28"
+    ],
+    "comments": "",
+    "received_at": "23/04/2026 a 18:09",
+    "id": "1776956954450"
+  },
+  {
+    "client": "HC ENERGIE",
+    "quantity": 50,
+    "departments": [
+      "27",
+      "28",
+      "61",
+      "76"
+    ],
+    "comments": "",
+    "received_at": "23/04/2026 a 18:17",
+    "id": "1776957444967"
+  },
+  {
+    "client": "A&C SOLUTION",
+    "quantity": 150,
+    "departments": [
+      "03",
+      "63",
+      "42"
+    ],
+    "comments": "",
+    "received_at": "23/04/2026 a 18:20",
+    "id": "1776957605138"
+  },
+  {
+    "client": "HC ENERGIE",
+    "quantity": 50,
+    "departments": [
+      "89",
+      "71",
+      "70",
+      "58",
+      "39",
+      "21",
+      "25",
+      "90"
+    ],
+    "comments": "",
+    "received_at": "23/04/2026 a 18:20",
+    "id": "1776957615148"
+  },
+  {
+    "client": "GLOBE ENERGY SHANONE",
+    "quantity": 250,
+    "departments": [
+      "02",
+      "25",
+      "27",
+      "28",
+      "39",
+      "41",
+      "45",
+      "53",
+      "54",
+      "57",
+      "58",
+      "60",
+      "72",
+      "76",
+      "80",
+      "88",
+      "89"
+    ],
+    "comments": "",
+    "received_at": "23/04/2026 a 18:41",
+    "id": "1776958887146"
+  },
+  {
+    "client": "charles",
+    "quantity": 100,
+    "departments": [
+      "15",
+      "63",
+      "03",
+      "43",
+      "85",
+      "44"
+    ],
+    "comments": "",
+    "received_at": "23/04/2026 a 18:43",
+    "id": "1776959037294"
+  },
+  {
+    "client": "ysac partner",
+    "quantity": 100,
+    "departments": [
+      "07",
+      "26",
+      "30",
+      "34"
+    ],
+    "comments": "",
+    "received_at": "23/04/2026 a 19:06",
+    "id": "1776960362147"
+  },
+  {
+    "client": "groupe ya",
+    "quantity": 150,
+    "departments": [
+      "19",
+      "16",
+      "17",
+      "24",
+      "86",
+      "87",
+      "79"
+    ],
+    "comments": "",
+    "received_at": "23/04/2026 a 19:10",
+    "id": "1776960612371"
+  },
+  {
+    "client": "Valeos",
+    "quantity": 100,
+    "departments": [
+      "07",
+      "26",
+      "38",
+      "69"
+    ],
+    "comments": "",
+    "received_at": "23/04/2026 a 19:51",
+    "id": "1776963104152"
+  },
+  {
+    "client": "JDLN",
+    "quantity": 100,
+    "departments": [
+      "54",
+      "57",
+      "70",
+      "88"
+    ],
+    "comments": "",
+    "received_at": "23/04/2026 a 23:32",
+    "id": "1776976374038"
+  },
+  {
+    "client": "A2e",
+    "quantity": 300,
+    "departments": [
+      "06",
+      "04",
+      "13",
+      "83",
+      "84",
+      "05"
+    ],
+    "comments": "",
+    "received_at": "24/04/2026 a 14:08",
+    "id": "1777028926254"
+  },
+  {
+    "client": "Greg",
+    "quantity": 50,
+    "departments": [
+      "70",
+      "90",
+      "25"
+    ],
+    "comments": "Départ 70/90/25",
+    "received_at": "24/04/2026 a 14:14",
+    "id": "1777029256601"
+  },
+  {
+    "client": "BIRKAT HM PARTNERS",
+    "quantity": 100,
+    "departments": [
+      "53",
+      "72"
+    ],
+    "comments": "",
+    "received_at": "24/04/2026 a 15:46",
+    "id": "1777034782526"
+  },
+  {
+    "client": "MIJ",
+    "quantity": 50,
+    "departments": [
+      "02",
+      "80"
+    ],
+    "comments": "",
+    "received_at": "24/04/2026 a 16:31",
+    "id": "1777037485361"
+  },
+  {
+    "client": "ARTHUR",
+    "quantity": 150,
+    "departments": [
+      "44",
+      "85"
+    ],
+    "comments": "",
+    "received_at": "30/04/2026 a 11:52",
+    "id": "1777539169164"
+  },
+  {
+    "client": "ARTHUR",
+    "quantity": 100,
+    "departments": [
+      "73",
+      "74"
+    ],
+    "comments": "",
+    "received_at": "30/04/2026 a 11:53",
+    "id": "1777539229217"
+  },
+  {
+    "client": "DLZT",
+    "quantity": 70,
+    "departments": [
+      "59",
+      "62",
+      "60",
+      "80",
+      "02",
+      "77"
+    ],
+    "comments": "",
+    "received_at": "30/04/2026 a 12:25",
+    "id": "1777541150804"
+  },
+  {
+    "client": "MT CONSEIL",
+    "quantity": 250,
+    "departments": [
+      "30",
+      "34"
+    ],
+    "comments": "",
+    "received_at": "30/04/2026 a 14:22",
+    "id": "1777548133949"
+  },
+  {
+    "client": "lenny",
+    "quantity": 350,
+    "departments": [
+      "11",
+      "66",
+      "09",
+      "31"
+    ],
+    "comments": "",
+    "received_at": "30/04/2026 a 15:50",
+    "id": "1777553438430"
+  },
+  {
+    "client": "LENNY",
+    "quantity": 100,
+    "departments": [
+      "78"
+    ],
+    "comments": "",
+    "received_at": "30/04/2026 a 15:54",
+    "id": "1777553678600"
+  },
+  {
+    "client": "GEF",
+    "quantity": 400,
+    "departments": [
+      "60",
+      "80",
+      "02",
+      "10",
+      "89",
+      "74",
+      "73",
+      "38",
+      "22",
+      "29",
+      "56",
+      "44",
+      "49",
+      "85",
+      "86",
+      "79",
+      "17",
+      "16",
+      "30",
+      "34",
+      "53",
+      "72",
+      "28"
+    ],
+    "comments": "",
+    "received_at": "30/04/2026 a 16:00",
+    "id": "1777554038940"
+  },
+  {
+    "client": "ZHM BUSINESS",
+    "quantity": 500,
+    "departments": [
+      "04",
+      "05",
+      "07",
+      "22",
+      "26",
+      "29",
+      "56",
+      "84"
+    ],
+    "comments": "",
+    "received_at": "30/04/2026 a 16:24",
+    "id": "1777555450284"
+  },
+  {
+    "client": "ZHM business",
+    "quantity": 200,
+    "departments": [
+      "35",
+      "29",
+      "22",
+      "56"
+    ],
+    "comments": "Que Bretagne ici",
+    "received_at": "30/04/2026 a 16:30",
+    "id": "1777555853513"
+  },
+  {
+    "client": "DB INVEST",
+    "quantity": 400,
+    "departments": [
+      "37",
+      "36",
+      "41",
+      "18"
+    ],
+    "comments": "",
+    "received_at": "30/04/2026 a 17:22",
+    "id": "1777558948706"
+  },
+  {
+    "client": "DB INVEST",
+    "quantity": 400,
+    "departments": [
+      "37",
+      "36",
+      "41",
+      "18"
+    ],
+    "comments": "",
+    "received_at": "30/04/2026 a 17:22",
+    "id": "1777558961865"
+  },
+  {
+    "client": "GAD CONSULTING",
+    "quantity": 100,
+    "departments": [
+      "44",
+      "49"
+    ],
+    "comments": "",
+    "received_at": "30/04/2026 a 17:30",
+    "id": "1777559406006"
+  },
+  {
+    "client": "GAD CONSULTING",
+    "quantity": 100,
+    "departments": [
+      "59",
+      "62"
+    ],
+    "comments": "",
+    "received_at": "30/04/2026 a 17:31",
+    "id": "1777559466045"
+  },
+  {
+    "client": "GAD CONSULTING",
+    "quantity": 150,
+    "departments": [
+      "78"
+    ],
+    "comments": "",
+    "received_at": "30/04/2026 a 17:33",
+    "id": "1777559586134"
+  },
+  {
+    "client": "ACL GESTION",
+    "quantity": 150,
+    "departments": [
+      "29",
+      "22",
+      "56"
+    ],
+    "comments": "",
+    "received_at": "30/04/2026 a 17:35",
+    "id": "1777559736305"
+  },
+  {
+    "client": "LUNA",
+    "quantity": 400,
+    "departments": [
+      "14",
+      "18",
+      "27",
+      "28",
+      "36",
+      "37",
+      "41",
+      "45",
+      "50",
+      "61",
+      "72",
+      "76",
+      "89"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "30/04/2026 a 17:44",
+    "id": "1777560285613"
+  },
+  {
+    "client": "Yona",
+    "quantity": 130,
+    "departments": [
+      "77",
+      "91"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "30/04/2026 a 18:05",
+    "id": "1777561515502"
+  },
+  {
+    "client": "GLOBE ENERGY SHANONE",
+    "quantity": 350,
+    "departments": [
+      "02",
+      "25",
+      "27",
+      "28",
+      "39",
+      "41",
+      "45",
+      "53",
+      "54",
+      "57",
+      "58",
+      "60",
+      "72",
+      "76",
+      "80",
+      "88",
+      "89"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "30/04/2026 a 18:12",
+    "id": "1777561936176"
+  },
+  {
+    "client": "Saviva energie",
+    "quantity": 150,
+    "departments": [
+      "59",
+      "62",
+      "60",
+      "80",
+      "02"
+    ],
+    "comments": "",
+    "received_at": "30/04/2026 a 18:21",
+    "id": "1777562460543"
+  },
+  {
+    "client": "Saviva energie",
+    "quantity": 100,
+    "departments": [
+      "33",
+      "47",
+      "40"
+    ],
+    "comments": "",
+    "received_at": "30/04/2026 a 18:22",
+    "id": "1777562520626"
+  },
+  {
+    "client": "Saconseil",
+    "quantity": 200,
+    "departments": [
+      "30",
+      "84"
+    ],
+    "comments": "",
+    "received_at": "30/04/2026 a 18:23",
+    "id": "1777562606157"
+  },
+  {
+    "client": "GLC TAMAR",
+    "quantity": 400,
+    "departments": [
+      "52",
+      "54",
+      "55",
+      "57",
+      "67",
+      "68",
+      "70",
+      "88",
+      "90"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "30/04/2026 a 18:23",
+    "id": "1777562628829"
+  },
+  {
+    "client": "SUNNY 2",
+    "quantity": 200,
+    "departments": [
+      "16",
+      "17",
+      "79",
+      "86"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "30/04/2026 a 18:25",
+    "id": "1777562712845"
+  },
+  {
+    "client": "SUNNY 1",
+    "quantity": 300,
+    "departments": [
+      "24",
+      "33",
+      "40",
+      "47"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "30/04/2026 a 18:25",
+    "id": "1777562722863"
+  },
+  {
+    "client": "Groupe ya",
+    "quantity": 200,
+    "departments": [
+      "16",
+      "17",
+      "19",
+      "24",
+      "79",
+      "86",
+      "87"
+    ],
+    "comments": "",
+    "received_at": "30/04/2026 a 18:40",
+    "id": "1777563659688"
+  },
+  {
+    "client": "Anr consulting",
+    "quantity": 100,
+    "departments": [
+      "18",
+      "36"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "30/04/2026 a 18:54",
+    "id": "1777564491398"
+  },
+  {
+    "client": "Anr consulting",
+    "quantity": 50,
+    "departments": [
+      "37",
+      "41"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "30/04/2026 a 18:55",
+    "id": "1777564501411"
+  },
+  {
+    "client": "Anr consulting",
+    "quantity": 100,
+    "departments": [
+      "45",
+      "89"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "30/04/2026 a 18:55",
+    "id": "1777564511421"
+  },
+  {
+    "client": "Anr consulting",
+    "quantity": 100,
+    "departments": [
+      "03",
+      "63"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "30/04/2026 a 18:55",
+    "id": "1777564521435"
+  },
+  {
+    "client": "ANR",
+    "quantity": 250,
+    "departments": [
+      "16",
+      "17",
+      "79",
+      "86",
+      "24",
+      "33",
+      "47"
+    ],
+    "comments": "",
+    "received_at": "30/04/2026 a 18:56",
+    "id": "1777564595247"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 80,
+    "departments": [
+      "76",
+      "80"
+    ],
+    "comments": "",
+    "received_at": "30/04/2026 a 18:58",
+    "id": "1777564680838"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 30,
+    "departments": [
+      "64",
+      "65"
+    ],
+    "comments": "",
+    "received_at": "30/04/2026 a 18:58",
+    "id": "1777564710873"
+  },
+  {
+    "client": "innoli",
+    "quantity": 40,
+    "departments": [
+      "53",
+      "72"
+    ],
+    "comments": "",
+    "received_at": "30/04/2026 a 19:21",
+    "id": "1777566114950"
+  },
+  {
+    "client": "Renovea",
+    "quantity": 50,
+    "departments": [
+      "16",
+      "17"
+    ],
+    "comments": "Renovea26@gmail.com",
+    "received_at": "30/04/2026 a 19:22",
+    "id": "1777566175011"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 100,
+    "departments": [
+      "22",
+      "29",
+      "56"
+    ],
+    "comments": "",
+    "received_at": "30/04/2026 a 19:23",
+    "id": "1777566205035"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 20,
+    "departments": [
+      "28",
+      "45"
+    ],
+    "comments": "",
+    "received_at": "30/04/2026 a 19:23",
+    "id": "1777566215046"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 40,
+    "departments": [
+      "11",
+      "66"
+    ],
+    "comments": "",
+    "received_at": "30/04/2026 a 19:24",
+    "id": "1777566265093"
+  },
+  {
+    "client": "CHARLES",
+    "quantity": 50,
+    "departments": [
+      "15",
+      "03",
+      "63",
+      "43"
+    ],
+    "comments": "",
+    "received_at": "30/04/2026 a 19:26",
+    "id": "1777566360078"
+  },
+  {
+    "client": "CHARLES",
+    "quantity": 50,
+    "departments": [
+      "44",
+      "85"
+    ],
+    "comments": "",
+    "received_at": "30/04/2026 a 19:27",
+    "id": "1777566420147"
+  },
+  {
+    "client": "A&C solutions",
+    "quantity": 120,
+    "departments": [
+      "03",
+      "63",
+      "42"
+    ],
+    "comments": "",
+    "received_at": "30/04/2026 a 20:48",
+    "id": "1777571285366"
+  },
+  {
+    "client": "ICO CONSEILS",
+    "quantity": 100,
+    "departments": [
+      "01",
+      "39",
+      "69"
+    ],
+    "comments": "C’est pour Yohan Azeroual la personne que vous avez eu au tel aujourd’hui.",
+    "received_at": "01/05/2026 a 03:38",
+    "id": "1777595912197"
+  },
+  {
+    "client": "LEV CONSEIL",
+    "quantity": 100,
+    "departments": [
+      "87",
+      "23",
+      "19",
+      "24",
+      "79",
+      "86",
+      "16",
+      "17"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "01/05/2026 a 10:14",
+    "id": "1777619643403"
+  },
+  {
+    "client": "JDLN",
+    "quantity": 100,
+    "departments": [
+      "54",
+      "57",
+      "70",
+      "88"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "01/05/2026 a 10:14",
+    "id": "1777619669032"
+  },
+  {
+    "client": "Ahm 2",
+    "quantity": 60,
+    "departments": [
+      "59",
+      "62"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "01/05/2026 a 10:15",
+    "id": "1777619705271"
+  },
+  {
+    "client": "Ahm",
+    "quantity": 60,
+    "departments": [
+      "33",
+      "40"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "01/05/2026 a 10:15",
+    "id": "1777619715281"
+  },
+  {
+    "client": "AS CONSEIL",
+    "quantity": 140,
+    "departments": [
+      "18",
+      "36",
+      "43",
+      "48"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "01/05/2026 a 10:15",
+    "id": "1777619745273"
+  },
+  {
+    "client": "ethyair",
+    "quantity": 50,
+    "departments": [
+      "62",
+      "59",
+      "02",
+      "80"
+    ],
+    "comments": "",
+    "received_at": "01/05/2026 a 11:48",
+    "id": "1777625295673"
+  },
+  {
+    "client": "KY",
+    "quantity": 100,
+    "departments": [
+      "01",
+      "21",
+      "39",
+      "71"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "01/05/2026 a 11:49",
+    "id": "1777625343200"
+  },
+  {
+    "client": "ysac partner",
+    "quantity": 100,
+    "departments": [
+      "07",
+      "26",
+      "30",
+      "34"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "01/05/2026 a 11:49",
+    "id": "1777625355742"
+  },
+  {
+    "client": "KB conseil",
+    "quantity": 100,
+    "departments": [
+      "02",
+      "28",
+      "45",
+      "27",
+      "76",
+      "80",
+      "60"
+    ],
+    "comments": "",
+    "received_at": "01/05/2026 a 12:13",
+    "id": "1777626782387"
+  },
+  {
+    "client": "Valeos",
+    "quantity": 150,
+    "departments": [
+      "07",
+      "26",
+      "38",
+      "69"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "01/05/2026 a 12:37",
+    "id": "1777628253288"
+  },
+  {
+    "client": "MIJ",
+    "quantity": 50,
+    "departments": [
+      "02",
+      "80"
+    ],
+    "comments": "",
+    "received_at": "01/05/2026 a 19:11",
+    "id": "1777651864462"
+  },
+  {
+    "client": "GAD CONSULTING",
+    "quantity": 100,
+    "departments": [
+      "59",
+      "62"
+    ],
+    "comments": "",
+    "received_at": "07/05/2026 a 12:41",
+    "id": "1778146890537"
+  },
+  {
+    "client": "GAD CONSULTING",
+    "quantity": 150,
+    "departments": [
+      "77"
+    ],
+    "comments": "",
+    "received_at": "07/05/2026 a 12:42",
+    "id": "1778146950599"
+  },
+  {
+    "client": "GAD CONSULTING",
+    "quantity": 140,
+    "departments": [
+      "23",
+      "36",
+      "87"
+    ],
+    "comments": "",
+    "received_at": "07/05/2026 a 12:43",
+    "id": "1778147010654"
+  },
+  {
+    "client": "BL CONSEIL",
+    "quantity": 300,
+    "departments": [
+      "11",
+      "31",
+      "66",
+      "09"
+    ],
+    "comments": "",
+    "received_at": "07/05/2026 a 13:01",
+    "id": "1778148061604"
+  },
+  {
+    "client": "LENNY",
+    "quantity": 100,
+    "departments": [
+      "78"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "07/05/2026 a 13:02",
+    "id": "1778148143917"
+  },
+  {
+    "client": "LUNA",
+    "quantity": 400,
+    "departments": [
+      "14",
+      "18",
+      "27",
+      "28",
+      "36",
+      "37",
+      "41",
+      "45",
+      "50",
+      "61",
+      "72",
+      "76",
+      "89"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "07/05/2026 a 13:03",
+    "id": "1778148194701"
+  },
+  {
+    "client": "Sw conseils",
+    "quantity": 150,
+    "departments": [
+      "73",
+      "74"
+    ],
+    "comments": "",
+    "received_at": "07/05/2026 a 13:17",
+    "id": "1778149045419"
+  },
+  {
+    "client": "ZHM BUSINESS",
+    "quantity": 800,
+    "departments": [
+      "22",
+      "04",
+      "05",
+      "26",
+      "29",
+      "07",
+      "84",
+      "56",
+      "35"
+    ],
+    "comments": "04-05 y me faut au moins 200 semaine \n\n26-07-84 au moin 250\n\n22-29-56-35  au moin 350",
+    "received_at": "07/05/2026 a 13:35",
+    "id": "1778150126395"
+  },
+  {
+    "client": "Saconseil",
+    "quantity": 200,
+    "departments": [
+      "30",
+      "84"
+    ],
+    "comments": "",
+    "received_at": "07/05/2026 a 14:34",
+    "id": "1778153676627"
+  },
+  {
+    "client": "GEF",
+    "quantity": 400,
+    "departments": [
+      "60",
+      "80",
+      "02",
+      "10",
+      "89",
+      "74",
+      "73",
+      "38",
+      "22",
+      "29",
+      "56",
+      "44",
+      "49",
+      "85",
+      "86",
+      "79",
+      "17",
+      "16",
+      "30",
+      "34",
+      "53",
+      "72",
+      "28"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "07/05/2026 a 15:50",
+    "id": "1778158247795"
+  },
+  {
+    "client": "A2e",
+    "quantity": 300,
+    "departments": [
+      "06",
+      "04",
+      "13",
+      "83",
+      "84",
+      "05"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "07/05/2026 a 16:32",
+    "id": "1778160748046"
+  },
+  {
+    "client": "SAVIVA ENERGIE",
+    "quantity": 150,
+    "departments": [
+      "02",
+      "60",
+      "80",
+      "62",
+      "59"
+    ],
+    "comments": "",
+    "received_at": "07/05/2026 a 16:40",
+    "id": "1778161218593"
+  },
+  {
+    "client": "SAVIVA ENERGIE",
+    "quantity": 100,
+    "departments": [
+      "33",
+      "40",
+      "47"
+    ],
+    "comments": "",
+    "received_at": "07/05/2026 a 16:41",
+    "id": "1778161278659"
+  },
+  {
+    "client": "GLC TAMAR",
+    "quantity": 400,
+    "departments": [
+      "52",
+      "54",
+      "55",
+      "57",
+      "67",
+      "68",
+      "70",
+      "88",
+      "90"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "07/05/2026 a 16:58",
+    "id": "1778162306055"
+  },
+  {
+    "client": "AZ PARTNER",
+    "quantity": 150,
+    "departments": [
+      "01",
+      "39",
+      "69"
+    ],
+    "comments": "",
+    "received_at": "07/05/2026 a 17:09",
+    "id": "1778162946898"
+  },
+  {
+    "client": "Groupe ya",
+    "quantity": 200,
+    "departments": [
+      "16",
+      "17",
+      "19",
+      "24",
+      "79",
+      "86",
+      "87"
+    ],
+    "comments": "",
+    "received_at": "07/05/2026 a 17:26",
+    "id": "1778163967501"
+  },
+  {
+    "client": "Db INVEST",
+    "quantity": 400,
+    "departments": [
+      "27",
+      "28",
+      "45",
+      "36",
+      "37",
+      "41",
+      "18",
+      "58",
+      "89"
+    ],
+    "comments": "",
+    "received_at": "07/05/2026 a 17:33",
+    "id": "1778164429571"
+  },
+  {
+    "client": "MT CONSEIL",
+    "quantity": 200,
+    "departments": [
+      "30",
+      "34",
+      "84"
+    ],
+    "comments": "",
+    "received_at": "07/05/2026 a 17:38",
+    "id": "1778164722849"
+  },
+  {
+    "client": "Yona",
+    "quantity": 100,
+    "departments": [
+      "77",
+      "91"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "07/05/2026 a 17:49",
+    "id": "1778165347904"
+  },
+  {
+    "client": "ACL GESTION",
+    "quantity": 100,
+    "departments": [
+      "29",
+      "22",
+      "56"
+    ],
+    "comments": "",
+    "received_at": "07/05/2026 a 17:50",
+    "id": "1778165445234"
+  },
+  {
+    "client": "ACL GESTION",
+    "quantity": 50,
+    "departments": [
+      "78",
+      "91"
+    ],
+    "comments": "",
+    "received_at": "07/05/2026 a 17:53",
+    "id": "1778165586576"
+  },
+  {
+    "client": "A&C solutions",
+    "quantity": 150,
+    "departments": [
+      "03",
+      "63",
+      "42"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "07/05/2026 a 17:55",
+    "id": "1778165735248"
+  },
+  {
+    "client": "MIJ",
+    "quantity": 50,
+    "departments": [
+      "02",
+      "80"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "07/05/2026 a 18:12",
+    "id": "1778166755979"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 40,
+    "departments": [
+      "11",
+      "66"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "07/05/2026 a 18:23",
+    "id": "1778167419216"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 100,
+    "departments": [
+      "22",
+      "29",
+      "56"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "07/05/2026 a 18:23",
+    "id": "1778167429230"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 20,
+    "departments": [
+      "28",
+      "45"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "07/05/2026 a 18:23",
+    "id": "1778167439246"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 80,
+    "departments": [
+      "76",
+      "80"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "07/05/2026 a 18:24",
+    "id": "1778167449254"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 30,
+    "departments": [
+      "64",
+      "65"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "07/05/2026 a 18:24",
+    "id": "1778167459274"
+  },
+  {
+    "client": "KY",
+    "quantity": 150,
+    "departments": [
+      "01",
+      "21",
+      "39",
+      "71"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "07/05/2026 a 18:34",
+    "id": "1778168056347"
+  },
+  {
+    "client": "A&C solution",
+    "quantity": 150,
+    "departments": [
+      "03",
+      "42",
+      "63"
+    ],
+    "comments": "",
+    "received_at": "07/05/2026 a 18:48",
+    "id": "1778168907562"
+  },
+  {
+    "client": "CHARLES",
+    "quantity": 50,
+    "departments": [
+      "44",
+      "85"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "07/05/2026 a 19:09",
+    "id": "1778170157324"
+  },
+  {
+    "client": "CHARLES",
+    "quantity": 50,
+    "departments": [
+      "15",
+      "03",
+      "63",
+      "43"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "07/05/2026 a 19:09",
+    "id": "1778170167342"
+  },
+  {
+    "client": "charles",
+    "quantity": 20,
+    "departments": [
+      "36",
+      "18"
+    ],
+    "comments": "",
+    "received_at": "07/05/2026 a 19:10",
+    "id": "1778170237431"
+  },
+  {
+    "client": "ARTHUR",
+    "quantity": 100,
+    "departments": [
+      "73",
+      "74"
+    ],
+    "comments": "",
+    "received_at": "07/05/2026 a 19:16",
+    "id": "1778170578040"
+  },
+  {
+    "client": "ARTHUR",
+    "quantity": 150,
+    "departments": [
+      "44",
+      "85"
+    ],
+    "comments": "",
+    "received_at": "07/05/2026 a 19:18",
+    "id": "1778170698183"
+  },
+  {
+    "client": "Yanova",
+    "quantity": 180,
+    "departments": [
+      "08",
+      "51",
+      "12",
+      "48",
+      "10"
+    ],
+    "comments": "",
+    "received_at": "07/05/2026 a 19:19",
+    "id": "1778170758251"
+  },
+  {
+    "client": "ARTHUR",
+    "quantity": 150,
+    "departments": [
+      "77"
+    ],
+    "comments": "",
+    "received_at": "07/05/2026 a 19:19",
+    "id": "1778170768268"
+  },
+  {
+    "client": "Art conseil",
+    "quantity": 50,
+    "departments": [
+      "80",
+      "60",
+      "02",
+      "59",
+      "62"
+    ],
+    "comments": "59,62,80,60,02",
+    "received_at": "07/05/2026 a 21:51",
+    "id": "1778179888886"
+  },
+  {
+    "client": "KB conseil",
+    "quantity": 150,
+    "departments": [
+      "02",
+      "28",
+      "45",
+      "27",
+      "76",
+      "80",
+      "60"
+    ],
+    "comments": "",
+    "received_at": "07/05/2026 a 21:57",
+    "id": "1778180275291"
+  },
+  {
+    "client": "LB CONSULTING",
+    "quantity": 50,
+    "departments": [
+      "79",
+      "85"
+    ],
+    "comments": "",
+    "received_at": "07/05/2026 a 22:30",
+    "id": "1778182237626"
+  },
+  {
+    "client": "ed consulting",
+    "quantity": 80,
+    "departments": [
+      "25",
+      "39",
+      "70",
+      "71",
+      "90"
+    ],
+    "comments": "",
+    "received_at": "08/05/2026 a 11:27",
+    "id": "1778228874995"
+  },
+  {
+    "client": "LEV CONSEIL",
+    "quantity": 150,
+    "departments": [
+      "87",
+      "23",
+      "19",
+      "24",
+      "79",
+      "86",
+      "16",
+      "17"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "08/05/2026 a 11:28",
+    "id": "1778228890509"
+  },
+  {
+    "client": "ysac partner",
+    "quantity": 100,
+    "departments": [
+      "07",
+      "26",
+      "30",
+      "34"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "08/05/2026 a 11:28",
+    "id": "1778228900519"
+  },
+  {
+    "client": "JDLN",
+    "quantity": 100,
+    "departments": [
+      "54",
+      "57",
+      "70",
+      "88"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "08/05/2026 a 11:28",
+    "id": "1778228910528"
+  },
+  {
+    "client": "GLOBE ENERGY SHANONE",
+    "quantity": 250,
+    "departments": [
+      "02",
+      "25",
+      "27",
+      "28",
+      "39",
+      "41",
+      "45",
+      "53",
+      "54",
+      "57",
+      "58",
+      "60",
+      "72",
+      "76",
+      "80",
+      "88",
+      "89"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "08/05/2026 a 11:28",
+    "id": "1778228920542"
+  },
+  {
+    "client": "As conseil",
+    "quantity": 180,
+    "departments": [
+      "36",
+      "18",
+      "43",
+      "48"
+    ],
+    "comments": "",
+    "received_at": "08/05/2026 a 16:35",
+    "id": "1778247314393"
+  },
+  {
+    "client": "STERNA",
+    "quantity": 200,
+    "departments": [
+      "46",
+      "47",
+      "24",
+      "82"
+    ],
+    "comments": "",
+    "received_at": "10/05/2026 a 21:33",
+    "id": "1778438019218"
+  },
+  {
+    "client": "AZICO",
+    "quantity": 150,
+    "departments": [
+      "01",
+      "39",
+      "69"
+    ],
+    "comments": "",
+    "received_at": "10/05/2026 a 21:39",
+    "id": "1778438360748"
+  },
+  {
+    "client": "Valeos",
+    "quantity": 100,
+    "departments": [
+      "07",
+      "26",
+      "38",
+      "69"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "10/05/2026 a 21:39",
+    "id": "1778438372418"
+  },
+  {
+    "client": "MT CONSEIL",
+    "quantity": 100,
+    "departments": [
+      "34",
+      "30"
+    ],
+    "comments": "",
+    "received_at": "14/05/2026 a 11:14",
+    "id": "1778746473117"
+  },
+  {
+    "client": "DMEVO CONSEIL",
+    "quantity": 100,
+    "departments": [
+      "18",
+      "19",
+      "41",
+      "86",
+      "87",
+      "37"
+    ],
+    "comments": "",
+    "received_at": "14/05/2026 a 11:22",
+    "id": "1778746945927"
+  },
+  {
+    "client": "Saconseil",
+    "quantity": 120,
+    "departments": [
+      "30",
+      "84"
+    ],
+    "comments": "",
+    "received_at": "14/05/2026 a 11:38",
+    "id": "1778747916468"
+  },
+  {
+    "client": "Saconseil",
+    "quantity": 100,
+    "departments": [
+      "30",
+      "34",
+      "84"
+    ],
+    "comments": "",
+    "received_at": "14/05/2026 a 11:39",
+    "id": "1778747990406"
+  },
+  {
+    "client": "Saviva energie",
+    "quantity": 150,
+    "departments": [
+      "59",
+      "62",
+      "60",
+      "80",
+      "02"
+    ],
+    "comments": "",
+    "received_at": "14/05/2026 a 13:39",
+    "id": "1778755172227"
+  },
+  {
+    "client": "Saviva energie",
+    "quantity": 100,
+    "departments": [
+      "33",
+      "40",
+      "47"
+    ],
+    "comments": "",
+    "received_at": "14/05/2026 a 13:40",
+    "id": "1778755221248"
+  },
+  {
+    "client": "GLOBE ENERGY SHANONE",
+    "quantity": 200,
+    "departments": [
+      "02",
+      "25",
+      "27",
+      "28",
+      "39",
+      "41",
+      "45",
+      "53",
+      "54",
+      "57",
+      "58",
+      "60",
+      "72",
+      "76",
+      "80",
+      "88",
+      "89"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "14/05/2026 a 14:05",
+    "id": "1778756712375"
+  },
+  {
+    "client": "LUNA",
+    "quantity": 400,
+    "departments": [
+      "14",
+      "18",
+      "27",
+      "28",
+      "36",
+      "37",
+      "41",
+      "45",
+      "50",
+      "61",
+      "72",
+      "76",
+      "89"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "14/05/2026 a 14:05",
+    "id": "1778756723434"
+  },
+  {
+    "client": "BL CONSEIL",
+    "quantity": 300,
+    "departments": [
+      "11",
+      "31",
+      "66",
+      "09"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "14/05/2026 a 14:05",
+    "id": "1778756734367"
+  },
+  {
+    "client": "LENNY",
+    "quantity": 100,
+    "departments": [
+      "78"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "14/05/2026 a 14:05",
+    "id": "1778756744377"
+  },
+  {
+    "client": "ARTHUR",
+    "quantity": 150,
+    "departments": [
+      "77"
+    ],
+    "comments": "",
+    "received_at": "14/05/2026 a 15:13",
+    "id": "1778760807939"
+  },
+  {
+    "client": "ARTHUR",
+    "quantity": 150,
+    "departments": [
+      "44",
+      "85"
+    ],
+    "comments": "",
+    "received_at": "14/05/2026 a 15:14",
+    "id": "1778760898011"
+  },
+  {
+    "client": "ARTHUR",
+    "quantity": 100,
+    "departments": [
+      "73",
+      "74"
+    ],
+    "comments": "",
+    "received_at": "14/05/2026 a 15:16",
+    "id": "1778760988086"
+  },
+  {
+    "client": "Dovinov",
+    "quantity": 100,
+    "departments": [
+      "22",
+      "29",
+      "56",
+      "44"
+    ],
+    "comments": "Département : 22 29 56 44 sdv",
+    "received_at": "14/05/2026 a 15:39",
+    "id": "1778762399251"
+  },
+  {
+    "client": "KY",
+    "quantity": 150,
+    "departments": [
+      "01",
+      "21",
+      "39",
+      "71"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "14/05/2026 a 16:01",
+    "id": "1778763696526"
+  },
+  {
+    "client": "GLC TAMAR",
+    "quantity": 400,
+    "departments": [
+      "52",
+      "54",
+      "55",
+      "57",
+      "67",
+      "68",
+      "70",
+      "88",
+      "90"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "14/05/2026 a 16:02",
+    "id": "1778763762183"
+  },
+  {
+    "client": "A2e",
+    "quantity": 300,
+    "departments": [
+      "06",
+      "04",
+      "13",
+      "83",
+      "84",
+      "05"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "14/05/2026 a 16:02",
+    "id": "1778763772189"
+  },
+  {
+    "client": "A&C",
+    "quantity": 100,
+    "departments": [
+      "03",
+      "63",
+      "42"
+    ],
+    "comments": "",
+    "received_at": "14/05/2026 a 16:14",
+    "id": "1778764462795"
+  },
+  {
+    "client": "MIJ",
+    "quantity": 50,
+    "departments": [
+      "02",
+      "80"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "14/05/2026 a 16:16",
+    "id": "1778764618049"
+  },
+  {
+    "client": "GEF",
+    "quantity": 400,
+    "departments": [
+      "60",
+      "80",
+      "02",
+      "10",
+      "89",
+      "74",
+      "73",
+      "38",
+      "22",
+      "29",
+      "56",
+      "44",
+      "49",
+      "85",
+      "86",
+      "79",
+      "17",
+      "16",
+      "30",
+      "34",
+      "53",
+      "72",
+      "28"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "14/05/2026 a 16:25",
+    "id": "1778765139067"
+  },
+  {
+    "client": "Yona",
+    "quantity": 100,
+    "departments": [
+      "77",
+      "91"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "14/05/2026 a 16:30",
+    "id": "1778765424566"
+  },
+  {
+    "client": "ACL GESTION",
+    "quantity": 100,
+    "departments": [
+      "29",
+      "22",
+      "56"
+    ],
+    "comments": "",
+    "received_at": "14/05/2026 a 17:08",
+    "id": "1778767698822"
+  },
+  {
+    "client": "ZHM BUSINESS",
+    "quantity": 800,
+    "departments": [
+      "22",
+      "04",
+      "05",
+      "26",
+      "29",
+      "07",
+      "84",
+      "56",
+      "35"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "14/05/2026 a 17:08",
+    "id": "1778767711612"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 80,
+    "departments": [
+      "76",
+      "80"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "14/05/2026 a 17:11",
+    "id": "1778767917635"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 30,
+    "departments": [
+      "64",
+      "65"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "14/05/2026 a 17:12",
+    "id": "1778767927653"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 100,
+    "departments": [
+      "22",
+      "29",
+      "56"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "14/05/2026 a 17:12",
+    "id": "1778767937672"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 20,
+    "departments": [
+      "28",
+      "45"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "14/05/2026 a 17:12",
+    "id": "1778767949232"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 100,
+    "departments": [
+      "11",
+      "66"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "14/05/2026 a 17:12",
+    "id": "1778767959347"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 50,
+    "departments": [
+      "72",
+      "53"
+    ],
+    "comments": "",
+    "received_at": "14/05/2026 a 17:13",
+    "id": "1778767999399"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 80,
+    "departments": [
+      "08",
+      "55"
+    ],
+    "comments": "",
+    "received_at": "14/05/2026 a 17:15",
+    "id": "1778768119526"
+  },
+  {
+    "client": "GAD CONSULTING",
+    "quantity": 200,
+    "departments": [
+      "77"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "14/05/2026 a 17:18",
+    "id": "1778768311858"
+  },
+  {
+    "client": "GAD CONSULTING",
+    "quantity": 150,
+    "departments": [
+      "59",
+      "62"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "14/05/2026 a 17:18",
+    "id": "1778768321873"
+  },
+  {
+    "client": "As conseil",
+    "quantity": 180,
+    "departments": [
+      "36",
+      "18",
+      "43",
+      "48"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "14/05/2026 a 17:22",
+    "id": "1778768541305"
+  },
+  {
+    "client": "RM PARTNERS 26",
+    "quantity": 100,
+    "departments": [
+      "72",
+      "61",
+      "53",
+      "49"
+    ],
+    "comments": "",
+    "received_at": "14/05/2026 a 17:39",
+    "id": "1778769542518"
+  },
+  {
+    "client": "groupe ya",
+    "quantity": 250,
+    "departments": [
+      "16",
+      "17",
+      "19",
+      "24",
+      "79",
+      "86",
+      "87"
+    ],
+    "comments": "",
+    "received_at": "14/05/2026 a 17:44",
+    "id": "1778769872979"
+  },
+  {
+    "client": "Anr consulting",
+    "quantity": 50,
+    "departments": [
+      "37",
+      "41"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "14/05/2026 a 18:24",
+    "id": "1778772299778"
+  },
+  {
+    "client": "Anr consulting",
+    "quantity": 100,
+    "departments": [
+      "45",
+      "89"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "14/05/2026 a 18:25",
+    "id": "1778772309794"
+  },
+  {
+    "client": "Anr consulting",
+    "quantity": 100,
+    "departments": [
+      "03",
+      "63"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "14/05/2026 a 18:25",
+    "id": "1778772319804"
+  },
+  {
+    "client": "anr",
+    "quantity": 100,
+    "departments": [
+      "14",
+      "50",
+      "61"
+    ],
+    "comments": "",
+    "received_at": "14/05/2026 a 18:30",
+    "id": "1778772612014"
+  },
+  {
+    "client": "charles",
+    "quantity": 20,
+    "departments": [
+      "36",
+      "18"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "14/05/2026 a 19:03",
+    "id": "1778774625648"
+  },
+  {
+    "client": "CHARLES",
+    "quantity": 50,
+    "departments": [
+      "44",
+      "85"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "14/05/2026 a 19:03",
+    "id": "1778774635658"
+  },
+  {
+    "client": "CHARLES",
+    "quantity": 50,
+    "departments": [
+      "15",
+      "03",
+      "63",
+      "43"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "14/05/2026 a 19:04",
+    "id": "1778774645666"
+  },
+  {
+    "client": "Nrge",
+    "quantity": 100,
+    "departments": [
+      "03",
+      "42",
+      "43",
+      "63",
+      "15",
+      "58"
+    ],
+    "comments": "Département : 03/63/42/43/15/58",
+    "received_at": "14/05/2026 a 19:08",
+    "id": "1778774895905"
+  },
+  {
+    "client": "Nrge",
+    "quantity": 40,
+    "departments": [
+      "23",
+      "19",
+      "87"
+    ],
+    "comments": "",
+    "received_at": "14/05/2026 a 19:09",
+    "id": "1778774955970"
+  },
+  {
+    "client": "ICO CONSEILS/ AZ PARTNER",
+    "quantity": 50,
+    "departments": [
+      "01",
+      "39",
+      "69"
+    ],
+    "comments": "",
+    "received_at": "14/05/2026 a 19:25",
+    "id": "1778775916752"
+  },
+  {
+    "client": "LEV CONSEIL",
+    "quantity": 250,
+    "departments": [
+      "87",
+      "23",
+      "19",
+      "24",
+      "79",
+      "86",
+      "16",
+      "17"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "14/05/2026 a 21:46",
+    "id": "1778784397816"
+  },
+  {
+    "client": "LEV CONSEIL",
+    "quantity": 80,
+    "departments": [
+      "45",
+      "41",
+      "28"
+    ],
+    "comments": "",
+    "received_at": "14/05/2026 a 21:47",
+    "id": "1778784438007"
+  },
+  {
+    "client": "Sw conseils",
+    "quantity": 150,
+    "departments": [
+      "73",
+      "74"
+    ],
+    "comments": "",
+    "received_at": "14/05/2026 a 22:18",
+    "id": "1778786325371"
+  },
+  {
+    "client": "ED CONSULTING",
+    "quantity": 50,
+    "departments": [
+      "59"
+    ],
+    "comments": "NORD",
+    "received_at": "15/05/2026 a 12:56",
+    "id": "1778838994154"
+  },
+  {
+    "client": "ED CONSULTING",
+    "quantity": 50,
+    "departments": [
+      "25",
+      "39",
+      "70",
+      "71",
+      "90"
+    ],
+    "comments": "",
+    "received_at": "15/05/2026 a 12:58",
+    "id": "1778839114251"
+  },
+  {
+    "client": "KB conseil",
+    "quantity": 150,
+    "departments": [
+      "02",
+      "28",
+      "45",
+      "27",
+      "76",
+      "80",
+      "60"
+    ],
+    "comments": "",
+    "received_at": "15/05/2026 a 13:22",
+    "id": "1778840525947"
+  },
+  {
+    "client": "Valeos",
+    "quantity": 100,
+    "departments": [
+      "07",
+      "26",
+      "38",
+      "69"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "17/05/2026 a 14:42",
+    "id": "1779018156271"
+  },
+  {
+    "client": "Ahm 2",
+    "quantity": 60,
+    "departments": [
+      "59",
+      "62"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "17/05/2026 a 14:43",
+    "id": "1779018189038"
+  },
+  {
+    "client": "Anr consulting",
+    "quantity": 100,
+    "departments": [
+      "45",
+      "89"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 10:16",
+    "id": "1779347770567"
+  },
+  {
+    "client": "Anr consulting",
+    "quantity": 100,
+    "departments": [
+      "03",
+      "63"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 10:16",
+    "id": "1779347781403"
+  },
+  {
+    "client": "Anr consulting",
+    "quantity": 50,
+    "departments": [
+      "37",
+      "41"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 10:16",
+    "id": "1779347791411"
+  },
+  {
+    "client": "anr",
+    "quantity": 100,
+    "departments": [
+      "14",
+      "50",
+      "61"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 10:16",
+    "id": "1779347801429"
+  },
+  {
+    "client": "groupe ya",
+    "quantity": 250,
+    "departments": [
+      "16",
+      "17",
+      "19",
+      "24",
+      "79",
+      "86",
+      "87"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 10:16",
+    "id": "1779347811443"
+  },
+  {
+    "client": "ysaac partner",
+    "quantity": 100,
+    "departments": [
+      "07",
+      "26",
+      "01",
+      "38",
+      "03",
+      "63",
+      "71"
+    ],
+    "comments": "",
+    "received_at": "21/05/2026 a 10:18",
+    "id": "1779347883637"
+  },
+  {
+    "client": "GEF",
+    "quantity": 400,
+    "departments": [
+      "60",
+      "80",
+      "02",
+      "10",
+      "89",
+      "74",
+      "73",
+      "38",
+      "22",
+      "29",
+      "56",
+      "44",
+      "49",
+      "85",
+      "86",
+      "79",
+      "17",
+      "16",
+      "30",
+      "34",
+      "53",
+      "72",
+      "28"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 10:18",
+    "id": "1779347920753"
+  },
+  {
+    "client": "A2e",
+    "quantity": 300,
+    "departments": [
+      "06",
+      "04",
+      "13",
+      "83",
+      "84",
+      "05"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 10:18",
+    "id": "1779347930764"
+  },
+  {
+    "client": "GLC TAMAR",
+    "quantity": 400,
+    "departments": [
+      "52",
+      "54",
+      "55",
+      "57",
+      "67",
+      "68",
+      "70",
+      "88",
+      "90"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 10:19",
+    "id": "1779347940771"
+  },
+  {
+    "client": "ACL GESTION",
+    "quantity": 150,
+    "departments": [
+      "29",
+      "22",
+      "56"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 10:19",
+    "id": "1779347950783"
+  },
+  {
+    "client": "A&C solutions",
+    "quantity": 150,
+    "departments": [
+      "03",
+      "63",
+      "42"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 10:19",
+    "id": "1779347960798"
+  },
+  {
+    "client": "MIJ",
+    "quantity": 50,
+    "departments": [
+      "02",
+      "80"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 10:19",
+    "id": "1779347970805"
+  },
+  {
+    "client": "LUNA",
+    "quantity": 400,
+    "departments": [
+      "14",
+      "18",
+      "27",
+      "28",
+      "36",
+      "37",
+      "41",
+      "45",
+      "50",
+      "61",
+      "72",
+      "76",
+      "89"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 10:19",
+    "id": "1779347980816"
+  },
+  {
+    "client": "LENNY",
+    "quantity": 100,
+    "departments": [
+      "78"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 10:19",
+    "id": "1779347990825"
+  },
+  {
+    "client": "BL CONSEIL",
+    "quantity": 300,
+    "departments": [
+      "11",
+      "31",
+      "66",
+      "09"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 10:20",
+    "id": "1779348000837"
+  },
+  {
+    "client": "GLOBE ENERGY SHANONE",
+    "quantity": 250,
+    "departments": [
+      "02",
+      "25",
+      "27",
+      "28",
+      "39",
+      "41",
+      "45",
+      "53",
+      "54",
+      "57",
+      "58",
+      "60",
+      "72",
+      "76",
+      "80",
+      "88",
+      "89"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 10:20",
+    "id": "1779348010852"
+  },
+  {
+    "client": "GLC",
+    "quantity": 200,
+    "departments": [
+      "22",
+      "56",
+      "29"
+    ],
+    "comments": "",
+    "received_at": "21/05/2026 a 10:21",
+    "id": "1779348080926"
+  },
+  {
+    "client": "MT CONSEIL",
+    "quantity": 150,
+    "departments": [
+      "30",
+      "34"
+    ],
+    "comments": "",
+    "received_at": "21/05/2026 a 10:55",
+    "id": "1779350102868"
+  },
+  {
+    "client": "Sw conseils",
+    "quantity": 150,
+    "departments": [
+      "16",
+      "24",
+      "47"
+    ],
+    "comments": "",
+    "received_at": "21/05/2026 a 12:04",
+    "id": "1779354247586"
+  },
+  {
+    "client": "Nrge",
+    "quantity": 150,
+    "departments": [
+      "03",
+      "58",
+      "63",
+      "42",
+      "43",
+      "15"
+    ],
+    "comments": "",
+    "received_at": "21/05/2026 a 13:03",
+    "id": "1779357792049"
+  },
+  {
+    "client": "Nrge",
+    "quantity": 50,
+    "departments": [
+      "23",
+      "19",
+      "87"
+    ],
+    "comments": "",
+    "received_at": "21/05/2026 a 13:05",
+    "id": "1779357912183"
+  },
+  {
+    "client": "KY",
+    "quantity": 150,
+    "departments": [
+      "01",
+      "21",
+      "39",
+      "71"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 13:26",
+    "id": "1779359213952"
+  },
+  {
+    "client": "Saconseil",
+    "quantity": 100,
+    "departments": [
+      "30",
+      "84"
+    ],
+    "comments": "",
+    "received_at": "21/05/2026 a 13:34",
+    "id": "1779359640047"
+  },
+  {
+    "client": "ICO CONSEILS/ AZ PARTNER",
+    "quantity": 100,
+    "departments": [
+      "01",
+      "39",
+      "69"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 13:34",
+    "id": "1779359658400"
+  },
+  {
+    "client": "Ateco",
+    "quantity": 100,
+    "departments": [
+      "30",
+      "34"
+    ],
+    "comments": "",
+    "received_at": "21/05/2026 a 13:35",
+    "id": "1779359715713"
+  },
+  {
+    "client": "LEV CONSEIL",
+    "quantity": 200,
+    "departments": [
+      "87",
+      "23",
+      "19",
+      "24",
+      "79",
+      "86",
+      "16",
+      "17"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 13:37",
+    "id": "1779359820213"
+  },
+  {
+    "client": "LEV CONSEIL",
+    "quantity": 50,
+    "departments": [
+      "45",
+      "41",
+      "28"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 13:37",
+    "id": "1779359831901"
+  },
+  {
+    "client": "ZHM BUSINESS",
+    "quantity": 800,
+    "departments": [
+      "22",
+      "04",
+      "05",
+      "26",
+      "29",
+      "07",
+      "84",
+      "56",
+      "35"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 13:42",
+    "id": "1779360166466"
+  },
+  {
+    "client": "CHARLES",
+    "quantity": 50,
+    "departments": [
+      "15",
+      "03",
+      "63",
+      "43"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 13:56",
+    "id": "1779361015447"
+  },
+  {
+    "client": "charles",
+    "quantity": 20,
+    "departments": [
+      "36",
+      "18"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 13:57",
+    "id": "1779361025462"
+  },
+  {
+    "client": "CHARLES",
+    "quantity": 50,
+    "departments": [
+      "44",
+      "85"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 13:57",
+    "id": "1779361035525"
+  },
+  {
+    "client": "Valeos",
+    "quantity": 100,
+    "departments": [
+      "07",
+      "26",
+      "38",
+      "69"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 14:05",
+    "id": "1779361552354"
+  },
+  {
+    "client": "KB conseil",
+    "quantity": 150,
+    "departments": [
+      "02",
+      "28",
+      "45",
+      "27",
+      "76",
+      "80",
+      "60"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 14:06",
+    "id": "1779361562377"
+  },
+  {
+    "client": "GAD CONSULTING",
+    "quantity": 200,
+    "departments": [
+      "77"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 14:34",
+    "id": "1779363258887"
+  },
+  {
+    "client": "GAD CONSULTING",
+    "quantity": 150,
+    "departments": [
+      "59",
+      "62"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 14:34",
+    "id": "1779363268900"
+  },
+  {
+    "client": "Yona",
+    "quantity": 100,
+    "departments": [
+      "77",
+      "91"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 14:34",
+    "id": "1779363286139"
+  },
+  {
+    "client": "ed consulting",
+    "quantity": 50,
+    "departments": [
+      "25",
+      "21",
+      "70",
+      "39",
+      "71"
+    ],
+    "comments": "",
+    "received_at": "21/05/2026 a 14:56",
+    "id": "1779364614621"
+  },
+  {
+    "client": "ED CONSULTING",
+    "quantity": 50,
+    "departments": [
+      "29",
+      "22",
+      "56",
+      "35"
+    ],
+    "comments": "",
+    "received_at": "21/05/2026 a 14:57",
+    "id": "1779364644651"
+  },
+  {
+    "client": "Saviva energie",
+    "quantity": 100,
+    "departments": [
+      "33",
+      "40",
+      "47"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 14:59",
+    "id": "1779364796552"
+  },
+  {
+    "client": "Saviva energie",
+    "quantity": 150,
+    "departments": [
+      "59",
+      "62",
+      "60",
+      "80",
+      "02"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 15:01",
+    "id": "1779364905174"
+  },
+  {
+    "client": "AJT INVEST",
+    "quantity": 100,
+    "departments": [
+      "21",
+      "71",
+      "01",
+      "39",
+      "58",
+      "89",
+      "25",
+      "70",
+      "90",
+      "52"
+    ],
+    "comments": "",
+    "received_at": "21/05/2026 a 16:15",
+    "id": "1779369329522"
+  },
+  {
+    "client": "anr",
+    "quantity": 50,
+    "departments": [
+      "14",
+      "50",
+      "61"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 16:15",
+    "id": "1779369350698"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 80,
+    "departments": [
+      "76",
+      "80"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 16:27",
+    "id": "1779370045338"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 60,
+    "departments": [
+      "64",
+      "65"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 16:27",
+    "id": "1779370057049"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 70,
+    "departments": [
+      "72",
+      "53"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 16:27",
+    "id": "1779370072952"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 50,
+    "departments": [
+      "22",
+      "29",
+      "56"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 16:28",
+    "id": "1779370087268"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 100,
+    "departments": [
+      "08",
+      "55"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 16:28",
+    "id": "1779370101751"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 20,
+    "departments": [
+      "28",
+      "45"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 16:28",
+    "id": "1779370111762"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 100,
+    "departments": [
+      "11",
+      "66"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 16:28",
+    "id": "1779370121780"
+  },
+  {
+    "client": "Ahm 2",
+    "quantity": 100,
+    "departments": [
+      "59",
+      "62"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "21/05/2026 a 16:29",
+    "id": "1779370185366"
+  },
+  {
+    "client": "ARTHUR",
+    "quantity": 200,
+    "departments": [
+      "44",
+      "85"
+    ],
+    "comments": "",
+    "received_at": "21/05/2026 a 17:14",
+    "id": "1779372886643"
+  },
+  {
+    "client": "ARTHUR",
+    "quantity": 100,
+    "departments": [
+      "79"
+    ],
+    "comments": "",
+    "received_at": "21/05/2026 a 17:15",
+    "id": "1779372946719"
+  },
+  {
+    "client": "As conseil",
+    "quantity": 70,
+    "departments": [
+      "43",
+      "48"
+    ],
+    "comments": "Pas de leads lundi",
+    "received_at": "21/05/2026 a 18:28",
+    "id": "1779377301899"
+  },
+  {
+    "client": "groupe ya",
+    "quantity": 250,
+    "departments": [
+      "16",
+      "17",
+      "19",
+      "24",
+      "79",
+      "86",
+      "87"
+    ],
+    "comments": "",
+    "received_at": "28/05/2026 a 13:14",
+    "id": "1779963281893"
+  },
+  {
+    "client": "LUNA",
+    "quantity": 400,
+    "departments": [
+      "14",
+      "18",
+      "27",
+      "28",
+      "36",
+      "37",
+      "41",
+      "45",
+      "50",
+      "61",
+      "72",
+      "76",
+      "89"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 13:18",
+    "id": "1779963511015"
+  },
+  {
+    "client": "GLOBE ENERGY SHANONE",
+    "quantity": 250,
+    "departments": [
+      "02",
+      "25",
+      "27",
+      "28",
+      "39",
+      "41",
+      "45",
+      "53",
+      "54",
+      "57",
+      "58",
+      "60",
+      "72",
+      "76",
+      "80",
+      "88",
+      "89"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 13:18",
+    "id": "1779963532907"
+  },
+  {
+    "client": "LENNY",
+    "quantity": 100,
+    "departments": [
+      "78"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 13:52",
+    "id": "1779965524267"
+  },
+  {
+    "client": "BL CONSEIL",
+    "quantity": 350,
+    "departments": [
+      "11",
+      "31",
+      "66",
+      "09"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 13:52",
+    "id": "1779965534298"
+  },
+  {
+    "client": "Yona",
+    "quantity": 130,
+    "departments": [
+      "77",
+      "91"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 13:59",
+    "id": "1779965986179"
+  },
+  {
+    "client": "CHARLES",
+    "quantity": 50,
+    "departments": [
+      "44",
+      "85"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 13:59",
+    "id": "1779965996194"
+  },
+  {
+    "client": "CHARLES",
+    "quantity": 70,
+    "departments": [
+      "15",
+      "03",
+      "63",
+      "43"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 14:00",
+    "id": "1779966006213"
+  },
+  {
+    "client": "charles",
+    "quantity": 20,
+    "departments": [
+      "36",
+      "18"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 14:00",
+    "id": "1779966016233"
+  },
+  {
+    "client": "ZHM BUSINESS",
+    "quantity": 900,
+    "departments": [
+      "22",
+      "04",
+      "05",
+      "26",
+      "29",
+      "07",
+      "84",
+      "56",
+      "35"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 14:20",
+    "id": "1779967231728"
+  },
+  {
+    "client": "Saconseil",
+    "quantity": 100,
+    "departments": [
+      "30",
+      "84"
+    ],
+    "comments": "",
+    "received_at": "28/05/2026 a 15:47",
+    "id": "1779972467393"
+  },
+  {
+    "client": "Ateco",
+    "quantity": 100,
+    "departments": [
+      "30",
+      "34"
+    ],
+    "comments": "",
+    "received_at": "28/05/2026 a 15:48",
+    "id": "1779972527486"
+  },
+  {
+    "client": "LUNA",
+    "quantity": 100,
+    "departments": [
+      "14",
+      "18",
+      "27",
+      "28",
+      "36",
+      "37",
+      "41",
+      "45",
+      "50",
+      "61",
+      "72",
+      "76",
+      "89"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 16:08",
+    "id": "1779973700402"
+  },
+  {
+    "client": "ARTHUR",
+    "quantity": 100,
+    "departments": [
+      "79"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 16:08",
+    "id": "1779973711833"
+  },
+  {
+    "client": "ARTHUR",
+    "quantity": 200,
+    "departments": [
+      "44",
+      "85"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 16:08",
+    "id": "1779973721842"
+  },
+  {
+    "client": "ARTHUR",
+    "quantity": 170,
+    "departments": [
+      "73",
+      "74"
+    ],
+    "comments": "",
+    "received_at": "28/05/2026 a 16:09",
+    "id": "1779973761910"
+  },
+  {
+    "client": "Valeos",
+    "quantity": 100,
+    "departments": [
+      "07",
+      "26",
+      "38",
+      "69"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 16:09",
+    "id": "1779973771917"
+  },
+  {
+    "client": "GEF",
+    "quantity": 300,
+    "departments": [
+      "73",
+      "74",
+      "38"
+    ],
+    "comments": "",
+    "received_at": "28/05/2026 a 16:12",
+    "id": "1779973923303"
+  },
+  {
+    "client": "GEF",
+    "quantity": 50,
+    "departments": [
+      "21",
+      "71"
+    ],
+    "comments": "",
+    "received_at": "28/05/2026 a 16:13",
+    "id": "1779973983332"
+  },
+  {
+    "client": "GEF",
+    "quantity": 100,
+    "departments": [
+      "44",
+      "49",
+      "79",
+      "85"
+    ],
+    "comments": "",
+    "received_at": "28/05/2026 a 16:14",
+    "id": "1779974043387"
+  },
+  {
+    "client": "GEF",
+    "quantity": 100,
+    "departments": [
+      "22",
+      "56",
+      "35"
+    ],
+    "comments": "",
+    "received_at": "28/05/2026 a 16:15",
+    "id": "1779974103439"
+  },
+  {
+    "client": "GEF",
+    "quantity": 80,
+    "departments": [
+      "02",
+      "60",
+      "80"
+    ],
+    "comments": "",
+    "received_at": "28/05/2026 a 16:17",
+    "id": "1779974253562"
+  },
+  {
+    "client": "GEF",
+    "quantity": 80,
+    "departments": [
+      "30",
+      "34"
+    ],
+    "comments": "",
+    "received_at": "28/05/2026 a 16:19",
+    "id": "1779974343666"
+  },
+  {
+    "client": "GEF",
+    "quantity": 100,
+    "departments": [
+      "11",
+      "66"
+    ],
+    "comments": "",
+    "received_at": "28/05/2026 a 16:20",
+    "id": "1779974403726"
+  },
+  {
+    "client": "KY",
+    "quantity": 150,
+    "departments": [
+      "01",
+      "21",
+      "39",
+      "71"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 16:24",
+    "id": "1779974658868"
+  },
+  {
+    "client": "MT CONSEL",
+    "quantity": 250,
+    "departments": [
+      "30",
+      "34",
+      "84"
+    ],
+    "comments": "",
+    "received_at": "28/05/2026 a 16:25",
+    "id": "1779974747533"
+  },
+  {
+    "client": "Saviva energie",
+    "quantity": 150,
+    "departments": [
+      "59",
+      "62",
+      "60",
+      "80",
+      "02"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 16:29",
+    "id": "1779974988103"
+  },
+  {
+    "client": "Saviva energie",
+    "quantity": 100,
+    "departments": [
+      "33",
+      "40",
+      "47"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 16:29",
+    "id": "1779974998120"
+  },
+  {
+    "client": "ACL GESTION",
+    "quantity": 100,
+    "departments": [
+      "29",
+      "22",
+      "56"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 16:34",
+    "id": "1779975248607"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 50,
+    "departments": [
+      "22",
+      "29",
+      "56"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 16:54",
+    "id": "1779976443818"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 60,
+    "departments": [
+      "64",
+      "65"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 16:54",
+    "id": "1779976453835"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 70,
+    "departments": [
+      "72",
+      "53"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 16:54",
+    "id": "1779976463854"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 50,
+    "departments": [
+      "22",
+      "29",
+      "56"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 16:54",
+    "id": "1779976497779"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 100,
+    "departments": [
+      "08",
+      "55"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 16:55",
+    "id": "1779976507791"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 20,
+    "departments": [
+      "28",
+      "45"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 16:55",
+    "id": "1779976517816"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 100,
+    "departments": [
+      "11",
+      "66"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 16:55",
+    "id": "1779976527829"
+  },
+  {
+    "client": "GAD CONSULTING",
+    "quantity": 200,
+    "departments": [
+      "77"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 17:36",
+    "id": "1779978962361"
+  },
+  {
+    "client": "GAD CONSULTING",
+    "quantity": 150,
+    "departments": [
+      "59",
+      "62"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 17:36",
+    "id": "1779978972377"
+  },
+  {
+    "client": "Nrge",
+    "quantity": 150,
+    "departments": [
+      "03",
+      "63",
+      "42",
+      "43",
+      "15",
+      "58"
+    ],
+    "comments": "",
+    "received_at": "28/05/2026 a 17:47",
+    "id": "1779979667546"
+  },
+  {
+    "client": "Nrge",
+    "quantity": 50,
+    "departments": [
+      "23",
+      "19",
+      "87"
+    ],
+    "comments": "",
+    "received_at": "28/05/2026 a 17:49",
+    "id": "1779979757629"
+  },
+  {
+    "client": "ED CONSULTING",
+    "quantity": 50,
+    "departments": [
+      "29",
+      "22",
+      "56",
+      "35"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 17:58",
+    "id": "1779980298272"
+  },
+  {
+    "client": "ed consulting",
+    "quantity": 50,
+    "departments": [
+      "25",
+      "21",
+      "70",
+      "39",
+      "71"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 17:58",
+    "id": "1779980308301"
+  },
+  {
+    "client": "A&C solutions",
+    "quantity": 150,
+    "departments": [
+      "03",
+      "63",
+      "42"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 18:03",
+    "id": "1779980587030"
+  },
+  {
+    "client": "Yanova",
+    "quantity": 40,
+    "departments": [
+      "08",
+      "51",
+      "10",
+      "12",
+      "48",
+      "15"
+    ],
+    "comments": "Allez d’la prod !!!",
+    "received_at": "28/05/2026 a 18:11",
+    "id": "1779981077546"
+  },
+  {
+    "client": "AS CONSEIL",
+    "quantity": 150,
+    "departments": [
+      "18",
+      "36",
+      "43",
+      "48"
+    ],
+    "comments": "",
+    "received_at": "28/05/2026 a 18:24",
+    "id": "1779981858285"
+  },
+  {
+    "client": "Ahm 2",
+    "quantity": 50,
+    "departments": [
+      "59",
+      "62"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 18:25",
+    "id": "1779981928777"
+  },
+  {
+    "client": "ICO CONSEIL",
+    "quantity": 150,
+    "departments": [
+      "01",
+      "39",
+      "69"
+    ],
+    "comments": "",
+    "received_at": "28/05/2026 a 18:52",
+    "id": "1779983560365"
+  },
+  {
+    "client": "A2e",
+    "quantity": 300,
+    "departments": [
+      "06",
+      "04",
+      "13",
+      "83",
+      "84",
+      "05"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 18:54",
+    "id": "1779983677816"
+  },
+  {
+    "client": "MIJ",
+    "quantity": 50,
+    "departments": [
+      "02",
+      "80"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "28/05/2026 a 18:55",
+    "id": "1779983748281"
+  },
+  {
+    "client": "ARTHUR",
+    "quantity": 250,
+    "departments": [
+      "44",
+      "85",
+      "79"
+    ],
+    "comments": "",
+    "received_at": "28/05/2026 a 20:11",
+    "id": "1779988288670"
+  },
+  {
+    "client": "Arthur",
+    "quantity": 120,
+    "departments": [
+      "73",
+      "74"
+    ],
+    "comments": "",
+    "received_at": "28/05/2026 a 20:13",
+    "id": "1779988438808"
+  },
+  {
+    "client": "AJT INVEST",
+    "quantity": 300,
+    "departments": [
+      "21",
+      "71",
+      "01",
+      "39",
+      "58",
+      "89",
+      "25",
+      "70",
+      "90",
+      "52"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "29/05/2026 a 10:23",
+    "id": "1780039423793"
+  },
+  {
+    "client": "GLC TAMAR",
+    "quantity": 400,
+    "departments": [
+      "52",
+      "54",
+      "55",
+      "57",
+      "67",
+      "68",
+      "70",
+      "88",
+      "90"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "29/05/2026 a 10:23",
+    "id": "1780039435259"
+  },
+  {
+    "client": "LEV CONSEIL",
+    "quantity": 150,
+    "departments": [
+      "87",
+      "23",
+      "19",
+      "24",
+      "79",
+      "86",
+      "16",
+      "17"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "29/05/2026 a 10:24",
+    "id": "1780039446694"
+  },
+  {
+    "client": "LEV CONSEIL",
+    "quantity": 80,
+    "departments": [
+      "45",
+      "41",
+      "28"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "29/05/2026 a 10:24",
+    "id": "1780039456712"
+  },
+  {
+    "client": "anr",
+    "quantity": 400,
+    "departments": [
+      "03",
+      "63",
+      "45",
+      "89",
+      "36",
+      "18",
+      "37",
+      "41"
+    ],
+    "comments": "",
+    "received_at": "29/05/2026 a 12:34",
+    "id": "1780047262962"
+  },
+  {
+    "client": "ANR",
+    "quantity": 150,
+    "departments": [
+      "73",
+      "74"
+    ],
+    "comments": "",
+    "received_at": "29/05/2026 a 12:35",
+    "id": "1780047356010"
+  },
+  {
+    "client": "ANR",
+    "quantity": 300,
+    "departments": [
+      "22",
+      "29",
+      "35",
+      "56"
+    ],
+    "comments": "",
+    "received_at": "29/05/2026 a 12:36",
+    "id": "1780047416067"
+  },
+  {
+    "client": "ANR",
+    "quantity": 100,
+    "departments": [
+      "67",
+      "68"
+    ],
+    "comments": "",
+    "received_at": "29/05/2026 a 12:38",
+    "id": "1780047486250"
+  },
+  {
+    "client": "ANR",
+    "quantity": 150,
+    "departments": [
+      "14",
+      "61",
+      "50"
+    ],
+    "comments": "",
+    "received_at": "29/05/2026 a 12:39",
+    "id": "1780047576329"
+  },
+  {
+    "client": "btc regie ILAN INNOLI",
+    "quantity": 100,
+    "departments": [
+      "55",
+      "88",
+      "54",
+      "57"
+    ],
+    "comments": "",
+    "received_at": "29/05/2026 a 12:41",
+    "id": "1780047666423"
+  },
+  {
+    "client": "LUNA",
+    "quantity": 600,
+    "departments": [
+      "14",
+      "18",
+      "27",
+      "28",
+      "36",
+      "37",
+      "41",
+      "45",
+      "50",
+      "61",
+      "72",
+      "76",
+      "89"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 13:25",
+    "id": "1780568752878"
+  },
+  {
+    "client": "ARTHUR",
+    "quantity": 100,
+    "departments": [
+      "74",
+      "73"
+    ],
+    "comments": "",
+    "received_at": "04/06/2026 a 13:26",
+    "id": "1780568763783"
+  },
+  {
+    "client": "ZHM BUSINESS",
+    "quantity": 900,
+    "departments": [
+      "22",
+      "04",
+      "05",
+      "26",
+      "29",
+      "07",
+      "84",
+      "56",
+      "35"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 13:26",
+    "id": "1780568773793"
+  },
+  {
+    "client": "ARTHUR",
+    "quantity": 280,
+    "departments": [
+      "44",
+      "85",
+      "79"
+    ],
+    "comments": "",
+    "received_at": "04/06/2026 a 13:38",
+    "id": "1780569493387"
+  },
+  {
+    "client": "GAD CONSULTING",
+    "quantity": 200,
+    "departments": [
+      "77"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 13:41",
+    "id": "1780569664464"
+  },
+  {
+    "client": "GAD CONSULTING",
+    "quantity": 150,
+    "departments": [
+      "59",
+      "62"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 13:41",
+    "id": "1780569674472"
+  },
+  {
+    "client": "GEF",
+    "quantity": 400,
+    "departments": [
+      "73",
+      "74",
+      "38"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 14:09",
+    "id": "1780571351223"
+  },
+  {
+    "client": "GEF",
+    "quantity": 100,
+    "departments": [
+      "22",
+      "35",
+      "56"
+    ],
+    "comments": "",
+    "received_at": "04/06/2026 a 14:09",
+    "id": "1780571391278"
+  },
+  {
+    "client": "GEF",
+    "quantity": 100,
+    "departments": [
+      "11",
+      "66"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 14:18",
+    "id": "1780571911811"
+  },
+  {
+    "client": "gef",
+    "quantity": 100,
+    "departments": [
+      "44",
+      "49",
+      "85"
+    ],
+    "comments": "",
+    "received_at": "04/06/2026 a 14:19",
+    "id": "1780571981905"
+  },
+  {
+    "client": "GEF",
+    "quantity": 100,
+    "departments": [
+      "02",
+      "60",
+      "80"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 14:20",
+    "id": "1780572028929"
+  },
+  {
+    "client": "GEF",
+    "quantity": 50,
+    "departments": [
+      "01"
+    ],
+    "comments": "",
+    "received_at": "04/06/2026 a 14:31",
+    "id": "1780572690230"
+  },
+  {
+    "client": "GLOBE ENERGY SHANONE",
+    "quantity": 300,
+    "departments": [
+      "02",
+      "25",
+      "27",
+      "28",
+      "39",
+      "41",
+      "45",
+      "53",
+      "54",
+      "57",
+      "58",
+      "60",
+      "72",
+      "76",
+      "80",
+      "88",
+      "89"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 15:22",
+    "id": "1780575778080"
+  },
+  {
+    "client": "ICO CONSEIL",
+    "quantity": 130,
+    "departments": [
+      "01",
+      "39",
+      "69"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 15:24",
+    "id": "1780575845851"
+  },
+  {
+    "client": "AJT INVEST",
+    "quantity": 300,
+    "departments": [
+      "21",
+      "71",
+      "01",
+      "39",
+      "58",
+      "89",
+      "25",
+      "70",
+      "90",
+      "52"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 15:55",
+    "id": "1780577720423"
+  },
+  {
+    "client": "BL CONSEIL",
+    "quantity": 450,
+    "departments": [
+      "11",
+      "31",
+      "66",
+      "09"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 16:08",
+    "id": "1780578513195"
+  },
+  {
+    "client": "MIJ",
+    "quantity": 50,
+    "departments": [
+      "02",
+      "80"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 16:45",
+    "id": "1780580754241"
+  },
+  {
+    "client": "Saviva energie",
+    "quantity": 150,
+    "departments": [
+      "59",
+      "62",
+      "60",
+      "80",
+      "02"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 16:48",
+    "id": "1780580920641"
+  },
+  {
+    "client": "Saviva energie",
+    "quantity": 50,
+    "departments": [
+      "33",
+      "40",
+      "47"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 16:48",
+    "id": "1780580930656"
+  },
+  {
+    "client": "Groupe ya",
+    "quantity": 250,
+    "departments": [
+      "16",
+      "17",
+      "19",
+      "24",
+      "79",
+      "86",
+      "87"
+    ],
+    "comments": "",
+    "received_at": "04/06/2026 a 17:18",
+    "id": "1780582683312"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 100,
+    "departments": [
+      "08",
+      "55"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 17:18",
+    "id": "1780582715793"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 20,
+    "departments": [
+      "28",
+      "45"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 17:18",
+    "id": "1780582725807"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 100,
+    "departments": [
+      "11",
+      "66"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 17:18",
+    "id": "1780582735831"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 70,
+    "departments": [
+      "22",
+      "29",
+      "56"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 17:19",
+    "id": "1780582745856"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 60,
+    "departments": [
+      "64",
+      "65"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 17:19",
+    "id": "1780582755876"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 90,
+    "departments": [
+      "72",
+      "53"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 17:19",
+    "id": "1780582765898"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 80,
+    "departments": [
+      "76",
+      "80"
+    ],
+    "comments": "",
+    "received_at": "04/06/2026 a 17:21",
+    "id": "1780582860253"
+  },
+  {
+    "client": "ED CONSULTING",
+    "quantity": 50,
+    "departments": [
+      "29",
+      "22",
+      "56",
+      "35"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 17:30",
+    "id": "1780583412092"
+  },
+  {
+    "client": "ed consulting",
+    "quantity": 50,
+    "departments": [
+      "25",
+      "21",
+      "70",
+      "39",
+      "71"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 17:30",
+    "id": "1780583422110"
+  },
+  {
+    "client": "Ateco",
+    "quantity": 100,
+    "departments": [
+      "30",
+      "34"
+    ],
+    "comments": "",
+    "received_at": "04/06/2026 a 17:31",
+    "id": "1780583483955"
+  },
+  {
+    "client": "Saconseil",
+    "quantity": 100,
+    "departments": [
+      "30",
+      "84"
+    ],
+    "comments": "",
+    "received_at": "04/06/2026 a 17:32",
+    "id": "1780583544016"
+  },
+  {
+    "client": "GEF",
+    "quantity": 100,
+    "departments": [
+      "21",
+      "71",
+      "89"
+    ],
+    "comments": "",
+    "received_at": "04/06/2026 a 17:33",
+    "id": "1780583619913"
+  },
+  {
+    "client": "BL CONSEIL",
+    "quantity": 250,
+    "departments": [
+      "28",
+      "78"
+    ],
+    "comments": "",
+    "received_at": "04/06/2026 a 17:55",
+    "id": "1780584911015"
+  },
+  {
+    "client": "MT CONSEL",
+    "quantity": 150,
+    "departments": [
+      "30",
+      "34",
+      "84"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 18:12",
+    "id": "1780585952824"
+  },
+  {
+    "client": "CHARLES",
+    "quantity": 70,
+    "departments": [
+      "15",
+      "03",
+      "63",
+      "43"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 18:12",
+    "id": "1780585963589"
+  },
+  {
+    "client": "charles",
+    "quantity": 20,
+    "departments": [
+      "36",
+      "18"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 18:12",
+    "id": "1780585973614"
+  },
+  {
+    "client": "CHARLES",
+    "quantity": 50,
+    "departments": [
+      "44",
+      "85"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 18:13",
+    "id": "1780585983709"
+  },
+  {
+    "client": "GEF",
+    "quantity": 300,
+    "departments": [
+      "04",
+      "05"
+    ],
+    "comments": "",
+    "received_at": "04/06/2026 a 18:27",
+    "id": "1780586864760"
+  },
+  {
+    "client": "Nakiss partner",
+    "quantity": 100,
+    "departments": [
+      "54",
+      "55",
+      "57",
+      "67",
+      "68",
+      "70",
+      "88",
+      "90"
+    ],
+    "comments": "57-54-55-88-70-90-68-67",
+    "received_at": "04/06/2026 a 18:35",
+    "id": "1780587345324"
+  },
+  {
+    "client": "Nrge",
+    "quantity": 100,
+    "departments": [
+      "03",
+      "42",
+      "43",
+      "63",
+      "15",
+      "58"
+    ],
+    "comments": "",
+    "received_at": "04/06/2026 a 19:31",
+    "id": "1780590708755"
+  },
+  {
+    "client": "Nrge",
+    "quantity": 50,
+    "departments": [
+      "23",
+      "19",
+      "87"
+    ],
+    "comments": "",
+    "received_at": "04/06/2026 a 19:33",
+    "id": "1780590828885"
+  },
+  {
+    "client": "KB conseil",
+    "quantity": 150,
+    "departments": [
+      "02",
+      "60",
+      "80",
+      "27",
+      "76",
+      "28",
+      "45",
+      "16",
+      "24"
+    ],
+    "comments": "",
+    "received_at": "04/06/2026 a 19:34",
+    "id": "1780590888945"
+  },
+  {
+    "client": "LEV CONSEIL",
+    "quantity": 100,
+    "departments": [
+      "87",
+      "23",
+      "19",
+      "24",
+      "79",
+      "86",
+      "16",
+      "17"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 22:35",
+    "id": "1780601730162"
+  },
+  {
+    "client": "LEV CONSEIL",
+    "quantity": 50,
+    "departments": [
+      "45",
+      "41",
+      "28"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 22:35",
+    "id": "1780601740176"
+  },
+  {
+    "client": "AS CONSEIL",
+    "quantity": 50,
+    "departments": [
+      "43",
+      "48"
+    ],
+    "comments": "",
+    "received_at": "04/06/2026 a 22:36",
+    "id": "1780601810264"
+  },
+  {
+    "client": "AS CONSEIL",
+    "quantity": 50,
+    "departments": [
+      "50",
+      "36",
+      "18"
+    ],
+    "comments": "",
+    "received_at": "04/06/2026 a 22:37",
+    "id": "1780601870331"
+  },
+  {
+    "client": "btc regie ILAN INNOLI",
+    "quantity": 130,
+    "departments": [
+      "55",
+      "88",
+      "54",
+      "57"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 22:38",
+    "id": "1780601925813"
+  },
+  {
+    "client": "A&C solutions",
+    "quantity": 130,
+    "departments": [
+      "03",
+      "63",
+      "42"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 22:39",
+    "id": "1780601941528"
+  },
+  {
+    "client": "KY",
+    "quantity": 100,
+    "departments": [
+      "01",
+      "21",
+      "39",
+      "71"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 22:39",
+    "id": "1780601962844"
+  },
+  {
+    "client": "JDLN",
+    "quantity": 100,
+    "departments": [
+      "54",
+      "55",
+      "57",
+      "88",
+      "16",
+      "17"
+    ],
+    "comments": "",
+    "received_at": "04/06/2026 a 22:40",
+    "id": "1780602032930"
+  },
+  {
+    "client": "JS GOLD",
+    "quantity": 100,
+    "departments": [
+      "19",
+      "87",
+      "23",
+      "16",
+      "17",
+      "86",
+      "79"
+    ],
+    "comments": "",
+    "received_at": "04/06/2026 a 22:42",
+    "id": "1780602153037"
+  },
+  {
+    "client": "GLC TAMAR",
+    "quantity": 400,
+    "departments": [
+      "52",
+      "54",
+      "55",
+      "57",
+      "67",
+      "68",
+      "70",
+      "88",
+      "90"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 22:43",
+    "id": "1780602206190"
+  },
+  {
+    "client": "GLC",
+    "quantity": 150,
+    "departments": [
+      "22",
+      "56",
+      "29"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 22:43",
+    "id": "1780602231521"
+  },
+  {
+    "client": "A2e",
+    "quantity": 300,
+    "departments": [
+      "06",
+      "04",
+      "13",
+      "83",
+      "84",
+      "05"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 22:46",
+    "id": "1780602405306"
+  },
+  {
+    "client": "ACL GESTION",
+    "quantity": 100,
+    "departments": [
+      "29",
+      "22",
+      "56"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 22:51",
+    "id": "1780602694081"
+  },
+  {
+    "client": "CAL HAN",
+    "quantity": 100,
+    "departments": [
+      "63",
+      "03"
+    ],
+    "comments": "",
+    "received_at": "04/06/2026 a 23:05",
+    "id": "1780603553998"
+  },
+  {
+    "client": "ysaac partner",
+    "quantity": 150,
+    "departments": [
+      "07",
+      "26",
+      "01",
+      "38",
+      "03",
+      "63",
+      "71"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "04/06/2026 a 23:45",
+    "id": "1780605930705"
+  },
+  {
+    "client": "Sw conseils",
+    "quantity": 150,
+    "departments": [
+      "87",
+      "24",
+      "16"
+    ],
+    "comments": "",
+    "received_at": "05/06/2026 a 11:28",
+    "id": "1780648109291"
+  },
+  {
+    "client": "Ateco",
+    "quantity": 100,
+    "departments": [
+      "30",
+      "34"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 11:47",
+    "id": "1781167668669"
+  },
+  {
+    "client": "Saconseil",
+    "quantity": 100,
+    "departments": [
+      "30",
+      "84"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 11:47",
+    "id": "1781167679273"
+  },
+  {
+    "client": "BL CONSEIL",
+    "quantity": 500,
+    "departments": [
+      "11",
+      "31",
+      "66",
+      "09"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 11:55",
+    "id": "1781168121881"
+  },
+  {
+    "client": "BL CONSEIL",
+    "quantity": 250,
+    "departments": [
+      "28",
+      "78"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 11:55",
+    "id": "1781168131896"
+  },
+  {
+    "client": "LUNA",
+    "quantity": 700,
+    "departments": [
+      "14",
+      "18",
+      "27",
+      "28",
+      "36",
+      "37",
+      "41",
+      "45",
+      "50",
+      "61",
+      "72",
+      "76",
+      "89"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 11:55",
+    "id": "1781168141914"
+  },
+  {
+    "client": "ZHM BUSINESS",
+    "quantity": 900,
+    "departments": [
+      "22",
+      "04",
+      "05",
+      "26",
+      "29",
+      "07",
+      "84",
+      "56",
+      "35"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 12:08",
+    "id": "1781168883948"
+  },
+  {
+    "client": "Saviva energie",
+    "quantity": 150,
+    "departments": [
+      "59",
+      "62",
+      "60",
+      "80",
+      "02"
+    ],
+    "comments": "",
+    "received_at": "11/06/2026 a 12:28",
+    "id": "1781170113994"
+  },
+  {
+    "client": "Saviva energie",
+    "quantity": 50,
+    "departments": [
+      "33",
+      "40",
+      "47"
+    ],
+    "comments": "",
+    "received_at": "11/06/2026 a 12:29",
+    "id": "1781170174084"
+  },
+  {
+    "client": "A2e",
+    "quantity": 300,
+    "departments": [
+      "06",
+      "04",
+      "13",
+      "83",
+      "84",
+      "05"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 12:36",
+    "id": "1781170615785"
+  },
+  {
+    "client": "Sw conseils",
+    "quantity": 250,
+    "departments": [
+      "87",
+      "24",
+      "16"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 16:06",
+    "id": "1781183169765"
+  },
+  {
+    "client": "GEF",
+    "quantity": 300,
+    "departments": [
+      "04",
+      "05"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 16:23",
+    "id": "1781184185572"
+  },
+  {
+    "client": "GEF",
+    "quantity": 100,
+    "departments": [
+      "21",
+      "71",
+      "89"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 16:23",
+    "id": "1781184195595"
+  },
+  {
+    "client": "GEF",
+    "quantity": 50,
+    "departments": [
+      "01"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 16:23",
+    "id": "1781184205615"
+  },
+  {
+    "client": "GEF",
+    "quantity": 100,
+    "departments": [
+      "02",
+      "60",
+      "80"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 16:23",
+    "id": "1781184215687"
+  },
+  {
+    "client": "gef",
+    "quantity": 100,
+    "departments": [
+      "44",
+      "49",
+      "85"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 16:23",
+    "id": "1781184225714"
+  },
+  {
+    "client": "GEF",
+    "quantity": 100,
+    "departments": [
+      "11",
+      "66"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 16:23",
+    "id": "1781184235727"
+  },
+  {
+    "client": "GEF",
+    "quantity": 400,
+    "departments": [
+      "73",
+      "74",
+      "38"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 16:24",
+    "id": "1781184245773"
+  },
+  {
+    "client": "GEF",
+    "quantity": 100,
+    "departments": [
+      "22",
+      "35",
+      "56"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 16:25",
+    "id": "1781184324902"
+  },
+  {
+    "client": "Sw conseils",
+    "quantity": 150,
+    "departments": [
+      "87",
+      "24",
+      "16"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 16:26",
+    "id": "1781184383051"
+  },
+  {
+    "client": "btc regie ILAN INNOLI",
+    "quantity": 150,
+    "departments": [
+      "55",
+      "88",
+      "54",
+      "57"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 16:26",
+    "id": "1781184408135"
+  },
+  {
+    "client": "Nakisspartner",
+    "quantity": 150,
+    "departments": [
+      "54",
+      "55",
+      "67",
+      "68",
+      "70",
+      "88",
+      "57",
+      "90"
+    ],
+    "comments": "",
+    "received_at": "11/06/2026 a 16:45",
+    "id": "1781185555669"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 100,
+    "departments": [
+      "76",
+      "80"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 16:46",
+    "id": "1781185593523"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 60,
+    "departments": [
+      "64",
+      "65"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 16:46",
+    "id": "1781185603537"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 100,
+    "departments": [
+      "72",
+      "53"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 16:46",
+    "id": "1781185613553"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 60,
+    "departments": [
+      "22",
+      "29",
+      "56"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 16:47",
+    "id": "1781185623578"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 80,
+    "departments": [
+      "08",
+      "55"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 16:47",
+    "id": "1781185633606"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 20,
+    "departments": [
+      "28",
+      "45"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 16:47",
+    "id": "1781185643625"
+  },
+  {
+    "client": "INNOLI",
+    "quantity": 100,
+    "departments": [
+      "11",
+      "66"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 16:47",
+    "id": "1781185653638"
+  },
+  {
+    "client": "AN PARTNERS",
+    "quantity": 300,
+    "departments": [
+      "45",
+      "27",
+      "77",
+      "78",
+      "37",
+      "41",
+      "10",
+      "51",
+      "30",
+      "34",
+      "84",
+      "76",
+      "28",
+      "91",
+      "95"
+    ],
+    "comments": "",
+    "received_at": "11/06/2026 a 17:05",
+    "id": "1781186722462"
+  },
+  {
+    "client": "Nrge",
+    "quantity": 150,
+    "departments": [
+      "03",
+      "63",
+      "42",
+      "15",
+      "43",
+      "58"
+    ],
+    "comments": "Pv",
+    "received_at": "11/06/2026 a 17:08",
+    "id": "1781186938996"
+  },
+  {
+    "client": "Nrge",
+    "quantity": 50,
+    "departments": [
+      "87",
+      "23",
+      "19"
+    ],
+    "comments": "Pv",
+    "received_at": "11/06/2026 a 17:10",
+    "id": "1781187029110"
+  },
+  {
+    "client": "GLOBE ENERGY SHANONE",
+    "quantity": 250,
+    "departments": [
+      "02",
+      "25",
+      "27",
+      "28",
+      "39",
+      "41",
+      "45",
+      "53",
+      "54",
+      "57",
+      "58",
+      "60",
+      "72",
+      "76",
+      "80",
+      "88",
+      "89"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 19:04",
+    "id": "1781193894844"
+  },
+  {
+    "client": "KY",
+    "quantity": 150,
+    "departments": [
+      "01",
+      "21",
+      "39",
+      "71"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 19:05",
+    "id": "1781193908629"
+  },
+  {
+    "client": "ACL GESTION",
+    "quantity": 150,
+    "departments": [
+      "29",
+      "22",
+      "56"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 19:14",
+    "id": "1781194486512"
+  },
+  {
+    "client": "AJT INVEST",
+    "quantity": 300,
+    "departments": [
+      "21",
+      "71",
+      "01",
+      "39",
+      "58",
+      "89",
+      "25",
+      "70",
+      "90",
+      "52"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 19:16",
+    "id": "1781194571350"
+  },
+  {
+    "client": "A&C solutions",
+    "quantity": 150,
+    "departments": [
+      "03",
+      "63",
+      "42"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 19:18",
+    "id": "1781194710116"
+  },
+  {
+    "client": "JS GOLD",
+    "quantity": 150,
+    "departments": [
+      "19",
+      "87",
+      "23",
+      "16",
+      "17",
+      "86",
+      "79"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 20:08",
+    "id": "1781197725000"
+  },
+  {
+    "client": "GLC TAMAR",
+    "quantity": 400,
+    "departments": [
+      "52",
+      "54",
+      "55",
+      "57",
+      "67",
+      "68",
+      "70",
+      "88",
+      "90"
+    ],
+    "comments": "Dupliquee",
+    "received_at": "11/06/2026 a 20:09",
+    "id": "1781197749485"
+  }
+]
