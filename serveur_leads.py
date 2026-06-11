@@ -22,7 +22,14 @@ def send_email(subject, html):
             from google.auth.transport.requests import Request
             from googleapiclient.discovery import build
             SCOPES = ['https://www.googleapis.com/auth/gmail.send','https://www.googleapis.com/auth/gmail.readonly']
-            tp = Path.home() / ".gmail_leads_token.json"
+            import os, base64, json
+            b64 = os.environ.get("GMAIL_TOKEN_B64")
+            if b64:
+                token_data = json.loads(base64.b64decode(b64).decode())
+                tp = Path("/tmp/.gmail_leads_token.json")
+                tp.write_text(json.dumps(token_data))
+            else:
+                tp = Path.home() / ".gmail_leads_token.json"
             creds = Credentials.from_authorized_user_file(str(tp), SCOPES)
             if not creds.valid and creds.expired and creds.refresh_token:
                 creds.refresh(Request())
