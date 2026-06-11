@@ -1,3 +1,4 @@
+_sheets_cache = {}
 import socket as _socket
 _orig = _socket.getaddrinfo
 def _ipv4_only(h, p, f=0, *a, **k): return _orig(h, p, _socket.AF_INET, *a, **k)
