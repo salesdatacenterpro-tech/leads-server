@@ -155,6 +155,133 @@ DEPT_POS = {
 }
 
 def build_dashboard(semaine=None):
+    sheets_orders = get_orders_from_sheets(semaine)
+    if sheets_orders is not None:
+        all_orders = sheets_orders
+        orders = sheets_orders
+        now = datetime.now()
+        if semaine:
+            try:
+                target = datetime.strptime(semaine, '%Y-%m-%d')
+            except:
+                target = now
+            monday = (target - timedelta(days=target.weekday())).replace(hour=0,minute=0,second=0,microsecond=0)
+        else:
+            monday = (now - timedelta(days=now.weekday())).replace(hour=0,minute=0,second=0,microsecond=0)
+        sunday = monday + timedelta(days=6, hours=23, minutes=59)
+        wk = monday.strftime('%d/%m') + ' au ' + sunday.strftime('%d/%m/%Y')
+        prev_monday = monday - timedelta(days=7)
+        next_monday = monday + timedelta(days=7)
+        is_current = not semaine or monday.date() == (now - timedelta(days=now.weekday())).date()
+        total = sum(o.get('quantity',0) for o in orders)
+        dept_map = {}
+        for o in orders:
+            for d in o.get('departments',[]):
+                dept_map.setdefault(d,[]).append(o.get('client','?'))
+        rows = ''
+        for o in sorted(orders, key=lambda x: x.get('received_at',''), reverse=True):
+            oid = str(o.get('id','') or o.get('received_at',''))
+            client = str(o.get('client',''))
+            qty = str(o.get('quantity',''))
+            depts = ','.join(o.get('departments',[]))
+            rows += (
+                '<tr style="border-bottom:1px solid #f0f0f0">'
+                '<td style="padding:8px 10px;font-weight:500;font-size:12px">'+client+'</td>'
+                '<td style="padding:8px 10px;text-align:center;font-weight:700;font-size:13px">'+qty+'</td>'
+                '<td style="padding:8px 10px;font-size:10px;color:#555">'+', '.join(sorted(o.get('departments',[])))+'</td>'
+                '<td style="padding:8px 10px;font-size:10px;color:#888">'+str(o.get('received_at',''))+'</td>'
+                '<td style="padding:8px 10px;white-space:nowrap">'
+                '<button data-id="'+oid+'" onclick="delO(this)" style="background:#fff0f0;border:1px solid #fcc;color:#c00;border-radius:5px;padding:3px 7px;font-size:11px;cursor:pointer;margin-right:3px">Suppr</button>'
+                '<button data-client="'+client+'" data-qty="'+qty+'" data-depts="'+depts+'" onclick="dupO(this)" style="background:#f0f4ff;border:1px solid #c0d0ff;color:#333;border-radius:5px;padding:3px 7px;font-size:11px;cursor:pointer">Dupli</button>'
+                '</td></tr>'
+            )
+        if not orders:
+            rows = '<tr><td colspan="5" style="padding:24px;text-align:center;color:#aaa">Aucune commande</td></tr>'
+        dept_json = json.dumps(dept_map, ensure_ascii=False)
+        pos_json = json.dumps(DEPT_POS, ensure_ascii=False)
+        return (
+            '<!DOCTYPE html><html><head><meta charset="UTF-8">'
+            '<meta http-equiv="refresh" content="30"><title>Dashboard</title>'
+            '<style>'
+            '*{box-sizing:border-box;margin:0;padding:0}'
+            'body{font-family:-apple-system,sans-serif;background:#f5f5f7;padding:16px}'
+            '.hd{background:#1a1a2e;border-radius:12px;padding:16px 20px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}'
+            '.hd h1{color:#fff;font-size:16px;font-weight:600}.hd p{color:#888;font-size:11px;margin-top:2px}'
+            '.nav a{color:#fff;text-decoration:none;background:rgba(255,255,255,0.15);padding:5px 10px;border-radius:7px;font-size:11px;margin-left:6px}'
+            '.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}'
+            '.stat{background:#fff;border-radius:10px;padding:12px;text-align:center;border:1px solid #eee}'
+            '.sn{font-size:24px;font-weight:700;color:#1a1a2e}.sl{font-size:11px;color:#888;margin-top:2px}'
+            '.card{background:#fff;border-radius:12px;border:1px solid #eee;overflow:hidden;margin-bottom:14px}'
+            '.chd{padding:10px 14px;font-size:13px;font-weight:600;color:#333;border-bottom:1px solid #f0f0f0}'
+            'table{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}'
+            'th{padding:8px 10px;text-align:left;color:#888;font-weight:500;font-size:11px;background:#f7f7f7}'
+            '#search{width:100%;padding:9px 12px;border:1.5px solid #e0e0e0;border-radius:9px;font-size:13px;outline:none;margin-bottom:0}'
+            '#tip{position:fixed;background:#1a1a2e;color:#fff;padding:7px 11px;border-radius:8px;font-size:11px;pointer-events:none;display:none;z-index:1000;line-height:1.5}'
+            '</style></head><body>'
+            '<div class="hd">'
+            '<div><h1>Dashboard commandes leads</h1><p>Semaine du '+wk+'</p></div>'
+            '<div class="nav">'
+            '<a href="/dashboard?semaine='+prev_monday.strftime('%Y-%m-%d')+'">← Precedente</a>'
+            +(('<a href="/dashboard?semaine='+next_monday.strftime('%Y-%m-%d')+'">Suivante →</a>') if not is_current else '')
+            +(('<a href="/dashboard">Actuelle</a>') if semaine else '')
+            +'</div></div>'
+            '<div class="stats">'
+            '<div class="stat"><div class="sn">'+str(len(orders))+'</div><div class="sl">Clients</div></div>'
+            '<div class="stat"><div class="sn">'+str(total)+'</div><div class="sl">Leads</div></div>'
+            '<div class="stat"><div class="sn">'+str(len(load_orders()))+'</div><div class="sl">Historique local</div></div>'
+            '</div>'
+            '<div class="card"><div class="chd">Carte des departements</div>'
+            '<div style="padding:6px;background:#f0f4f8">'
+            '<svg id="fsvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 520" width="100%" height="380" style="display:block"></svg>'
+            '</div></div>'
+            '<div class="card"><div class="chd">Commandes</div>'
+            '<div style="padding:10px 14px;border-bottom:1px solid #f0f0f0">'
+            '<input id="search" placeholder="Rechercher un client..." oninput="filterTable()">'
+            '</div>'
+            '<table><thead><tr>'
+            '<th style="width:20%">Client</th>'
+            '<th style="width:8%">Qte</th>'
+            '<th style="width:27%">Depts</th>'
+            '<th style="width:22%">Recu le</th>'
+            '<th style="width:23%">Actions</th>'
+            '</tr></thead><tbody>'+rows+'</tbody></table></div>'
+            '<div id="tip"></div>'
+            '<p style="text-align:center;font-size:10px;color:#bbb;margin-top:10px">'+now.strftime('%d/%m/%Y %H:%M:%S')+'</p>'
+            '<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>'
+            '<script>'
+            '(function(){'
+            'var D='+dept_json+';var P='+pos_json+';'
+            'var svg=document.getElementById("fsvg");'
+            'var tip=document.getElementById("tip");'
+            'var w=svg.parentElement.clientWidth-12;var h=380;'
+            'var proj=d3.geoConicConformal().center([2.454,46.279]).parallels([44,49]).rotate([-2.454,0]).scale(2400).translate([w/2,h/2]);'
+            'var path=d3.geoPath().projection(proj);'
+            'd3.json("https://raw.githubusercontent.com/gregoiredavid/france-geojson/master/departements-version-simplifiee.geojson").then(function(geo){'
+            'var sel=d3.select("#fsvg");sel.attr("viewBox","0 0 "+w+" "+h);'
+            'sel.selectAll("path").data(geo.features).enter().append("path")'
+            '.attr("d",path)'
+            '.attr("fill",function(d){var c=d.properties.code;var cl=D[c]||[];return cl.length===0?"#86c98e":cl.length===1?"#ef5350":"#9C27B0";})'
+            '.attr("stroke","#fff").attr("stroke-width","0.8")'
+            '.style("cursor","pointer")'
+            '.on("mousemove",function(event,d){'
+            'var c=d.properties.code;var n=d.properties.nom;var cl=D[c]||[];'
+            'var h2="<b>"+c+" - "+n+"</b>";h2+=cl.length===0?"<br>Disponible":"<br>"+cl.join(", ");'
+            'tip.innerHTML=h2;tip.style.display="block";'
+            'tip.style.left=(event.clientX+14)+"px";tip.style.top=(event.clientY-14)+"px";'
+            '}).on("mouseleave",function(){tip.style.display="none";});'
+            'sel.selectAll("text").data(geo.features).enter().append("text")'
+            '.attr("x",function(d){return path.centroid(d)[0];})'
+            '.attr("y",function(d){return path.centroid(d)[1]+3;})'
+            '.attr("text-anchor","middle").attr("fill","#fff").attr("font-size","7")'
+            '.attr("font-weight","bold").attr("pointer-events","none")'
+            '.text(function(d){return d.properties.code;});'
+            '});'
+            '})();'
+            'function filterTable(){var q=document.getElementById("search").value.toLowerCase();var rows=document.querySelectorAll("tbody tr");rows.forEach(function(r){r.style.display=r.textContent.toLowerCase().includes(q)?"":"none";});}'
+            'function delO(btn){if(!confirm("Supprimer ?"))return;fetch("/api/delete/"+btn.getAttribute("data-id"),{method:"POST"}).then(function(r){return r.json();}).then(function(d){if(d.ok)location.reload();else alert("Erreur");});}'
+            'function dupO(btn){var client=btn.getAttribute("data-client");var qty=btn.getAttribute("data-qty");var depts=btn.getAttribute("data-depts").split(",").filter(function(x){return x;});var newQty=window.prompt("Commande de "+client+" - Modifiez la quantite:",qty);if(newQty===null||newQty==="")return;newQty=parseInt(newQty);if(isNaN(newQty)||newQty<1){alert("Quantite invalide");return;}fetch("/api/order",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({client:client,quantity:newQty,departments:depts,comments:"Dupliquee"})}).then(function(r){return r.json();}).then(function(d){if(d.ok)location.reload();else alert("Erreur");});}'
+            '</script></body></html>'
+        )
     all_orders = load_orders()
     now = datetime.now()
     if semaine:
