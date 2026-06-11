@@ -157,6 +157,46 @@ DEPT_POS = {
     "66":[43,50],"82":[37,43],"46":[40,40],"2B":[75,47],"2A":[74,51],
 }
 
+
+def get_orders_from_sheets(semaine=None):
+    try:
+        import sys, os, base64, json, gspread
+        from google.oauth2.service_account import Credentials
+        from datetime import datetime, timedelta
+        b64 = os.environ.get("SERVICE_ACCOUNT_B64")
+        if b64:
+            info = json.loads(base64.b64decode(b64 + "=="))
+        else:
+            info = json.load(open("/Users/simonguetta/Desktop/service_account.json"))
+        creds = Credentials.from_service_account_info(info, scopes=["https://www.googleapis.com/auth/spreadsheets"])
+        gc = gspread.authorize(creds)
+        SHEET_ID = os.environ.get("SHEET_ID", "12erShSlXNH62KcMwSuKgU38xkqiseprqCR9jMMGtsls")
+        sh = gc.open_by_key(SHEET_ID)
+        now = datetime.now()
+        if semaine:
+            try:
+                target = datetime.strptime(semaine, "%Y-%m-%d")
+            except:
+                target = now
+            monday = (target - timedelta(days=target.weekday())).replace(hour=0,minute=0,second=0,microsecond=0)
+        else:
+            monday = (now - timedelta(days=now.weekday())).replace(hour=0,minute=0,second=0,microsecond=0)
+        sunday = monday + timedelta(days=6, hours=23, minutes=59)
+        orders = []
+        for ws in sh.worksheets():
+            rows = ws.get_all_values()
+            for row in rows[1:]:
+                if len(row) < 5: continue
+                try:
+                    dt = datetime.strptime(row[4], "%d/%m/%Y a %H:%M")
+                    if monday <= dt <= sunday:
+                        orders.append({"client":row[0],"quantity":int(row[1]) if str(row[1]).isdigit() else 0,"departments":[d.strip() for d in row[2].split(",")] if row[2] else [],"received_at":row[4],"id":row[5] if len(row)>5 else ""})
+                except: continue
+        return orders
+    except Exception as e:
+        print("Sheets error:", e)
+        return None
+
 def build_dashboard(semaine=None):
     sheets_orders = get_orders_from_sheets(semaine)
     if sheets_orders is not None:
