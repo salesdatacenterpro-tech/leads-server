@@ -1,21 +1,23 @@
+import os, base64, json, gspread
 import socket
+from google.oauth2.service_account import Credentials
+from datetime import datetime, timedelta
+from pathlib import Path
+
+SHEET_ID = os.environ.get("SHEET_ID", "12erShSlXNH62KcMwSuKgU38xkqiseprqCR9jMMGtsls")
+
 _orig_getaddrinfo = socket.getaddrinfo
 def _ipv4_only(host, port, family=0, *args, **kwargs):
     return _orig_getaddrinfo(host, port, socket.AF_INET, *args, **kwargs)
 socket.getaddrinfo = _ipv4_only
 
-import gspread
-from google.oauth2.service_account import Credentials
-from datetime import datetime, timedelta
-from pathlib import Path
-
-SHEET_ID = "12erShSlXNH62KcMwSuKgU38xkqiseprqCR9jMMGtsls"
-
 def get_client():
-    creds = Credentials.from_service_account_file(
-        str(Path.home() / "Desktop" / "service_account.json"),
-        scopes=["https://www.googleapis.com/auth/spreadsheets"]
-    )
+    b64 = os.environ.get("SERVICE_ACCOUNT_B64")
+    if b64:
+        info = json.loads(base64.b64decode(b64).decode())
+    else:
+        info = json.load(open(str(Path.home() / "Desktop" / "service_account.json")))
+    creds = Credentials.from_service_account_info(info, scopes=["https://www.googleapis.com/auth/spreadsheets"])
     return gspread.authorize(creds)
 
 def get_week_sheet(gc):
@@ -50,11 +52,8 @@ def save_order_to_sheets(order):
         return False
 
 if __name__ == "__main__":
-    print("Test connexion...")
-    gc = get_client()
-    ws = get_week_sheet(gc)
-    print("Onglet:", ws.title)
-    if save_order_to_sheets({"client":"Test","quantity":1,"departments":["75"],"id":"test"}):
+    print("Test...")
+    if save_order_to_sheets({"client":"Test Railway","quantity":1,"departments":["75"],"id":"test"}):
         print("OK!")
     else:
         print("ERREUR")
