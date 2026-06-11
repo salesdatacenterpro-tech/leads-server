@@ -373,11 +373,11 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(body)
 
 def run_server():
-    s = HTTPServer(('', 8080), Handler)
+    import os; port = int(os.environ.get('PORT', 8080)); s = HTTPServer(('', port), Handler)
     print('='*51)
     print('Serveur de commandes leads demarre !')
     print('='*51)
-    print('Formulaire clients : http://localhost:8080/')
+    print('Formulaire clients : http://localhost:'+str(port)+'/')
     print('Dashboard          : http://localhost:8080/dashboard')
     print('Recap de la semaine: http://localhost:8080/recap')
     print('Commandes sauvegardees : ' + str(ORDERS_FILE))
