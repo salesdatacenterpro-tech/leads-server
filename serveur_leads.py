@@ -1,3 +1,7 @@
+import socket as _socket
+_orig = _socket.getaddrinfo
+def _ipv4_only(h, p, f=0, *a, **k): return _orig(h, p, _socket.AF_INET, *a, **k)
+_socket.getaddrinfo = _ipv4_only
 #!/usr/bin/env python3
 import json, base64, logging, threading as _th
 from datetime import datetime, timedelta
@@ -96,6 +100,30 @@ def alert(o):
     send_email('Commande leads - '+c+' - '+q+' leads', html)
 
 def get_week_orders():
+    try:
+        import sys
+        sys.path.insert(0, "/Users/simonguetta/Desktop")
+        from sheets_sync import get_client, SHEET_ID
+        import gspread
+        gc = get_client()
+        sh = gc.open_by_key(SHEET_ID)
+        from datetime import datetime, timedelta
+        now = datetime.now()
+        monday = (now - timedelta(days=now.weekday())).replace(hour=0,minute=0,second=0)
+        orders = []
+        for ws in sh.worksheets():
+            rows = ws.get_all_values()
+            for row in rows[1:]:
+                if len(row) < 5: continue
+                try:
+                    dt = datetime.strptime(row[4], "%d/%m/%Y a %H:%M")
+                    if dt >= monday:
+                        orders.append({"client":row[0],"quantity":int(row[1]) if str(row[1]).isdigit() else 0,"departments":row[2].split(", ") if row[2] else [],"received_at":row[4],"id":row[5] if len(row)>5 else ""})
+                except: continue
+        return orders
+    except Exception as e:
+        print("Sheets error:", e)
+        pass
     orders = load_orders()
     now = datetime.now()
     monday = (now - timedelta(days=now.weekday())).replace(hour=0,minute=0,second=0,microsecond=0)
