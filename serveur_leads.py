@@ -86,10 +86,30 @@ def save_order(order):
         with _lock: _seen.discard(key)
 
 def delete_order(oid):
+    # Supprime localement
     orders = load_orders()
-    new = [o for o in orders if str(o.get('id','')) != oid and str(o.get('received_at','')) != oid]
-    if len(new) == len(orders): return False
-    ORDERS_FILE.write_text(json.dumps(new, ensure_ascii=False, indent=2), encoding='utf-8')
+    new_orders = [o for o in orders if str(o.get('id','')) != oid and str(o.get('received_at','')) != oid]
+    if len(new_orders) < len(orders):
+        ORDERS_FILE.write_text(json.dumps(new_orders, ensure_ascii=False, indent=2), encoding='utf-8')
+    # Supprime dans Sheets
+    try:
+        import os, base64, json as _json, gspread
+        from google.oauth2.service_account import Credentials
+        b64 = os.environ.get("SERVICE_ACCOUNT_B64")
+        if b64:
+            info = _json.loads(base64.b64decode(b64 + "=="))
+            creds = Credentials.from_service_account_info(info, scopes=["https://www.googleapis.com/auth/spreadsheets"])
+            gc = gspread.authorize(creds)
+            SHEET_ID = os.environ.get("SHEET_ID", "12erShSlXNH62KcMwSuKgU38xkqiseprqCR9jMMGtsls")
+            sh = gc.open_by_key(SHEET_ID)
+            for ws in sh.worksheets():
+                rows = ws.get_all_values()
+                for i, row in enumerate(rows):
+                    if len(row) > 5 and (row[5] == oid or row[4] == oid):
+                        ws.delete_rows(i + 1)
+                        return True
+    except Exception as e:
+        print("Delete sheets error:", e)
     return True
 
 def alert(o):
