@@ -1,4 +1,5 @@
 _sheets_cache = {}
+_sheets_cache_time = {}
 import socket as _socket
 _orig = _socket.getaddrinfo
 def _ipv4_only(h, p, f=0, *a, **k): return _orig(h, p, _socket.AF_INET, *a, **k)
@@ -179,6 +180,11 @@ DEPT_POS = {
 
 
 def get_orders_from_sheets(semaine=None):
+    import time
+    global _sheets_cache, _sheets_cache_time
+    cache_key = semaine or 'current'
+    if cache_key in _sheets_cache and time.time() - _sheets_cache_time.get(cache_key, 0) < 300:
+        return _sheets_cache[cache_key]
     try:
         import sys, os, base64, json, gspread
         from google.oauth2.service_account import Credentials
@@ -212,10 +218,12 @@ def get_orders_from_sheets(semaine=None):
                     if monday <= dt <= sunday:
                         orders.append({"client":row[0],"quantity":int(row[1]) if str(row[1]).isdigit() else 0,"departments":[d.strip() for d in row[2].split(",")] if row[2] else [],"received_at":row[4],"id":row[5] if len(row)>5 else ""})
                 except: continue
+        _sheets_cache[cache_key] = orders
+        _sheets_cache_time[cache_key] = time.time()
         return orders
     except Exception as e:
         print("Sheets error:", e)
-        return None
+        return _sheets_cache.get(cache_key, None)
 
 def build_dashboard(semaine=None):
     sheets_orders = get_orders_from_sheets(semaine)
