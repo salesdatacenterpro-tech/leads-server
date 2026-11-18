@@ -1,16 +1,17 @@
-_sheets_cache = {}
-_sheets_cache_time = {}
+#!/usr/bin/env python3
 import socket as _socket
 _orig = _socket.getaddrinfo
 def _ipv4_only(h, p, f=0, *a, **k): return _orig(h, p, _socket.AF_INET, *a, **k)
 _socket.getaddrinfo = _ipv4_only
-#!/usr/bin/env python3
-import json, base64, logging, threading as _th
+
+import json, base64, logging, time, sys, os, html as _html, threading as _th
 from datetime import datetime, timedelta
 from pathlib import Path
-from http.server import HTTPServer, BaseHTTPRequestHandler
+from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+
+sys.path.insert(0, str(Path(__file__).parent))
 
 BASE_DIR = Path.home() / "Desktop" / "LeadsCommandes"
 BASE_DIR.mkdir(parents=True, exist_ok=True)
@@ -21,6 +22,19 @@ FORM_FILE = Path(__file__).parent / "formulaire_leads.html"
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s',
     handlers=[logging.FileHandler(LOG_FILE, encoding='utf-8'), logging.StreamHandler()])
 
+TYPES = ["PV", "PAC", "ITE"]
+TYPE_NAMES = {"PV": "Panneaux solaires", "PAC": "Pompe a chaleur", "ITE": "Isolation exterieure"}
+TYPE_COLORS = {"PV": "#F5A623", "PAC": "#2f80ed", "ITE": "#27ae60"}
+ALL_DEPTS = ["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","21","22","23","24","25","26","27","28","29","2A","2B","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95"]
+
+def norm_type(t):
+    t = str(t or '').strip().upper()
+    return t if t in TYPES else 'PV'   # anciennes commandes sans type = PV
+
+def esc(s):
+    return _html.escape(str(s), quote=True)
+
+# ---------------------------------------------------------------- Email
 def send_email(subject, html):
     def _send():
         try:
@@ -28,7 +42,6 @@ def send_email(subject, html):
             from google.auth.transport.requests import Request
             from googleapiclient.discovery import build
             SCOPES = ['https://www.googleapis.com/auth/gmail.send','https://www.googleapis.com/auth/gmail.readonly']
-            import os, base64, json
             b64 = os.environ.get("GMAIL_TOKEN_B64")
             if b64:
                 token_data = json.loads(base64.b64decode(b64).decode())
@@ -52,538 +65,358 @@ def send_email(subject, html):
             logging.error('Email error: ' + str(e))
     _th.Thread(target=_send, daemon=True).start()
 
+def alert(o):
+    t = o.get('type', 'PV')
+    c = esc(o.get('client', '')); q = str(o.get('quantity', ''))
+    d = ', '.join(sorted(o.get('departments', [])))
+    com = esc(o.get('comments', ''))
+    html = ('<div style="font-family:Arial;padding:20px"><h2>Nouvelle commande ' + t + '</h2>'
+        '<p><b>Type:</b> ' + t + ' - ' + TYPE_NAMES[t] + '</p>'
+        '<p><b>Client:</b> ' + c + '</p><p><b>Quantite:</b> ' + q + ' leads</p>'
+        '<p><b>Departements:</b> ' + d + '</p>'
+        + ('<p><b>Commentaire:</b> ' + com + '</p>' if com else '') + '</div>')
+    send_email('Commande leads ' + t + ' - ' + str(o.get('client', '')) + ' - ' + q + ' leads', html)
+
+# ---------------------------------------------------------------- Stockage local (secours)
+_file_lock = _th.Lock()
+
 def load_orders():
-    if ORDERS_FILE.exists():
-        return json.loads(ORDERS_FILE.read_text(encoding='utf-8'))
+    try:
+        if ORDERS_FILE.exists():
+            return json.loads(ORDERS_FILE.read_text(encoding='utf-8'))
+    except Exception as e:
+        logging.error('load_orders: ' + str(e))
     return []
 
-_lock = _th.Lock()
-_seen = set()
+def write_orders(orders):
+    ORDERS_FILE.write_text(json.dumps(orders, ensure_ascii=False, indent=2), encoding='utf-8')
 
-def save_order(order):
-    key = str(order.get('client','')) + str(order.get('quantity',''))
-    with _lock:
-        if key in _seen:
-            logging.info('Doublon ignore: ' + key)
-            return
-        _seen.add(key)
-    try:
-        orders = load_orders()
-        order['received_at'] = datetime.now().strftime('%d/%m/%Y a %H:%M')
-        order['id'] = str(int(datetime.now().timestamp() * 1000))
-        orders.append(order)
-        ORDERS_FILE.write_text(json.dumps(orders, ensure_ascii=False, indent=2), encoding='utf-8')
-        logging.info('Commande: ' + str(order.get('client')) + ' ' + str(order.get('quantity')))
-        _th.Thread(target=alert, args=(order,), daemon=True).start()
-        try:
-            import sys
-            sys.path.insert(0, str(Path(__file__).parent))
-            from sheets_sync import save_order_to_sheets
-            _th.Thread(target=save_order_to_sheets, args=(dict(order),), daemon=True).start()
-        except Exception as e:
-            logging.error('Sheets error: ' + str(e))
-    finally:
-        import time; time.sleep(10)
-        with _lock: _seen.discard(key)
+# ---------------------------------------------------------------- Lecture Google Sheets (avec cache)
+CACHE_TTL = 300
+_cache = {'orders': None, 'time': 0}
+_cache_lock = _th.Lock()
 
-def delete_order(oid):
-    # Supprime localement
-    orders = load_orders()
-    new_orders = [o for o in orders if str(o.get('id','')) != oid and str(o.get('received_at','')) != oid]
-    if len(new_orders) < len(orders):
-        ORDERS_FILE.write_text(json.dumps(new_orders, ensure_ascii=False, indent=2), encoding='utf-8')
-    # Supprime dans Sheets
+def _parse_row(row):
+    if len(row) < 5: return None
     try:
-        import os, base64, json as _json, gspread
-        from google.oauth2.service_account import Credentials
-        b64 = os.environ.get("SERVICE_ACCOUNT_B64")
-        if b64:
-            info = _json.loads(base64.b64decode(b64 + "=="))
-            creds = Credentials.from_service_account_info(info, scopes=["https://www.googleapis.com/auth/spreadsheets"])
-            gc = gspread.authorize(creds)
-            SHEET_ID = os.environ.get("SHEET_ID", "12erShSlXNH62KcMwSuKgU38xkqiseprqCR9jMMGtsls")
-            sh = gc.open_by_key(SHEET_ID)
-            for ws in sh.worksheets():
-                rows = ws.get_all_values()
-                for i, row in enumerate(rows):
-                    if len(row) > 5 and (row[5] == oid or row[4] == oid):
-                        ws.delete_rows(i + 1)
-                        return True
+        dt = datetime.strptime(row[4].strip(), "%d/%m/%Y a %H:%M")
+    except Exception:
+        return None
+    qty = str(row[1]).strip()
+    return {
+        "client": row[0],
+        "quantity": int(qty) if qty.isdigit() else 0,
+        "departments": [d.strip() for d in row[2].split(",") if d.strip()] if row[2] else [],
+        "comments": row[3] if len(row) > 3 else "",
+        "received_at": row[4].strip(),
+        "id": row[5] if len(row) > 5 else "",
+        "type": norm_type(row[7] if len(row) > 7 else ""),
+        "_dt": dt,
+    }
+
+def get_all_sheet_orders():
+    """Toutes les commandes du Sheet. 2 requetes Google max toutes les 5 min."""
+    with _cache_lock:
+        if _cache['orders'] is not None and time.time() - _cache['time'] < CACHE_TTL:
+            return _cache['orders']
+    try:
+        from sheets_sync import get_client, read_all_tabs
+        _, tabs = read_all_tabs(get_client())
+        orders = []
+        for ws, rows in tabs:
+            for row in rows[1:]:
+                o = _parse_row(row)
+                if o: orders.append(o)
+        with _cache_lock:
+            _cache['orders'] = orders; _cache['time'] = time.time()
+        return orders
     except Exception as e:
-        print("Delete sheets error:", e)
-    return True
+        logging.error('Sheets read error: ' + str(e))
+        with _cache_lock:
+            if _cache['orders'] is not None:
+                _cache['time'] = time.time() - CACHE_TTL + 60  # reessaie dans 1 min
+            return _cache['orders']
 
-def alert(o):
-    c = str(o.get('client','')); q = str(o.get('quantity',''))
-    d = ', '.join(sorted(o.get('departments',[])))
-    html = ('<div style="font-family:Arial;padding:20px"><h2>Nouvelle commande</h2>'
-        '<p><b>Client:</b> '+c+'</p><p><b>Quantite:</b> '+q+' leads</p>'
-        '<p><b>Departements:</b> '+d+'</p></div>')
-    send_email('Commande leads - '+c+' - '+q+' leads', html)
+def _local_with_dt():
+    out = []
+    for o in load_orders():
+        try:
+            o = dict(o); o['_dt'] = datetime.strptime(o.get('received_at', ''), '%d/%m/%Y a %H:%M')
+            o['type'] = norm_type(o.get('type'))
+            out.append(o)
+        except Exception:
+            pass
+    return out
+
+def all_orders():
+    s = get_all_sheet_orders()
+    return s if s is not None else _local_with_dt()
+
+def week_bounds(semaine=None):
+    now = datetime.now()
+    target = now
+    if semaine:
+        try: target = datetime.strptime(semaine, '%Y-%m-%d')
+        except Exception: target = now
+    monday = (target - timedelta(days=target.weekday())).replace(hour=0, minute=0, second=0, microsecond=0)
+    return monday, monday + timedelta(days=7)
+
+def orders_for_week(semaine=None, typ=None):
+    monday, next_monday = week_bounds(semaine)
+    res = [o for o in all_orders() if monday <= o['_dt'] < next_monday]
+    if typ: res = [o for o in res if o['type'] == typ]
+    return res
 
 def get_week_orders():
+    return [{k: v for k, v in o.items() if k != '_dt'} for o in orders_for_week()]
+
+# ---------------------------------------------------------------- Enregistrement / suppression
+_recent = {}
+_recent_lock = _th.Lock()
+
+def save_order(order):
+    order['type'] = norm_type(order.get('type'))
+    try: order['quantity'] = int(order.get('quantity', 0))
+    except Exception: order['quantity'] = 0
+    order['departments'] = [str(d) for d in order.get('departments', [])]
+    key = str(order.get('client', '')).strip().lower() + '|' + str(order['quantity']) + '|' + order['type']
+    now = time.time()
+    with _recent_lock:
+        if now - _recent.get(key, 0) < 10:
+            logging.info('Doublon ignore: ' + key)
+            return
+        _recent[key] = now
+    order['received_at'] = datetime.now().strftime('%d/%m/%Y a %H:%M')
+    order['id'] = str(int(datetime.now().timestamp() * 1000))
+    with _file_lock:
+        orders = load_orders(); orders.append(order); write_orders(orders)
+    logging.info('Commande ' + order['type'] + ': ' + str(order.get('client')) + ' ' + str(order['quantity']))
+    # Visible tout de suite dans le dashboard, sans relire le Sheet
+    with _cache_lock:
+        if _cache['orders'] is not None:
+            o = dict(order); o['_dt'] = datetime.strptime(order['received_at'], '%d/%m/%Y a %H:%M')
+            _cache['orders'] = _cache['orders'] + [o]
+    alert(order)
     try:
-        import sys
-        sys.path.insert(0, "/Users/simonguetta/Desktop")
-        from sheets_sync import get_client, SHEET_ID
-        import socket
-        socket.setdefaulttimeout(10)
-        import gspread
-        gc = get_client()
-        sh = gc.open_by_key(SHEET_ID)
-        from datetime import datetime, timedelta
-        now = datetime.now()
-        monday = (now - timedelta(days=now.weekday())).replace(hour=0,minute=0,second=0)
-        orders = []
-        for ws in sh.worksheets():
-            rows = ws.get_all_values()
-            for row in rows[1:]:
-                if len(row) < 5: continue
-                try:
-                    dt = datetime.strptime(row[4], "%d/%m/%Y a %H:%M")
-                    if dt >= monday:
-                        orders.append({"client":row[0],"quantity":int(row[1]) if str(row[1]).isdigit() else 0,"departments":row[2].split(", ") if row[2] else [],"received_at":row[4],"id":row[5] if len(row)>5 else ""})
-                except: continue
-        return orders
+        from sheets_sync import save_order_to_sheets
+        _th.Thread(target=save_order_to_sheets, args=(dict(order),), daemon=True).start()
     except Exception as e:
-        print("Sheets error:", e)
-        pass
-    orders = load_orders()
-    now = datetime.now()
-    monday = (now - timedelta(days=now.weekday())).replace(hour=0,minute=0,second=0,microsecond=0)
-    result = []
-    for o in orders:
-        try:
-            dt = datetime.strptime(o.get('received_at',''), '%d/%m/%Y a %H:%M')
-            if dt >= monday:
-                result.append(o)
-        except:
-            result.append(o)
-    return result
+        logging.error('Sheets error: ' + str(e))
 
-DEPT_POS = {
-    "59":[33,5],"62":[27,6],"02":[42,11],"08":[51,9],"57":[59,9],"67":[65,11],"68":[66,17],
-    "76":[26,10],"80":[33,13],"60":[37,16],"95":[34,20],"77":[40,21],"10":[46,23],"52":[54,21],
-    "51":[44,17],"55":[56,16],"54":[61,15],"88":[63,19],"70":[61,23],"90":[67,23],"25":[66,26],
-    "14":[19,15],"50":[14,14],"61":[23,19],"27":[29,18],"28":[33,23],"78":[33,21],"75":[36,21],
-    "91":[36,23],"92":[35,21],"93":[37,21],"94":[37,22],"45":[39,25],"89":[44,26],"21":[53,27],
-    "71":[52,32],"39":[61,29],"01":[61,33],"73":[64,34],"74":[65,31],"69":[58,33],"38":[62,37],
-    "72":[27,23],"53":[22,22],"35":[18,22],"29":[8,22],"22":[13,21],"56":[13,26],"49":[24,27],
-    "44":[19,28],"85":[21,33],"79":[25,31],"86":[28,31],"37":[28,27],"36":[31,31],"41":[34,27],
-    "18":[38,29],"58":[44,29],"03":[45,33],"23":[38,34],"87":[34,35],"19":[36,38],"15":[42,39],
-    "63":[44,36],"42":[53,34],"43":[49,38],"07":[53,39],"26":[58,39],"05":[65,39],"04":[63,41],
-    "06":[67,42],"83":[63,45],"13":[57,45],"84":[59,42],"30":[53,42],"34":[49,44],"48":[49,40],
-    "12":[45,41],"81":[45,44],"11":[45,47],"09":[38,48],"31":[36,46],"32":[32,44],"65":[31,48],
-    "64":[25,45],"40":[23,41],"33":[22,37],"47":[30,40],"24":[29,37],"16":[25,34],"17":[21,34],
-    "66":[43,50],"82":[37,43],"46":[40,40],"2B":[75,47],"2A":[74,51],
-}
-
-
-def get_orders_from_sheets(semaine=None):
-    import time
-    global _sheets_cache, _sheets_cache_time
-    cache_key = semaine or 'current'
-    if cache_key in _sheets_cache and time.time() - _sheets_cache_time.get(cache_key, 0) < 300:
-        return _sheets_cache[cache_key]
+def delete_order(oid):
+    with _file_lock:
+        orders = load_orders()
+        new_orders = [o for o in orders if str(o.get('id', '')) != oid and str(o.get('received_at', '')) != oid]
+        if len(new_orders) < len(orders): write_orders(new_orders)
+    with _cache_lock:
+        if _cache['orders'] is not None:
+            _cache['orders'] = [o for o in _cache['orders'] if str(o.get('id', '')) != oid and o.get('received_at') != oid]
     try:
-        import sys, os, base64, json, gspread
-        from google.oauth2.service_account import Credentials
-        from datetime import datetime, timedelta
-        b64 = os.environ.get("SERVICE_ACCOUNT_B64")
-        if b64:
-            info = json.loads(base64.b64decode(b64 + "=="))
-        else:
-            info = json.load(open("/Users/simonguetta/Desktop/service_account.json"))
-        creds = Credentials.from_service_account_info(info, scopes=["https://www.googleapis.com/auth/spreadsheets"])
-        gc = gspread.authorize(creds)
-        SHEET_ID = os.environ.get("SHEET_ID", "12erShSlXNH62KcMwSuKgU38xkqiseprqCR9jMMGtsls")
-        sh = gc.open_by_key(SHEET_ID)
-        now = datetime.now()
-        if semaine:
-            try:
-                target = datetime.strptime(semaine, "%Y-%m-%d")
-            except:
-                target = now
-            monday = (target - timedelta(days=target.weekday())).replace(hour=0,minute=0,second=0,microsecond=0)
-        else:
-            monday = (now - timedelta(days=now.weekday())).replace(hour=0,minute=0,second=0,microsecond=0)
-        sunday = monday + timedelta(days=6, hours=23, minutes=59)
-        orders = []
-        for ws in sh.worksheets():
-            rows = ws.get_all_values()
-            for row in rows[1:]:
-                if len(row) < 5: continue
-                try:
-                    dt = datetime.strptime(row[4], "%d/%m/%Y a %H:%M")
-                    if monday <= dt <= sunday:
-                        orders.append({"client":row[0],"quantity":int(row[1]) if str(row[1]).isdigit() else 0,"departments":[d.strip() for d in row[2].split(",")] if row[2] else [],"received_at":row[4],"id":row[5] if len(row)>5 else ""})
-                except: continue
-        _sheets_cache[cache_key] = orders
-        _sheets_cache_time[cache_key] = time.time()
-        return orders
+        from sheets_sync import get_client, read_all_tabs
+        _, tabs = read_all_tabs(get_client())
+        for ws, rows in tabs:
+            for i, row in enumerate(rows):
+                if i > 0 and ((len(row) > 5 and row[5] == oid) or (len(row) > 4 and row[4] == oid)):
+                    ws.delete_rows(i + 1)
+                    return True
     except Exception as e:
-        print("Sheets error:", e)
-        return _sheets_cache.get(cache_key, None)
+        logging.error('Delete sheets error: ' + str(e))
+    return True
 
-def build_dashboard(semaine=None):
-    sheets_orders = get_orders_from_sheets(semaine)
-    if sheets_orders is not None:
-        all_orders = sheets_orders
-        orders = sheets_orders
-        now = datetime.now()
-        if semaine:
-            try:
-                target = datetime.strptime(semaine, '%Y-%m-%d')
-            except:
-                target = now
-            monday = (target - timedelta(days=target.weekday())).replace(hour=0,minute=0,second=0,microsecond=0)
-        else:
-            monday = (now - timedelta(days=now.weekday())).replace(hour=0,minute=0,second=0,microsecond=0)
-        sunday = monday + timedelta(days=6, hours=23, minutes=59)
-        wk = monday.strftime('%d/%m') + ' au ' + sunday.strftime('%d/%m/%Y')
-        prev_monday = monday - timedelta(days=7)
-        next_monday = monday + timedelta(days=7)
-        is_current = not semaine or monday.date() == (now - timedelta(days=now.weekday())).date()
-        total = sum(o.get('quantity',0) for o in orders)
-        dept_map = {}
-        for o in orders:
-            for d in o.get('departments',[]):
-                dept_map.setdefault(d,[]).append(o.get('client','?'))
-        rows = ''
-        for o in sorted(orders, key=lambda x: x.get('received_at',''), reverse=True):
-            oid = str(o.get('id','') or o.get('received_at',''))
-            client = str(o.get('client',''))
-            qty = str(o.get('quantity',''))
-            depts = ','.join(o.get('departments',[]))
-            rows += (
-                '<tr style="border-bottom:1px solid #f0f0f0">'
-                '<td style="padding:8px 10px;font-weight:500;font-size:12px">'+client+'</td>'
-                '<td style="padding:8px 10px;text-align:center;font-weight:700;font-size:13px">'+qty+'</td>'
-                '<td style="padding:8px 10px;font-size:10px;color:#555">'+', '.join(sorted(o.get('departments',[])))+'</td>'
-                '<td style="padding:8px 10px;font-size:10px;color:#888">'+str(o.get('received_at',''))+'</td>'
-                '<td style="padding:8px 10px;white-space:nowrap">'
-                '<button data-id="'+oid+'" onclick="delO(this)" style="background:#fff0f0;border:1px solid #fcc;color:#c00;border-radius:5px;padding:3px 7px;font-size:11px;cursor:pointer;margin-right:3px">Suppr</button>'
-                '<button data-client="'+client+'" data-qty="'+qty+'" data-depts="'+depts+'" onclick="dupO(this)" style="background:#f0f4ff;border:1px solid #c0d0ff;color:#333;border-radius:5px;padding:3px 7px;font-size:11px;cursor:pointer">Dupli</button>'
-                '</td></tr>'
-            )
-        if not orders:
-            rows = '<tr><td colspan="5" style="padding:24px;text-align:center;color:#aaa">Aucune commande</td></tr>'
-        dept_json = json.dumps(dept_map, ensure_ascii=False)
-        pos_json = json.dumps(DEPT_POS, ensure_ascii=False)
-        return (
-            '<!DOCTYPE html><html><head><meta charset="UTF-8">'
-            '<meta http-equiv="refresh" content="30"><title>Dashboard</title>'
-            '<style>'
-            '*{box-sizing:border-box;margin:0;padding:0}'
-            'body{font-family:-apple-system,sans-serif;background:#f5f5f7;padding:16px}'
-            '.hd{background:#1a1a2e;border-radius:12px;padding:16px 20px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}'
-            '.hd h1{color:#fff;font-size:16px;font-weight:600}.hd p{color:#888;font-size:11px;margin-top:2px}'
-            '.nav a{color:#fff;text-decoration:none;background:rgba(255,255,255,0.15);padding:5px 10px;border-radius:7px;font-size:11px;margin-left:6px}'
-            '.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}'
-            '.stat{background:#fff;border-radius:10px;padding:12px;text-align:center;border:1px solid #eee}'
-            '.sn{font-size:24px;font-weight:700;color:#1a1a2e}.sl{font-size:11px;color:#888;margin-top:2px}'
-            '.card{background:#fff;border-radius:12px;border:1px solid #eee;overflow:hidden;margin-bottom:14px}'
-            '.chd{padding:10px 14px;font-size:13px;font-weight:600;color:#333;border-bottom:1px solid #f0f0f0}'
-            'table{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}'
-            'th{padding:8px 10px;text-align:left;color:#888;font-weight:500;font-size:11px;background:#f7f7f7}'
-            '#search{width:100%;padding:9px 12px;border:1.5px solid #e0e0e0;border-radius:9px;font-size:13px;outline:none;margin-bottom:0}'
-            '#tip{position:fixed;background:#1a1a2e;color:#fff;padding:7px 11px;border-radius:8px;font-size:11px;pointer-events:none;display:none;z-index:1000;line-height:1.5}'
-            '</style></head><body>'
-            '<div class="hd">'
-            '<div><h1>Dashboard commandes leads</h1><p>Semaine du '+wk+'</p></div>'
-            '<div class="nav">'
-            '<a href="/dashboard?semaine='+prev_monday.strftime('%Y-%m-%d')+'">← Precedente</a>'
-            +(('<a href="/dashboard?semaine='+next_monday.strftime('%Y-%m-%d')+'">Suivante →</a>') if not is_current else '')
-            +(('<a href="/dashboard">Actuelle</a>') if semaine else '')
-            +'</div></div>'
-            '<div class="stats">'
-            '<div class="stat"><div class="sn">'+str(len(orders))+'</div><div class="sl">Clients</div></div>'
-            '<div class="stat"><div class="sn">'+str(total)+'</div><div class="sl">Leads</div></div>'
-            '<div class="stat"><div class="sn">'+str(len(load_orders()))+'</div><div class="sl">Historique local</div></div>'
-            '</div>'
-            '<div class="card"><div class="chd">Carte des departements</div>'
-            '<div style="padding:6px;background:#f0f4f8">'
-            '<svg id="fsvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 520" width="100%" height="380" style="display:block"></svg>'
-            '</div></div>'
-            '<div class="card"><div class="chd">Departements disponibles cette semaine</div>'
-        '<div style="padding:14px">'
-        '<div style="display:flex;flex-wrap:wrap;gap:6px;" id="depts-libres">'
-        + ''.join([
-            '<div style="background:#e8f5e9;border:1px solid #a5d6a7;border-radius:6px;padding:6px 10px;font-size:11px;font-weight:700;cursor:pointer" onclick="showHisto(\'' + d + '\')">' + d + '</div>'
-            for d in ["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","21","22","23","24","25","26","27","28","29","2A","2B","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95"]
-            if d not in dept_map
-        ]) +
-        '</div>'
-        '<div id="histo-box" style="display:none;margin-top:12px;background:#f9f9f9;border-radius:8px;padding:12px;font-size:12px"></div>'
-        '</div></div>'
-        '<div class="card"><div class="chd">Commandes</div>'
-            '<div style="padding:10px 14px;border-bottom:1px solid #f0f0f0">'
-            '<input id="search" placeholder="Rechercher un client..." oninput="filterTable()">'
-            '</div>'
-            '<table><thead><tr>'
-            '<th style="width:20%">Client</th>'
-            '<th style="width:8%">Qte</th>'
-            '<th style="width:27%">Depts</th>'
-            '<th style="width:22%">Recu le</th>'
-            '<th style="width:23%">Actions</th>'
-            '</tr></thead><tbody>'+rows+'</tbody></table></div>'
-            '<div id="tip"></div>'
-            '<p style="text-align:center;font-size:10px;color:#bbb;margin-top:10px">'+now.strftime('%d/%m/%Y %H:%M:%S')+'</p>'
-            '<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>'
-            '<script>'
-            '(function(){'
-            'var D='+dept_json+';var P='+pos_json+';'
-            'var svg=document.getElementById("fsvg");'
-            'var tip=document.getElementById("tip");'
-            'var w=svg.parentElement.clientWidth-12;var h=380;'
-            'var proj=d3.geoConicConformal().center([2.454,46.279]).parallels([44,49]).rotate([-2.454,0]).scale(2400).translate([w/2,h/2]);'
-            'var path=d3.geoPath().projection(proj);'
-            'd3.json("https://raw.githubusercontent.com/gregoiredavid/france-geojson/master/departements-version-simplifiee.geojson").then(function(geo){'
-            'var sel=d3.select("#fsvg");sel.attr("viewBox","0 0 "+w+" "+h);'
-            'sel.selectAll("path").data(geo.features).enter().append("path")'
-            '.attr("d",path)'
-            '.attr("fill",function(d){var c=d.properties.code;var cl=D[c]||[];return cl.length===0?"#86c98e":cl.length===1?"#ef5350":"#9C27B0";})'
-            '.attr("stroke","#fff").attr("stroke-width","0.8")'
-            '.style("cursor","pointer")'
-            '.on("mousemove",function(event,d){'
-            'var c=d.properties.code;var n=d.properties.nom;var cl=D[c]||[];'
-            'var h2="<b>"+c+" - "+n+"</b>";h2+=cl.length===0?"<br>Disponible":"<br>"+cl.join(", ");'
-            'tip.innerHTML=h2;tip.style.display="block";'
-            'tip.style.left=(event.clientX+14)+"px";tip.style.top=(event.clientY-14)+"px";'
-            '}).on("mouseleave",function(){tip.style.display="none";});'
-            'sel.selectAll("text").data(geo.features).enter().append("text")'
-            '.attr("x",function(d){return path.centroid(d)[0];})'
-            '.attr("y",function(d){return path.centroid(d)[1]+3;})'
-            '.attr("text-anchor","middle").attr("fill","#fff").attr("font-size","7")'
-            '.attr("font-weight","bold").attr("pointer-events","none")'
-            '.text(function(d){return d.properties.code;});'
-            '});'
-            '})();'
-            'var HISTO=' + json.dumps({d: [o.get("client") for o in (load_orders() or []) if d in o.get("departments",[])] for d in ["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","21","22","23","24","25","26","27","28","29","2A","2B","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95"]}, ensure_ascii=False) + ';'
-        'function showHisto(d){'
-        'var box=document.getElementById("histo-box");'
-        'var clients=HISTO[d]||[];'
-        'if(clients.length===0){box.innerHTML="<b>Dept "+d+"</b> — Aucun historique";}'
-        'else{box.innerHTML="<b>Dept "+d+" — Anciens clients:</b> "+[...new Set(clients)].join(", ");}'
-        'box.style.display="block";'
-        '}'
-        'function filterTable(){var q=document.getElementById("search").value.toLowerCase();var rows=document.querySelectorAll("tbody tr");rows.forEach(function(r){r.style.display=r.textContent.toLowerCase().includes(q)?"":"none";});}'
-            'function delO(btn){if(!confirm("Supprimer ?"))return;fetch("/api/delete/"+btn.getAttribute("data-id"),{method:"POST"}).then(function(r){return r.json();}).then(function(d){if(d.ok)location.reload();else alert("Erreur");});}'
-            'function dupO(btn){var client=btn.getAttribute("data-client");var qty=btn.getAttribute("data-qty");var depts=btn.getAttribute("data-depts").split(",").filter(function(x){return x;});var newQty=window.prompt("Commande de "+client+" - Modifiez la quantite:",qty);if(newQty===null||newQty==="")return;newQty=parseInt(newQty);if(isNaN(newQty)||newQty<1){alert("Quantite invalide");return;}fetch("/api/order",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({client:client,quantity:newQty,departments:depts,comments:"Dupliquee"})}).then(function(r){return r.json();}).then(function(d){if(d.ok)location.reload();else alert("Erreur");});}'
-            '</script></body></html>'
-        )
-    all_orders = load_orders()
+# ---------------------------------------------------------------- Dashboard
+def build_dashboard(semaine=None, typ='PV'):
+    typ = norm_type(typ)
     now = datetime.now()
-    if semaine:
-        try:
-            target = datetime.strptime(semaine, '%Y-%m-%d')
-        except:
-            target = now
-        monday = (target - timedelta(days=target.weekday())).replace(hour=0,minute=0,second=0,microsecond=0)
-    else:
-        monday = (now - timedelta(days=now.weekday())).replace(hour=0,minute=0,second=0,microsecond=0)
-    sunday = monday + timedelta(days=6, hours=23, minutes=59)
+    monday, next_monday = week_bounds(semaine)
+    sunday = next_monday - timedelta(days=1)
     wk = monday.strftime('%d/%m') + ' au ' + sunday.strftime('%d/%m/%Y')
-    prev_monday = monday - timedelta(days=7)
-    next_monday = monday + timedelta(days=7)
-    is_current = not semaine or monday.date() == (now - timedelta(days=now.weekday())).date()
+    is_current = monday.date() == week_bounds()[0].date()
+    sem_str = monday.strftime('%Y-%m-%d')
+    week_all = orders_for_week(semaine)
+    orders = [o for o in week_all if o['type'] == typ]
+    total = sum(o.get('quantity', 0) for o in orders)
+    color = TYPE_COLORS[typ]
 
-    orders = []
-    for o in all_orders:
-        try:
-            dt = datetime.strptime(o.get('received_at',''), '%d/%m/%Y a %H:%M')
-            if monday <= dt <= sunday:
-                orders.append(o)
-        except:
-            pass
+    def link(t=None, s=None):
+        q = 'type=' + (t or typ)
+        if s: q += '&semaine=' + s
+        return '/dashboard?' + q
 
-    total = sum(o.get('quantity',0) for o in orders)
+    tabs = ''
+    for t in TYPES:
+        lst = [o for o in week_all if o['type'] == t]
+        n = sum(o.get('quantity', 0) for o in lst)
+        active = t == typ
+        tabs += ('<a href="' + link(t, sem_str if semaine else None) + '" class="tab' + (' on' if active else '') + '" '
+                 'style="' + ('background:' + TYPE_COLORS[t] + ';border-color:' + TYPE_COLORS[t] + ';color:#fff' if active else '') + '">'
+                 '<b>' + t + '</b><span>' + str(len(lst)) + ' cmd · ' + str(n) + ' leads</span></a>')
+
     dept_map = {}
     for o in orders:
-        for d in o.get('departments',[]):
-            dept_map.setdefault(d,[]).append(o.get('client','?'))
+        for d in o.get('departments', []):
+            dept_map.setdefault(d, []).append(str(o.get('client', '?')))
+
+    histo = {}
+    for o in all_orders():
+        if o['type'] != typ: continue
+        for d in o.get('departments', []):
+            histo.setdefault(d, [])
+            c = str(o.get('client', ''))
+            if c and c not in histo[d]: histo[d].append(c)
 
     rows = ''
-    for o in sorted(orders, key=lambda x: x.get('received_at',''), reverse=True):
-        oid = str(o.get('id','') or o.get('received_at',''))
-        client = str(o.get('client',''))
-        qty = str(o.get('quantity',''))
-        depts = ','.join(o.get('departments',[]))
+    for o in sorted(orders, key=lambda x: x['_dt'], reverse=True):
+        oid = str(o.get('id', '') or o.get('received_at', ''))
+        client = str(o.get('client', ''))
+        qty = str(o.get('quantity', ''))
         rows += (
-            '<tr style="border-bottom:1px solid #f0f0f0">'
-            '<td style="padding:8px 10px;font-weight:500;font-size:12px">'+client+'</td>'
-            '<td style="padding:8px 10px;text-align:center;font-weight:700;font-size:13px">'+qty+'</td>'
-            '<td style="padding:8px 10px;font-size:10px;color:#555">'+', '.join(sorted(o.get('departments',[])))+'</td>'
-            '<td style="padding:8px 10px;font-size:10px;color:#888">'+str(o.get('received_at',''))+'</td>'
-            '<td style="padding:8px 10px;white-space:nowrap">'
-            '<button data-id="'+oid+'" onclick="delO(this)" style="background:#fff0f0;border:1px solid #fcc;color:#c00;border-radius:5px;padding:3px 7px;font-size:11px;cursor:pointer;margin-right:3px">Suppr</button>'
-            '<button data-client="'+client+'" data-qty="'+qty+'" data-depts="'+depts+'" onclick="dupO(this)" style="background:#f0f4ff;border:1px solid #c0d0ff;color:#333;border-radius:5px;padding:3px 7px;font-size:11px;cursor:pointer">Dupli</button>'
-            '</td></tr>'
-        )
+            '<tr>'
+            '<td style="font-weight:500">' + esc(client) + '</td>'
+            '<td style="text-align:center;font-weight:700;font-size:13px">' + qty + '</td>'
+            '<td style="font-size:10px;color:#555">' + esc(', '.join(sorted(o.get('departments', [])))) + '</td>'
+            '<td style="font-size:10px;color:#888">' + esc(o.get('received_at', '')) + '</td>'
+            '<td style="white-space:nowrap">'
+            '<button class="b del" data-id="' + esc(oid) + '" onclick="delO(this)">Suppr</button>'
+            '<button class="b dup" data-client="' + esc(client) + '" data-qty="' + qty + '" data-depts="' + esc(','.join(o.get('departments', []))) + '" onclick="dupO(this)">Dupli</button>'
+            '</td></tr>')
     if not orders:
-        rows = '<tr><td colspan="5" style="padding:24px;text-align:center;color:#aaa">Aucune commande</td></tr>'
+        rows = '<tr><td colspan="5" style="padding:24px;text-align:center;color:#aaa">Aucune commande ' + typ + ' cette semaine</td></tr>'
 
-    dept_json = json.dumps(dept_map, ensure_ascii=False)
-    pos_json = json.dumps(DEPT_POS, ensure_ascii=False)
+    libres = ''.join('<div class="lib" onclick="showHisto(\'' + d + '\')">' + d + '</div>' for d in ALL_DEPTS if d not in dept_map)
+    nav = '<a href="' + link(None, (monday - timedelta(days=7)).strftime('%Y-%m-%d')) + '">← Precedente</a>'
+    if not is_current:
+        nav += '<a href="' + link(None, (monday + timedelta(days=7)).strftime('%Y-%m-%d')) + '">Suivante →</a>'
+        nav += '<a href="' + link(None, None) + '">Actuelle</a>'
 
     return (
-        '<!DOCTYPE html><html><head><meta charset="UTF-8">'
-        '<meta http-equiv="refresh" content="30"><title>Dashboard</title>'
+        '<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8">'
+        '<meta name="viewport" content="width=device-width, initial-scale=1.0">'
+        '<meta http-equiv="refresh" content="30"><title>Dashboard ' + typ + '</title>'
         '<style>'
         '*{box-sizing:border-box;margin:0;padding:0}'
         'body{font-family:-apple-system,sans-serif;background:#f5f5f7;padding:16px}'
-        '.hd{background:#1a1a2e;border-radius:12px;padding:16px 20px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}'
+        '.hd{background:#1a1a2e;border-radius:12px;padding:16px 20px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}'
         '.hd h1{color:#fff;font-size:16px;font-weight:600}.hd p{color:#888;font-size:11px;margin-top:2px}'
         '.nav a{color:#fff;text-decoration:none;background:rgba(255,255,255,0.15);padding:5px 10px;border-radius:7px;font-size:11px;margin-left:6px}'
-        '.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}'
-        '.stat{background:#fff;border-radius:10px;padding:12px;text-align:center;border:1px solid #eee}'
+        '.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}'
+        '.tab{background:#fff;border:2px solid #e5e5e5;border-radius:10px;padding:10px;text-align:center;text-decoration:none;color:#1a1a2e}'
+        '.tab b{display:block;font-size:17px}.tab span{display:block;font-size:11px;opacity:.75;margin-top:2px}'
+        '.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}'
+        '.stat{background:#fff;border-radius:10px;padding:12px;text-align:center;border:1px solid #eee;border-top:3px solid ' + color + '}'
         '.sn{font-size:24px;font-weight:700;color:#1a1a2e}.sl{font-size:11px;color:#888;margin-top:2px}'
-        '.card{background:#fff;border-radius:12px;border:1px solid #eee;overflow:hidden;margin-bottom:14px}'
+        '.card{background:#fff;border-radius:12px;border:1px solid #eee;overflow:hidden;margin-bottom:12px}'
         '.chd{padding:10px 14px;font-size:13px;font-weight:600;color:#333;border-bottom:1px solid #f0f0f0}'
         'table{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}'
         'th{padding:8px 10px;text-align:left;color:#888;font-weight:500;font-size:11px;background:#f7f7f7}'
+        'td{padding:8px 10px;border-bottom:1px solid #f0f0f0;word-wrap:break-word}'
+        '.b{border-radius:5px;padding:3px 7px;font-size:11px;cursor:pointer;margin-right:3px}'
+        '.del{background:#fff0f0;border:1px solid #fcc;color:#c00}.dup{background:#f0f4ff;border:1px solid #c0d0ff;color:#333}'
+        '.lib{background:#e8f5e9;border:1px solid #a5d6a7;border-radius:6px;padding:6px 10px;font-size:11px;font-weight:700;cursor:pointer}'
         '.leg{display:flex;gap:12px;padding:8px 14px;background:#fafafa;border-top:1px solid #f0f0f0}'
-        '.li{display:flex;align-items:center;gap:4px;font-size:11px;color:#555}'
-        '.ld{width:10px;height:10px;border-radius:50%}'
+        '.li{display:flex;align-items:center;gap:4px;font-size:11px;color:#555}.ld{width:10px;height:10px;border-radius:50%}'
+        '#search{width:100%;padding:9px 12px;border:1.5px solid #e0e0e0;border-radius:9px;font-size:13px;outline:none}'
         '#tip{position:fixed;background:#1a1a2e;color:#fff;padding:7px 11px;border-radius:8px;font-size:11px;pointer-events:none;display:none;z-index:1000;line-height:1.5}'
         '</style></head><body>'
-        '<div class="hd">'
-        '<div><h1>Dashboard commandes leads</h1><p>Semaine du '+wk+'</p></div>'
-        '<div class="nav">'
-        '<a href="/dashboard?semaine='+prev_monday.strftime('%Y-%m-%d')+'">← Precedente</a>'
-        +('<a href="/dashboard?semaine='+next_monday.strftime('%Y-%m-%d')+'">Suivante →</a>' if not is_current else '')
-        +('<a href="/dashboard">Actuelle</a>' if semaine else '')
-        +'</div></div>'
+        '<div class="hd"><div><h1>Dashboard commandes leads ' + typ + '</h1><p>Semaine du ' + wk + '</p></div>'
+        '<div class="nav">' + nav + '</div></div>'
+        '<div class="tabs">' + tabs + '</div>'
         '<div class="stats">'
-        '<div class="stat"><div class="sn">'+str(len(orders))+'</div><div class="sl">Clients</div></div>'
-        '<div class="stat"><div class="sn">'+str(total)+'</div><div class="sl">Leads</div></div>'
-        '<div class="stat"><div class="sn">'+str(len(all_orders))+'</div><div class="sl">Historique</div></div>'
+        '<div class="stat"><div class="sn">' + str(len(orders)) + '</div><div class="sl">Commandes ' + typ + '</div></div>'
+        '<div class="stat"><div class="sn">' + str(total) + '</div><div class="sl">Leads ' + typ + '</div></div>'
+        '<div class="stat"><div class="sn">' + str(len(dept_map)) + '</div><div class="sl">Departements pris</div></div>'
         '</div>'
-        '<div class="card"><div class="chd">Carte des departements</div>'
-        '<div style="padding:6px;background:#f0f4f8">'
-        '<svg id="fsvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 520" width="100%" height="380" style="display:block"></svg>'
-        '</div>'
-        '<div class="leg">'
-        '<div class="li"><div class="ld" style="background:#4CAF50"></div>Libre</div>'
+        '<div class="card"><div class="chd">Carte des departements - ' + typ + ' (' + TYPE_NAMES[typ] + ')</div>'
+        '<div style="padding:6px;background:#f0f4f8"><svg id="fsvg" xmlns="http://www.w3.org/2000/svg" width="100%" height="380" style="display:block"></svg></div>'
+        '<div class="leg"><div class="li"><div class="ld" style="background:#86c98e"></div>Libre</div>'
         '<div class="li"><div class="ld" style="background:#ef5350"></div>1 client</div>'
-        '<div class="li"><div class="ld" style="background:#9C27B0"></div>Plusieurs</div>'
-        '</div></div>'
-        '<div class="card"><div class="chd">Departements disponibles cette semaine</div>'
-        '<div style="padding:14px">'
-        '<div style="display:flex;flex-wrap:wrap;gap:6px;" id="depts-libres">'
-        + ''.join([
-            '<div style="background:#e8f5e9;border:1px solid #a5d6a7;border-radius:6px;padding:6px 10px;font-size:11px;font-weight:700;cursor:pointer" onclick="showHisto(\'' + d + '\')">' + d + '</div>'
-            for d in ["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","21","22","23","24","25","26","27","28","29","2A","2B","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95"]
-            if d not in dept_map
-        ]) +
-        '</div>'
+        '<div class="li"><div class="ld" style="background:#9C27B0"></div>Plusieurs</div></div></div>'
+        '<div class="card"><div class="chd">Departements disponibles ' + typ + ' cette semaine (' + str(len(ALL_DEPTS) - len([d for d in ALL_DEPTS if d in dept_map])) + ')</div>'
+        '<div style="padding:14px"><div style="display:flex;flex-wrap:wrap;gap:6px">' + libres + '</div>'
         '<div id="histo-box" style="display:none;margin-top:12px;background:#f9f9f9;border-radius:8px;padding:12px;font-size:12px"></div>'
         '</div></div>'
-        '<div class="card"><div class="chd">Commandes</div>'
-        '<div style="padding:10px 14px;border-bottom:1px solid #f0f0f0">'
-        '<input id="search" style="width:100%;padding:9px 12px;border:1.5px solid #e0e0e0;border-radius:9px;font-size:13px;outline:none" placeholder="Rechercher un client..." oninput="filterTable()">'
-        '</div>'
-        '<table><thead><tr>'
-        '<th style="width:20%">Client</th>'
-        '<th style="width:8%">Qte</th>'
-        '<th style="width:27%">Depts</th>'
-        '<th style="width:22%">Recu le</th>'
-        '<th style="width:23%">Actions</th>'
-        '</tr></thead><tbody>'+rows+'</tbody></table></div>'
+        '<div class="card"><div class="chd">Commandes ' + typ + '</div>'
+        '<div style="padding:10px 14px;border-bottom:1px solid #f0f0f0"><input id="search" placeholder="Rechercher un client..." oninput="filterTable()"></div>'
+        '<table><thead><tr><th style="width:20%">Client</th><th style="width:8%">Qte</th><th style="width:27%">Depts</th>'
+        '<th style="width:22%">Recu le</th><th style="width:23%">Actions</th></tr></thead><tbody>' + rows + '</tbody></table></div>'
         '<div id="tip"></div>'
-        '<p style="text-align:center;font-size:10px;color:#bbb;margin-top:10px">'+now.strftime('%d/%m/%Y %H:%M:%S')+'</p>'
+        '<p style="text-align:center;font-size:10px;color:#bbb;margin-top:10px">' + now.strftime('%d/%m/%Y %H:%M:%S') + '</p>'
         '<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>'
         '<script>'
+        'var TYPE=' + json.dumps(typ) + ';'
+        'var D=' + json.dumps(dept_map, ensure_ascii=False) + ';'
+        'var HISTO=' + json.dumps(histo, ensure_ascii=False) + ';'
         '(function(){'
-        'var D='+dept_json+';var P='+pos_json+';'
-        'var svg=document.getElementById("fsvg");'
-        'var tip=document.getElementById("tip");'
+        'var svg=document.getElementById("fsvg");var tip=document.getElementById("tip");'
         'var w=svg.parentElement.clientWidth-12;var h=380;'
-        'var proj=d3.geoConicConformal().center([2.454,46.279]).parallels([44,49]).rotate([-2.454,0]).scale(2400).translate([w/2,h/2]);'
-        'var path=d3.geoPath().projection(proj);'
         'd3.json("https://raw.githubusercontent.com/gregoiredavid/france-geojson/master/departements-version-simplifiee.geojson").then(function(geo){'
+        'var proj=d3.geoConicConformal().parallels([44,49]).rotate([-3,0]);'
+        'proj.fitExtent([[8,8],[w-8,h-8]],geo);'
+        'var path=d3.geoPath().projection(proj);'
         'var sel=d3.select("#fsvg");sel.attr("viewBox","0 0 "+w+" "+h);'
-        'sel.selectAll("path").data(geo.features).enter().append("path")'
-        '.attr("d",path)'
-        '.attr("fill",function(d){var c=d.properties.code;var cl=D[c]||[];return cl.length===0?"#86c98e":cl.length===1?"#ef5350":"#9C27B0";})'
-        '.attr("stroke","#fff").attr("stroke-width","0.8")'
-        '.attr("opacity",function(d){return (D[d.properties.code]||[]).length>0?1:0.75;})'
-        '.style("cursor","pointer")'
-        '.on("mousemove",function(event,d){'
-        'var c=d.properties.code;var n=d.properties.nom;var cl=D[c]||[];'
-        'var h2="<b>"+c+" - "+n+"</b>";h2+=cl.length===0?"<br>Disponible":"<br>"+cl.join(", ");'
-        'tip.innerHTML=h2;tip.style.display="block";'
-        'tip.style.left=(event.clientX+14)+"px";tip.style.top=(event.clientY-14)+"px";'
-        '}).on("mouseleave",function(){tip.style.display="none";});'
+        'sel.selectAll("path").data(geo.features).enter().append("path").attr("d",path)'
+        '.attr("fill",function(d){var cl=D[d.properties.code]||[];return cl.length===0?"#86c98e":cl.length===1?"#ef5350":"#9C27B0";})'
+        '.attr("stroke","#fff").attr("stroke-width","0.8").style("cursor","pointer")'
+        '.on("mousemove",function(event,d){var c=d.properties.code;var cl=D[c]||[];'
+        'tip.innerHTML="<b>"+c+" - "+d.properties.nom+"</b><br>"+(cl.length===0?TYPE+" disponible":cl.join(", "));'
+        'tip.style.display="block";tip.style.left=(event.clientX+14)+"px";tip.style.top=(event.clientY-14)+"px";})'
+        '.on("mouseleave",function(){tip.style.display="none";});'
         'sel.selectAll("text").data(geo.features).enter().append("text")'
-        '.attr("x",function(d){return path.centroid(d)[0];})'
-        '.attr("y",function(d){return path.centroid(d)[1]+3;})'
-        '.attr("text-anchor","middle").attr("fill","#fff").attr("font-size","7")'
-        '.attr("font-weight","bold").attr("pointer-events","none")'
+        '.attr("x",function(d){return path.centroid(d)[0];}).attr("y",function(d){return path.centroid(d)[1]+3;})'
+        '.attr("text-anchor","middle").attr("fill","#fff").attr("font-size","7").attr("font-weight","bold").attr("pointer-events","none")'
         '.text(function(d){return d.properties.code;});'
-        '});'
-        '})();'
-        'var HISTO=' + json.dumps({d: [o.get("client") for o in (load_orders() or []) if d in o.get("departments",[])] for d in ["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","21","22","23","24","25","26","27","28","29","2A","2B","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95"]}, ensure_ascii=False) + ';'
-        'function showHisto(d){'
-        'var box=document.getElementById("histo-box");'
-        'var clients=HISTO[d]||[];'
-        'if(clients.length===0){box.innerHTML="<b>Dept "+d+"</b> — Aucun historique";}'
-        'else{box.innerHTML="<b>Dept "+d+" — Anciens clients:</b> "+[...new Set(clients)].join(", ");}'
-        'box.style.display="block";'
-        '}'
-        'function filterTable(){'
-        'var q=document.getElementById("search").value.toLowerCase();'
-        'var rows=document.querySelectorAll("tbody tr");'
-        'rows.forEach(function(r){var txt=r.textContent.toLowerCase();r.style.display=txt.includes(q)?"":"none";});'
-        '}'
-        'function delO(btn){if(!confirm("Supprimer ?"))return;'
-        'fetch("/api/delete/"+btn.getAttribute("data-id"),{method:"POST"})'
-        '.then(function(r){return r.json();})'
-        '.then(function(d){if(d.ok)location.reload();else alert("Erreur");});}'
-        'function dupO(btn){'
-        'var client=btn.getAttribute("data-client");'
-        'var qty=btn.getAttribute("data-qty");'
+        '});})();'
+        'function showHisto(d){var box=document.getElementById("histo-box");var cl=HISTO[d]||[];'
+        'box.innerHTML=cl.length===0?"<b>Dept "+d+"</b> - Aucun historique "+TYPE:"<b>Dept "+d+" - Anciens clients "+TYPE+" :</b> "+cl.join(", ");'
+        'box.style.display="block";}'
+        'function filterTable(){var q=document.getElementById("search").value.toLowerCase();'
+        'document.querySelectorAll("tbody tr").forEach(function(r){r.style.display=r.textContent.toLowerCase().includes(q)?"":"none";});}'
+        'function delO(btn){if(!confirm("Supprimer ?"))return;fetch("/api/delete/"+encodeURIComponent(btn.getAttribute("data-id")),{method:"POST"})'
+        '.then(function(r){return r.json();}).then(function(d){if(d.ok)location.reload();else alert("Erreur");});}'
+        'function dupO(btn){var client=btn.getAttribute("data-client");var qty=btn.getAttribute("data-qty");'
         'var depts=btn.getAttribute("data-depts").split(",").filter(function(x){return x;});'
-        'var newQty=window.prompt("Commande de "+client+" - Modifiez la quantite:",qty);'
-        'if(newQty===null||newQty==="")return;'
-        'newQty=parseInt(newQty);if(isNaN(newQty)||newQty<1){alert("Quantite invalide");return;}'
+        'var newQty=window.prompt("Commande "+TYPE+" de "+client+" - Modifiez la quantite:",qty);'
+        'if(newQty===null||newQty==="")return;newQty=parseInt(newQty);if(isNaN(newQty)||newQty<1){alert("Quantite invalide");return;}'
         'fetch("/api/order",{method:"POST",headers:{"Content-Type":"application/json"},'
-        'body:JSON.stringify({client:client,quantity:newQty,departments:depts,comments:"Dupliquee"})})'
-        '.then(function(r){return r.json();})'
-        '.then(function(d){if(d.ok)location.reload();else alert("Erreur");});}'
+        'body:JSON.stringify({type:TYPE,client:client,quantity:newQty,departments:depts,comments:"Dupliquee"})})'
+        '.then(function(r){return r.json();}).then(function(d){if(d.ok)location.reload();else alert("Erreur");});}'
         '</script></body></html>'
     )
 
+# ---------------------------------------------------------------- Recap
 def build_recap_html(orders, wk):
-    total = sum(o.get('quantity',0) for o in orders)
+    total = sum(o.get('quantity', 0) for o in orders)
+    by_type = {t: sum(o.get('quantity', 0) for o in orders if o.get('type') == t) for t in TYPES}
     rows = ''
-    for o in sorted(orders, key=lambda x: x.get('quantity',0), reverse=True):
-        depts = ', '.join(sorted(o.get('departments',[])))[:60]
-        rows += ('<tr><td style="padding:10px 14px;border-bottom:1px solid #f0f0f0">'+str(o.get('client',''))+'</td>'
-            '<td style="padding:10px 14px;border-bottom:1px solid #f0f0f0;text-align:center;font-weight:700">'+str(o.get('quantity',''))+'</td>'
-            '<td style="padding:10px 14px;border-bottom:1px solid #f0f0f0;font-size:12px;color:#666">'+depts+'</td></tr>')
+    for o in sorted(orders, key=lambda x: (TYPES.index(norm_type(x.get('type'))), -x.get('quantity', 0))):
+        depts = ', '.join(sorted(o.get('departments', [])))[:60]
+        rows += ('<tr><td style="padding:10px 14px;border-bottom:1px solid #f0f0f0;font-weight:700">' + norm_type(o.get('type')) + '</td>'
+            '<td style="padding:10px 14px;border-bottom:1px solid #f0f0f0">' + esc(o.get('client', '')) + '</td>'
+            '<td style="padding:10px 14px;border-bottom:1px solid #f0f0f0;text-align:center;font-weight:700">' + str(o.get('quantity', '')) + '</td>'
+            '<td style="padding:10px 14px;border-bottom:1px solid #f0f0f0;font-size:12px;color:#666">' + depts + '</td></tr>')
     return ('<html><head><meta charset="utf-8"></head><body style="font-family:Arial;background:#f7f7f7;padding:20px">'
-        '<div style="max-width:600px;margin:0 auto;background:#fff;border-radius:12px;overflow:hidden">'
+        '<div style="max-width:640px;margin:0 auto;background:#fff;border-radius:12px;overflow:hidden">'
         '<div style="background:#1a1a2e;padding:24px 28px"><h1 style="color:#fff;font-size:18px">Recap leads</h1>'
-        '<p style="color:#aaa;font-size:13px">Semaine du '+wk+'</p></div>'
+        '<p style="color:#aaa;font-size:13px">Semaine du ' + wk + '</p></div>'
         '<div style="padding:20px 28px"><table style="width:100%;border-collapse:collapse;font-size:13px">'
-        '<thead><tr style="background:#f7f7f7"><th style="padding:10px;text-align:left;color:#888">Client</th>'
+        '<thead><tr style="background:#f7f7f7"><th style="padding:10px;text-align:left;color:#888">Type</th>'
+        '<th style="padding:10px;text-align:left;color:#888">Client</th>'
         '<th style="padding:10px;text-align:center;color:#888">Qte</th>'
         '<th style="padding:10px;text-align:left;color:#888">Depts</th></tr></thead>'
-        '<tbody>'+rows+'</tbody></table></div>'
+        '<tbody>' + rows + '</tbody></table></div>'
         '<div style="padding:14px 28px;background:#f7f7f7"><p style="font-size:11px;color:#999">'
-        'Total: '+str(total)+' leads / '+str(len(orders))+' clients</p></div>'
+        'Total: ' + str(total) + ' leads / ' + str(len(orders)) + ' commandes - '
+        + ' / '.join(t + ': ' + str(by_type[t]) for t in TYPES) + '</p></div>'
         '</div></body></html>')
 
 def send_recap_email():
     orders = get_week_orders()
     if not orders: return
-    now = datetime.now()
-    monday = now - timedelta(days=now.weekday())
-    wk = monday.strftime('%d/%m') + ' au ' + (monday+timedelta(days=6)).strftime('%d/%m/%Y')
-    total = sum(o.get('quantity',0) for o in orders)
-    send_email('Recap leads '+wk+' - '+str(total)+' leads', build_recap_html(orders, wk))
+    monday, _ = week_bounds()
+    wk = monday.strftime('%d/%m') + ' au ' + (monday + timedelta(days=6)).strftime('%d/%m/%Y')
+    total = sum(o.get('quantity', 0) for o in orders)
+    send_email('Recap leads ' + wk + ' - ' + str(total) + ' leads', build_recap_html(orders, wk))
 
+# ---------------------------------------------------------------- Serveur HTTP
 class Handler(BaseHTTPRequestHandler):
     def log_message(self, f, *a): pass
 
@@ -592,40 +425,53 @@ class Handler(BaseHTTPRequestHandler):
         parsed = urlparse(self.path)
         qs = parse_qs(parsed.query)
         path = parsed.path
-        if path in ('/', '/formulaire'):
-            c = FORM_FILE.read_bytes() if FORM_FILE.exists() else b'<h1>Formulaire introuvable</h1>'
-            self._r(200, 'text/html; charset=utf-8', c)
-        elif path == '/dashboard':
-            sem = qs.get('semaine', [None])[0]
-            self._r(200, 'text/html; charset=utf-8', build_dashboard(sem).encode('utf-8'))
-        elif path == '/commandes':
-            self._r(200, 'application/json', json.dumps(get_week_orders(), ensure_ascii=False).encode())
-        elif path == '/recap':
-            now = datetime.now(); monday = now - timedelta(days=now.weekday())
-            wk = monday.strftime('%d/%m')+' au '+(monday+timedelta(days=6)).strftime('%d/%m/%Y')
-            self._r(200, 'text/html; charset=utf-8', build_recap_html(get_week_orders(), wk).encode('utf-8'))
-        else:
-            self._r(404, 'text/plain', b'Not found')
+        try:
+            if path in ('/', '/formulaire'):
+                c = FORM_FILE.read_bytes() if FORM_FILE.exists() else b'<h1>Formulaire introuvable</h1>'
+                self._r(200, 'text/html; charset=utf-8', c)
+            elif path == '/dashboard':
+                sem = qs.get('semaine', [None])[0]
+                typ = qs.get('type', ['PV'])[0]
+                self._r(200, 'text/html; charset=utf-8', build_dashboard(sem, typ).encode('utf-8'))
+            elif path == '/commandes':
+                self._r(200, 'application/json', json.dumps(get_week_orders(), ensure_ascii=False).encode())
+            elif path == '/recap':
+                monday, _ = week_bounds()
+                wk = monday.strftime('%d/%m') + ' au ' + (monday + timedelta(days=6)).strftime('%d/%m/%Y')
+                self._r(200, 'text/html; charset=utf-8', build_recap_html(get_week_orders(), wk).encode('utf-8'))
+            else:
+                self._r(404, 'text/plain', b'Not found')
+        except (BrokenPipeError, ConnectionResetError):
+            pass
+        except Exception as e:
+            logging.exception('GET error')
+            try: self._r(500, 'text/plain; charset=utf-8', ('Erreur: ' + str(e)).encode())
+            except Exception: pass
 
     def do_POST(self):
-        if self.path == '/api/order':
-            n = int(self.headers.get('Content-Length', 0))
-            body = self.rfile.read(n)
-            try:
-                order = json.loads(body)
-                save_order(order)
-                self._r(200, 'application/json', b'{"ok":true}')
-            except Exception as e:
-                logging.error(str(e))
-                self._r(400, 'application/json', b'{"ok":false}')
-        elif self.path.startswith('/api/delete/'):
-            oid = self.path.replace('/api/delete/', '').strip()
-            ok = delete_order(oid)
-            self._r(200, 'application/json', b'{"ok":true}' if ok else b'{"ok":false}')
+        from urllib.parse import unquote
+        try:
+            if self.path == '/api/order':
+                n = int(self.headers.get('Content-Length', 0))
+                body = self.rfile.read(n)
+                try:
+                    save_order(json.loads(body))
+                    self._r(200, 'application/json', b'{"ok":true}')
+                except Exception as e:
+                    logging.error(str(e))
+                    self._r(400, 'application/json', b'{"ok":false}')
+            elif self.path.startswith('/api/delete/'):
+                oid = unquote(self.path.replace('/api/delete/', '')).strip()
+                ok = delete_order(oid)
+                self._r(200, 'application/json', b'{"ok":true}' if ok else b'{"ok":false}')
+            else:
+                self._r(404, 'text/plain', b'Not found')
+        except (BrokenPipeError, ConnectionResetError):
+            pass
 
     def do_OPTIONS(self):
         self.send_response(200)
-        for h, v in [('Access-Control-Allow-Origin','*'),('Access-Control-Allow-Methods','GET,POST,OPTIONS'),('Access-Control-Allow-Headers','Content-Type')]:
+        for h, v in [('Access-Control-Allow-Origin', '*'), ('Access-Control-Allow-Methods', 'GET,POST,OPTIONS'), ('Access-Control-Allow-Headers', 'Content-Type')]:
             self.send_header(h, v)
         self.end_headers()
 
@@ -637,21 +483,20 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(body)
 
 def run_server():
-    import os; port = int(os.environ.get('PORT', 8080)); s = HTTPServer(('', port), Handler)
-    print('='*51)
-    print('Serveur de commandes leads demarre !')
-    print('='*51)
-    print('Formulaire clients : http://localhost:'+str(port)+'/')
-    print('Dashboard          : http://localhost:8080/dashboard')
-    print('Recap de la semaine: http://localhost:8080/recap')
-    print('Commandes sauvegardees : ' + str(ORDERS_FILE))
+    port = int(os.environ.get('PORT', 8080))
+    s = ThreadingHTTPServer(('', port), Handler)
+    print('=' * 51)
+    print('Serveur de commandes leads demarre ! (PV / PAC / ITE)')
+    print('=' * 51)
+    print('Formulaire clients : http://localhost:' + str(port) + '/')
+    print('Dashboard          : http://localhost:' + str(port) + '/dashboard')
+    print('Recap de la semaine: http://localhost:' + str(port) + '/recap')
     print('Appuie sur Ctrl+C pour arreter.')
-    print('='*51)
+    print('=' * 51)
     try: s.serve_forever()
     except KeyboardInterrupt: print('\nServeur arrete.')
 
 if __name__ == '__main__':
-    import sys
     if len(sys.argv) > 1 and sys.argv[1] == '--send-recap':
         send_recap_email()
     else:
